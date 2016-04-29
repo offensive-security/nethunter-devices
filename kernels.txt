@@ -112,6 +112,10 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # CM 13.0/CM-14.0
 # git clone https://github.com/daedroza/nethunter_kernel_apq8064.git -b master
 
+# - Wileyfox Storm
+# CM
+# git clone https://github.com/jcadduono/nethunter_kernel_kipper.git -b cm-13.0
+
 # - Xiaomi Mi3/4
 # CM 13.0
 # git clone https://github.com/binkybear/android_kernel_xiaomi_cancro.git -b cm-13.0
