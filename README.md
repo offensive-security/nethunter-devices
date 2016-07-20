@@ -3,8 +3,8 @@
 This repository contains all the precompiled kernels, kernel modules, and installation scripts
 necessary for building an installer tailored for a supported device.
 
-It should be used as a git submodule for the main Kali NetHunter repository.  
-You can find that here: https://github.com/offensive-security/kali-nethunter
+It should be cloned by ./bootstrap.sh in the nethunter-installer directory of the main Kali NetHunter repository.  
+You can find that here: https://github.com/offensive-security/kali-nethunter/tree/master/nethunter-installer
 
 ## How to add a new/unsupported device
 
@@ -41,5 +41,4 @@ So really all you need is a kernel image and sometimes a dtb.img to build for a 
 
 Don't forget to add your newly supported device's kernel sources to the kernels.txt file!
 
-Mon Jul 18 19:04:18 EST 2016
-
+Tue Jul 19 20:18:18 EST 2016
