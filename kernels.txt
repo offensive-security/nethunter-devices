@@ -98,6 +98,10 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # git clone https://github.com/jcadduono/nethunter_kernel_klte.git -b cm-12.1
 # git clone https://github.com/jcadduono/nethunter_kernel_klte.git -b cm-13.0
 
+# - Samsung Galaxy S5 Plus
+# TouchWiz
+# git clone https://github.com/jcadduono/nethunter_kernel_kccat6.git -b touchwiz-6.0
+
 # - Samsung Galaxy S7 & S7 edge (Exynos)
 # TouchWiz
 # git clone https://github.com/jcadduono/nethunter_kernel_herolte.git -b touchwiz-6.0
