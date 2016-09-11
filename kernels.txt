@@ -82,6 +82,10 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # git clone https://github.com/jcadduono/idleKernel-note3.git -b ik-nethunter-L
 # git clone https://github.com/jcadduono/idleKernel-note3.git -b ik-nethunter-M
 
+# - Samsung Galaxy Note 5
+# TouchWiz
+# git clone https://github.com/jcadduono/nethunter_kernel_noblelte.git -b touchwiz-6.0
+
 # - Samsung Galaxy S4
 # AOSP/CM
 # git clone https://github.com/semsevens/nethunter_kernel_jfltexx.git -b cm-13.0
@@ -94,11 +98,27 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # git clone https://github.com/jcadduono/nethunter_kernel_klte.git -b cm-12.1
 # git clone https://github.com/jcadduono/nethunter_kernel_klte.git -b cm-13.0
 
+# - Samsung Galaxy S5 Plus
+# TouchWiz
+# git clone https://github.com/jcadduono/nethunter_kernel_kccat6.git -b touchwiz-6.0
+
+# - Samsung Galaxy S7 & S7 edge (Exynos)
+# TouchWiz
+# git clone https://github.com/jcadduono/nethunter_kernel_herolte.git -b touchwiz-6.0
+
 # - Samsung Galaxy A5
 # TouchWiz
 # git clone https://github.com/DeadSquirrel01/nethunter-kernel-a5ulte.git -b touchwiz-6.0
 # AOSP/CM
 # git clone https://github.com/DeadSquirrel01/nethunter-kernel-a5ulte.git -b cm-13.0
+
+# - Samsung Galaxy On5
+# TouchWiz
+# git clone https://github.com/jcadduono/android_kernel_samsung_exynos3475.git -b touchwiz-6.0
+
+# - Wileyfox Storm
+# CM
+# git clone https://github.com/jcadduono/nethunter_kernel_kipper.git -b cm-13.0
 
 # - Xiaomi Mi3/4
 # CM 13.0

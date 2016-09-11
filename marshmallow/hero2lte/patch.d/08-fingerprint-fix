@@ -1,0 +1,27 @@
+#!/sbin/sh
+
+. "$env"
+
+print "Applying fingerprint service fix..."
+print "(discovered by jesec @ xda-developers)"
+
+cat <<EOF > "$tmp/keepmc"
+08130000000000000000000000000000.tlbin
+ffffffff00000000000000000000000e.tlbin
+ffffffff000000000000000000000016.tlbin
+ffffffffd0000000000000000000000e.tlbin
+ffffffffd00000000000000000000014.tlbin
+ffffffffd00000000000000000000016.tlbin
+ffffffffd00000000000000000000017.tlbin
+fffffffff0000000000000000000001b.tlbin
+EOF
+
+cd /system/app/mcRegistry
+for tlbin in *.tlbin; do
+	grep -q "/^$tlbin\$/" "$tmp/keepmc" || rm "$tlbin"
+done
+
+rm /system/*info*
+rm -rf /system/app/TuiService
+
+exit 0
