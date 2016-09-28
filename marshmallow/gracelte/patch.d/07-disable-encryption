@@ -1,0 +1,67 @@
+#!/sbin/sh
+
+. "$env"
+
+print "Replacing vold/crypto daemons..."
+
+de=$ramdisk_patch/disable-encryption
+
+# remove old binaries
+rm -f \
+	/system/bin/sdp_cryptod \
+	/system/bin/uncrypt \
+	/system/bin/vold \
+	/system/lib/libknox_migration.so \
+	/system/lib64/libknox_migration.so \
+	/system/lib64/libsec_ode_migration.so
+
+# place new binaries
+mv -f \
+	"$de/bin/sdp_cryptod" \
+	"$de/bin/vold" \
+	"$de/bin/uncrypt" \
+	/system/bin/
+
+mv -f \
+	"$de/lib/libknox_migration.so" \
+	/system/lib/
+
+mv -f \
+	"$de/lib64/libknox_migration.so" \
+	"$de/lib64/libsec_ode_migration.so" \
+	/system/lib64/
+
+rm -rf "$de"
+
+# adjust metadata
+chmod 0755 \
+	/system/bin/sdp_cryptod \
+	/system/bin/vold
+
+chmod 0750 \
+	/system/bin/uncrypt
+
+chmod 0644 \
+	/system/lib/libknox_migration.so \
+	/system/lib64/libknox_migration.so \
+	/system/lib64/libsec_ode_migration.so
+
+chown 0:2000 \
+	/system/bin/sdp_cryptod \
+	/system/bin/uncrypt \
+	/system/bin/vold \
+	/system/lib/libknox_migration.so \
+	/system/lib64/libknox_migration.so \
+	/system/lib64/libsec_ode_migration.so
+
+chcon -t sdp_cryptod_exec /system/bin/sdp_cryptod
+chcon -t uncrypt_exec /system/bin/uncrypt
+chcon -t vold_exec /system/bin/vold
+chcon -t system_library_file \
+	/system/lib/libknox_migration.so \
+	/system/lib64/libknox_migration.so \
+	/system/lib64/libsec_ode_migration.so
+
+print "Encryption should no longer be forced!"
+
+exit 0

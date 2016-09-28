@@ -1,0 +1,23 @@
+#!/sbin/sh
+
+. "$env"
+
+print "Freeing up space..."
+
+# Stock ramdisk items
+rm -f \
+	./*.ranchu \
+	./*.goldfish \
+	sbin/dm_verity_signature_checker \
+	sbin/ffu \
+	sbin/sverifysignature
+
+# NetHunter ramdisk items
+rm -rf \
+	sbin/busybox_nh \
+	sbin/dvbootscript.sh \
+	sbin/dvmediarevert \
+	sbin/hostapd \
+	sbin/media_profiles.xml
+
+exit 0
