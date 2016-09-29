@@ -2,6 +2,10 @@ Locations of all kernels used in Kali NetHunter.
 
 If you wish to add a kernel/new device, leave a link to source here and feel free to add your name if you wish:
 
+# - LG G3 [d855]
+# AOSP CAF
+# git clone https://github.com/xNNism/android_kernel_lge_g3-nh -b aosp-mm-nh
+
 # - HTC 10
 # git clone https://github.com/S1CAR1US/nethunter_kernel_htc_pmewl.git
 
