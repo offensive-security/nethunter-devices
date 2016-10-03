@@ -94,8 +94,8 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # git clone https://github.com/jcadduono/nethunter_kernel_klte.git -b cm-12.1
 # git clone https://github.com/jcadduono/nethunter_kernel_klte.git -b cm-13.0
 
-# - Galaxy Note 7
-# Grace UI
+# - Samsung Galaxy S7, Galaxy S7 edge, and Galaxy Note 7
+# Grace UI & TouchWiz
 # git clone https://github.com/jcadduono/android_kernel_samsung_universal8890 -b nethunter-6.0
 
 # - Samsung Galaxy A5
@@ -104,8 +104,12 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # AOSP/CM
 # git clone https://github.com/DeadSquirrel01/nethunter-kernel-a5ulte.git -b cm-13.0
 
+# - Sony Xperia Z
+# CM 13.0
+# git clone https://github.com/daedroza/nethunter_kernel_apq8064.git -b master
+
 # - Sony Xperia ZR
-# CM 13.0/CM-14.0
+# CM 13.0
 # git clone https://github.com/daedroza/nethunter_kernel_apq8064.git -b master
 
 # - Xiaomi Mi3/4

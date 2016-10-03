@@ -1,0 +1,12 @@
+#!/sbin/sh
+
+. "$env"
+
+print "Freeing up space..."
+
+# Stock ramdisk items
+rm -f \
+	./*ranchu* \
+	./*goldfish* \
+
+exit 0
