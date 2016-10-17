@@ -1,0 +1,22 @@
+ath9k_hw.ko: ath.ko
+btusb.ko: ath3k.ko
+dvb_usb_v2.ko:
+diagchar.ko:
+rtlwifi.ko: mac80211.ko
+rtl2832.ko:
+carl9170.ko: ath.ko mac80211.ko
+ath9k_htc.ko: ath9k_common.ko ath9k_hw.ko ath.ko mac80211.ko
+r8152.ko:
+rtl2830.ko:
+dvb-usb-rtl28xxu.ko: rtl2830.ko rtl2832.ko dvb_usb_v2.ko
+rtl8192c-common.ko: rtlwifi.ko mac80211.ko
+rt2x00usb.ko: rt2x00lib.ko mac80211.ko
+ath9k_common.ko: ath9k_hw.ko ath.ko
+ath.ko:
+ath3k.ko:
+rt2800usb.ko: rt2x00usb.ko rt2800lib.ko rt2x00lib.ko mac80211.ko
+rt2x00lib.ko: mac80211.ko
+rt2800lib.ko: rt2x00lib.ko mac80211.ko
+rtl_usb.ko: rtlwifi.ko mac80211.ko
+rtl8192cu.ko: rtl_usb.ko rtl8192c-common.ko rtlwifi.ko mac80211.ko
+mac80211.ko:
