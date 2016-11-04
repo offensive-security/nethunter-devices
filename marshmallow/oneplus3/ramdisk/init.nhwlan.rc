@@ -1,2 +1,0 @@
-on boot
-  insmod /sbin/wlan.ko
