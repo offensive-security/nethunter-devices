@@ -116,6 +116,10 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # CM 13.0
 # git clone https://github.com/binkybear/android_kernel_xiaomi_cancro.git -b cm-13.0
 
+# - Jiayu S3 advanced (MT6752)
+# AOSP/CM/AICP  Marshmallow
+# git clone https://github.com/DKingCN/android_kernel_jiayu_s3_h560.git -b nethunter-6.0
+
 # - HTC One M7 GPE
 # GPE 5.1
 # git clone https://github.com/lavanoid/android_kernel_htc_m7gpe -b android-5.1
