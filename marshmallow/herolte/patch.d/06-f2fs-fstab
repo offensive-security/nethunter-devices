@@ -1,64 +1,58 @@
 #!/sbin/sh
 
-. "$env"
+fs_type="f2fs"
 
-f2fs_system_opts="ro"
-f2fs_system_flags="wait"
+fs_system_opts="ro"
+fs_system_flags="wait"
 
-f2fs_data_opts="nosuid,nodev,noatime,nodiratime,discard,inline_xattr"
-f2fs_data_flags="wait,encryptable=footer"
+fs_data_opts="nosuid,nodev,noatime,nodiratime,discard,inline_xattr"
+fs_data_flags="wait,encryptable=footer"
 
-f2fs_cache_opts="nosuid,nodev,noatime,nodiratime,discard,inline_xattr"
-f2fs_cache_flags="wait"
+fs_cache_opts="nosuid,nodev,noatime,nodiratime,discard,inline_xattr"
+fs_cache_flags="wait"
 
-fstab_get_block() {
-	awk '$2 == "/'$1'" && $3 == "'$2'" { print $1; exit; }' "$fstab"
-}
-
-fstab_get_line() {
-	awk '$2 == "/'$1'" && $3 == "'$2'" { print NR; exit; }' "$fstab"
-}
-
-fstab_has() {
-	[ "$(fstab_get_block $2 $1)" ] || return 1
-}
-
-fstab_check() {
-	if fstab_has f2fs $1 || ! fstab_has ext4 $1; then
-		return 1
-	fi
-}
-
+# fstab_add <fstab> <partition> <fs type> <mount opts> <mount flags>
 fstab_add() {
-	fstab_check $1 || return 0
-	block="$(fstab_get_block $1 ext4)"
-	line=$(fstab_get_line $1 ext4)
-	[ "$block" -a "$line" ] && {
-		sed -i "${line}i$block /$1 f2fs $2 $3" "$fstab"
-		print "Added f2fs /$1 to fstab"
+	awk -vpart="/$2" -vfs="$3" -vopts="$4" -vflags="$5" '
+	$2 == part && $3 == fs {
+		if (found) next
+		if ($4 != opts) { $4 = opts; modified++ }
+		if ($5 != flags) { $5 = flags; modified++ }
+		found++
 	}
+	$2 == part && $3 != fs && !found {
+		print $1 " " $2 " " fs " " opts " " flags
+		found = ++modified
+	}
+	{ print }
+	END { exit !modified }
+	' "$1" > "$1-"
+	[ $? = 0 ] && cat "$1-" > "$1" && print "Added $3 /$2 to $1"
+	rm -f "$1-"
 }
 
-print "Patching the fstab for f2fs support..."
+print "Patching the fstab for $fs_type support..."
 
 found_fstab=false
 
 for fstab in fstab.*; do
-	print "Found fstab: $fstab"
+	[ -f "$fstab" ] || continue
 	found_fstab=true
+
+	echo "Found fstab: $fstab"
 
 	# Uncomment these if you wish to use them, but I do not recommend it!
 	# f2fs has no advantages for a read-only file system, and it may reduce
 	# stability. Cache partitions are not used often, and other things that
 	# rely on it are not prepared for f2fs.
 
-	#fstab_add system "$f2fs_system_opts" "$f2fs_system_flags"
-	fstab_add data "$f2fs_data_opts" "$f2fs_data_flags"
-	#fstab_add cache "$f2fs_cache_opts" "$f2fs_cache_flags"
+	#fstab_add "$fstab" system "$fs_type" "$fs_system_opts" "$fs_system_flags"
+	fstab_add "$fstab" data "$fs_type" "$fs_data_opts" "$fs_data_flags"
+	#fstab_add "$fstab" cache "$fs_type" "$fs_cache_opts" "$fs_cache_flags"
 done
 
 $found_fstab || {
-	print "Unable to find the fstab!"
+	print "Unable to find an fstab!"
 }
 
 exit 0
