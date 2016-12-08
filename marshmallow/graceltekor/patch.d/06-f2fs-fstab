@@ -1,5 +1,7 @@
 #!/sbin/sh
 
+. "$env"
+
 fs_type="f2fs"
 
 fs_system_opts="ro"
