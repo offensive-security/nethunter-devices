@@ -5,4 +5,4 @@ nexutil -m false
 nexutil -m true
 
 # Set ioctl intercept
-export LD_PRELOAD=/system/xbin/libfakeioctlkali.so
+export LD_PRELOAD=/system/lib/libfakeioctlkali.so
