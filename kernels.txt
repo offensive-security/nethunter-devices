@@ -124,6 +124,10 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # CM 13.0
 # git clone https://github.com/DeadSquirrel01/android_kernel_huawei_kiwi.git -b cm-13.0
 
+# - Xiaomi Redmi 3/3 Pro
+# CM 14.1
+# git clone https://github.com/ariafan/ido_kernel-kali.git -b kali
+
 # - Toolchain
 # Google reference
 # git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.7
