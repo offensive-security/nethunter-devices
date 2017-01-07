@@ -132,7 +132,7 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # git clone https://github.com/lavanoid/android_kernel_htc_m7gpe -b android-5.1
 
 # - Huawei Honor 5x
-# CM 13.0
+# LineageOS
 # git clone https://github.com/DeadSquirrel01/android_kernel_huawei_kiwi.git -b cm-13.0
 
 # - Toolchain
