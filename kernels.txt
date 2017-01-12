@@ -9,6 +9,9 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # - HTC 10
 # git clone https://github.com/S1CAR1US/nethunter_kernel_htc_pmewl.git
 
+# - Google Pixel C
+# git clone https://github.com/jcadduono/android_kernel_google_chromeos.git -b nethunter-7.1 pixelc-7
+
 # - Nexus 10
 # git clone https://github.com/binkybear/kernel_samsung_manta.git -b thunderkat
 # git clone https://github.com/binkybear/nexus10-5.git -b android-exynos-manta-3.4-lollipop-release
