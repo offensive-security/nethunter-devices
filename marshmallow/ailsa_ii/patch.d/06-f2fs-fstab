@@ -4,13 +4,13 @@
 
 fs_type="f2fs"
 
-fs_system_opts="ro"
+fs_system_opts="ro,inline_xattr,noinline_dentry"
 fs_system_flags="wait"
 
-fs_data_opts="discard,nosuid,nodev,noatime,inline_xattr"
+fs_data_opts="discard,nosuid,nodev,noatime,inline_xattr,inline_data,noinline_dentry,extent_cache"
 fs_data_flags="wait,check,encryptable=/dev/block/bootdevice/by-name/cryptkey"
 
-fs_cache_opts="discard,nosuid,nodev,noatime,inline_xattr"
+fs_cache_opts="discard,nosuid,nodev,noatime,inline_xattr,noinline_dentry"
 fs_cache_flags="wait"
 
 # fstab_add <fstab> <partition> <fs type> <mount opts> <mount flags>
