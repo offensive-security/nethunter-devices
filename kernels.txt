@@ -144,6 +144,10 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # LineageOS
 # git clone https://github.com/DeadSquirrel01/android_kernel_huawei_kiwi.git -b cm-13.0
 
+# - Samsung Galaxy Core Duos GT-I8262
+# Stock ROM
+https://github.com/critter11/arubaslim_europen_user_defconfig.git
+
 # - Toolchain
 # Google reference
 # git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.7
