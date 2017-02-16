@@ -155,6 +155,10 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # ARMv7: wget https://releases.linaro.org/components/toolchain/binaries/4.9-2016.02/arm-linux-gnueabihf/gcc-linaro-4.9-2016.02-x86_64_arm-linux-gnueabihf.tar.xz
 # ARMv8: wget https://releases.linaro.org/components/toolchain/binaries/4.9-2016.02/aarch64-linux-gnu/gcc-linaro-4.9-2016.02-x86_64_aarch64-linux-gnu.tar.xz
 
-# - Redmi 1sw
+# - Redmi 1sw (armani)
+# LineageOS
+# git clone https://github.com/firstblooder/kali-nethunter.git -b cm-14.1
+
+# - Redmi note3 (kenzo)
 # LineageOS
 # git clone https://github.com/firstblooder/kali-nethunter.git -b cm-14.1
