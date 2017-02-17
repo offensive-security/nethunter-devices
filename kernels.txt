@@ -98,9 +98,13 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # git clone https://github.com/jcadduono/idleKernel-note3.git -b ik-nethunter-L
 # git clone https://github.com/jcadduono/idleKernel-note3.git -b ik-nethunter-M
 
-# - Samsung Galaxy S4
+# - Samsung Galaxy S4 Qualcomm
 # AOSP/CM
 # git clone https://github.com/semsevens/nethunter_kernel_jfltexx.git -b cm-13.0
+
+# - Samsung Galaxy S4 Exynos
+# AOSP/CM
+# git clone https://github.com/Antorya/exynos5410.git -b nethunter/lineage
 
 # - Samsung Galaxy S5
 # TouchWiz
