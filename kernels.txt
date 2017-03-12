@@ -114,6 +114,10 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # Grace UI & TouchWiz
 # git clone https://github.com/jcadduono/android_kernel_samsung_universal8890 -b nethunter-6.0
 
+# - Samsung Galaxy Grand Prime SM-S920L
+# LINEAGE OS 13.0
+# git clone https://github.com/vince2678/android_kernel_samsung_msm8916/tree/cm-13.0
+
 # - Samsung Galaxy A5
 # TouchWiz
 # git clone https://github.com/DeadSquirrel01/nethunter-kernel-a5ulte.git -b touchwiz-6.0

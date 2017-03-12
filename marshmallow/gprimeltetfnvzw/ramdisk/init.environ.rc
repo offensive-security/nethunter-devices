@@ -1,0 +1,12 @@
+# set up the global environment
+on init
+    export ANDROID_BOOTLOGO 1
+    export ANDROID_ROOT /system
+    export ANDROID_ASSETS /system/app
+    export ANDROID_DATA /data
+    export ANDROID_STORAGE /storage
+    export EXTERNAL_STORAGE /sdcard
+    export ASEC_MOUNTPOINT /mnt/asec
+    export BOOTCLASSPATH /system/framework/core-libart.jar:/system/framework/conscrypt.jar:/system/framework/okhttp.jar:/system/framework/core-junit.jar:/system/framework/bouncycastle.jar:/system/framework/ext.jar:/system/framework/framework.jar:/system/framework/telephony-common.jar:/system/framework/voip-common.jar:/system/framework/ims-common.jar:/system/framework/apache-xml.jar:/system/framework/org.apache.http.legacy.boot.jar:/system/framework/tcmiface.jar
+    export SYSTEMSERVERCLASSPATH /system/framework/org.cyanogenmod.platform.jar:/system/framework/org.cyanogenmod.hardware.jar:/system/framework/services.jar:/system/framework/ethernet-service.jar:/system/framework/wifi-service.jar
+    export LD_PRELOAD libsigchain.so

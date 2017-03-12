@@ -1,0 +1,227 @@
+# CyanogenMod Extras
+on init
+    export ANDROID_CACHE /cache
+    export TERMINFO /system/etc/terminfo
+
+    # Set up the BFQIO hierarchy
+    chmod 0755 /sys/fs/cgroup
+    mkdir /sys/fs/cgroup/bfqio 0755 root system
+    mount cgroup none /sys/fs/cgroup/bfqio bfqio
+    chown root system /sys/fs/cgroup/bfqio/tasks
+    chmod 0664 /sys/fs/cgroup/bfqio/tasks
+    chmod 0220 /sys/fs/cgroup/bfqio/cgroup.event_control
+
+    # Soft realtime class for display service
+    mkdir /sys/fs/cgroup/bfqio/rt-display 0755 root system
+    write /sys/fs/cgroup/bfqio/rt-display/bfqio.ioprio_class 1
+    write /sys/fs/cgroup/bfqio/rt-display/bfqio.ioprio 7
+    chown system system /sys/fs/cgroup/bfqio/rt-display/tasks
+    chmod 0664 /sys/fs/cgroup/bfqio/rt-display/tasks
+    chmod 0220 /sys/fs/cgroup/bfqio/rt-display/cgroup.event_control
+
+on post-fs-data
+    mkdir /data/ssh 0750 root shell
+    mkdir /data/ssh/empty 0600 root shell
+    mkdir /cache/recovery 0770 system cache
+
+    # Run sysinit
+    start sysinit
+
+    # Change permissions on fsck log so it can be added to the dropbox
+    chown root log /dev/fscklogs/log
+    chmod 0640 /dev/fscklogs/log
+
+on boot
+    # interactive governor
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/timer_rate
+    chmod 0664 /sys/devices/system/cpu/cpufreq/interactive/timer_rate
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/timer_slack
+    chmod 0664 /sys/devices/system/cpu/cpufreq/interactive/timer_slack
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/min_sample_time
+    chmod 0664 /sys/devices/system/cpu/cpufreq/interactive/min_sample_time
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq
+    chmod 0664 /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/target_loads
+    chmod 0664 /sys/devices/system/cpu/cpufreq/interactive/target_loads
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load
+    chmod 0664 /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay
+    chmod 0664 /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/boost
+    chmod 0664 /sys/devices/system/cpu/cpufreq/interactive/boost
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/boostpulse
+    chmod 0664 /sys/devices/system/cpu/cpufreq/interactive/boostpulse
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/input_boost
+    chmod 0664 /sys/devices/system/cpu/cpufreq/interactive/input_boost
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/boostpulse_duration
+    chmod 0664 /sys/devices/system/cpu/cpufreq/interactive/boostpulse_duration
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/io_is_busy
+    chmod 0664 /sys/devices/system/cpu/cpufreq/interactive/io_is_busy
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/sync_freq
+    chmod 0664 /sys/devices/system/cpu/cpufreq/interactive/sync_freq
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/up_threshold_any_cpu_freq
+    chmod 0664 /sys/devices/system/cpu/cpufreq/interactive/up_threshold_any_cpu_freq
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/up_threshold_any_cpu_load
+    chmod 0664 /sys/devices/system/cpu/cpufreq/interactive/up_threshold_any_cpu_load
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/sampling_down_factor
+    chmod 0664 /sys/devices/system/cpu/cpufreq/interactive/sampling_down_factor
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/max_freq_hysteresis
+    chmod 0664 /sys/devices/system/cpu/cpufreq/interactive/max_freq_hysteresis
+
+    # ondemand governor
+    chown system system /sys/devices/system/cpu/cpufreq/ondemand/boostfreq
+    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/boostfreq
+    chown system system /sys/devices/system/cpu/cpufreq/ondemand/boostpulse
+    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/boostpulse
+    chown system system /sys/devices/system/cpu/cpufreq/ondemand/boosttime
+    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/boosttime
+    chown system system /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
+    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
+    chown system system /sys/devices/system/cpu/cpufreq/ondemand/down_differential
+    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/down_differential
+    chown system system /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
+    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
+    chown system system /sys/devices/system/cpu/cpufreq/ondemand/powersave_bias
+    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/powersave_bias
+    chown system system /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
+    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
+    chown system system /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
+    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
+    chown system system /sys/devices/system/cpu/cpufreq/ondemand/input_boost
+    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/input_boost
+    chown system system /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_multi_core
+    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_multi_core
+    chown system system /sys/devices/system/cpu/cpufreq/ondemand/down_differential_multi_core
+    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/down_differential_multi_core
+    chown system system /sys/devices/system/cpu/cpufreq/ondemand/optimal_freq
+    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/optimal_freq
+    chown system system /sys/devices/system/cpu/cpufreq/ondemand/sync_freq
+    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/sync_freq
+    chown system system /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_any_cpu_load
+    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_any_cpu_load
+
+    chown system system /sys/block/mmcblk0/queue/scheduler
+    chmod 0664 /sys/block/mmcblk0/queue/scheduler
+    restorecon /sys/block/mmcblk0/queue/scheduler
+
+    chown system system /sys/block/sda/queue/scheduler
+    chmod 0664 /sys/block/sda/queue/scheduler
+    restorecon /sys/block/sda/queue/scheduler
+
+    chown system system /sys/block/sde/queue/scheduler
+    chmod 0664 /sys/block/sde/queue/scheduler
+    restorecon /sys/block/sde/queue/scheduler
+
+    chown system system /sys/block/dm-0/queue/scheduler
+    chmod 0664 /sys/block/dm-0/queue/scheduler
+    restorecon /sys/block/dm-0/queue/scheduler
+
+    chown system system /dev/cpuctl/cpu.notify_on_migrate
+    chmod 0664 /dev/cpuctl/cpu.notify_on_migrate
+
+    # LiveDisplay sysfs
+    chown system system /sys/devices/virtual/graphics/fb0/aco
+    chmod 0660 /sys/devices/virtual/graphics/fb0/aco
+    chown system system /sys/devices/virtual/graphics/fb0/cabc
+    chmod 0660 /sys/devices/virtual/graphics/fb0/cabc
+    chown system system /sys/devices/virtual/graphics/fb0/rgb
+    chmod 0660 /sys/devices/virtual/graphics/fb0/rgb
+    chown system system /sys/devices/virtual/graphics/fb0/sre
+    chmod 0660 /sys/devices/virtual/graphics/fb0/sre
+    chown system system /sys/devices/virtual/graphics/fb0/color_enhance
+    chmod 0660 /sys/devices/virtual/graphics/fb0/color_enhance
+
+    # Vibrator intensity control
+    chown system system /sys/class/timed_output/vibrator/vtg_level
+    chmod 0644 /sys/class/timed_output/vibrator/vtg_level
+
+    # Define TCP delayed ack settings for WiFi & LTE
+    chown system system /sys/kernel/ipv4/tcp_delack_seg
+    chown system system /sys/kernel/ipv4/tcp_use_userconfig
+    setprop net.tcp.delack.default     1
+    setprop net.tcp.delack.wifi        20
+    setprop net.tcp.delack.lte         8
+    setprop net.tcp.usercfg.default    0
+    setprop net.tcp.usercfg.wifi       1
+    setprop net.tcp.usercfg.lte        1
+
+    # Persistent properties (only created if persist exists)
+    mkdir /persist/properties 0770 system system
+
+# sysinit (/system/etc/init.d)
+service sysinit /system/bin/sysinit
+    user root
+    oneshot
+    disabled
+
+# bugreport is triggered by holding down volume down, volume up and power
+service bugreport /system/bin/dumpstate -d -p -B \
+        -o /data/data/com.android.shell/files/bugreports/bugreport
+    oneshot
+    disabled
+    keycodes 114 115 116
+
+# adb over network
+on property:adb.network.port=*
+    setprop service.adb.tcp.port ${adb.network.port}
+
+on property:service.adb.tcp.port=5555
+    stop adbd
+    start adbd
+
+on property:service.adb.tcp.port=-1
+    stop adbd
+    start adbd
+
+# Disable ril services if noril prop is set
+on property:ro.radio.noril=1
+    stop ril-daemon
+    stop qmuxd
+    stop netmgrd
+
+on property:persist.radio.noril=1
+    setprop ro.radio.noril 1
+
+# Configure IO scheduler
+on property:sys.io.scheduler=*
+    write /sys/block/mmcblk0/queue/scheduler ${sys.io.scheduler}
+    write /sys/block/mmcblk1/queue/scheduler ${sys.io.scheduler}
+    write /sys/block/sda/queue/scheduler ${sys.io.scheduler}
+    write /sys/block/sde/queue/scheduler ${sys.io.scheduler}
+    write /sys/block/dm-0/queue/scheduler ${sys.io.scheduler}
+
+on property:persist.sys.io.scheduler=*
+    setprop sys.io.scheduler ${persist.sys.io.scheduler}
+
+# Set slice_idle to 0 for CFQ
+on property:sys.io.scheduler=cfq
+    write /sys/block/mmcblk0/queue/iosched/slice_idle 0
+    write /sys/block/mmcblk1/queue/iosched/slice_idle 0
+    write /sys/block/sda/queue/iosched/slice_idle 0
+    write /sys/block/sde/queue/iosched/slice_idle 0
+    write /sys/block/dm-0/queue/iosched/slice_idle 0
+
+# Set slice_idle to 0 for BFQ
+on property:sys.io.scheduler=bfq
+    write /sys/block/mmcblk0/queue/iosched/slice_idle 0
+    write /sys/block/mmcblk1/queue/iosched/slice_idle 0
+    write /sys/block/sda/queue/iosched/slice_idle 0
+    write /sys/block/sde/queue/iosched/slice_idle 0
+    write /sys/block/dm-0/queue/iosched/slice_idle 0
+
+# su daemon
+service su_daemon /system/xbin/su --daemon
+    disabled
+    seclabel u:r:sudaemon:s0
+
+on property:persist.sys.root_access=0
+    stop su_daemon
+
+on property:persist.sys.root_access=1
+    start su_daemon
+
+on property:persist.sys.root_access=2
+    start su_daemon
+
+on property:persist.sys.root_access=3
+    start su_daemon

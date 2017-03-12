@@ -1,0 +1,13 @@
+on init
+    # Shims
+    export LD_SHIM_LIBS /system/lib/libril.so|libril_shim.so:/system/lib/libcrypto.so|libboringssl-compat.so
+
+on boot
+
+service config_ksm /system/bin/sh /init.ksm.sh
+    class late_start
+    user root
+    oneshot
+
+on property:sys.boot_completed=1
+    start config_ksm

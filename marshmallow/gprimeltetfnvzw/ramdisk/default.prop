@@ -1,0 +1,29 @@
+#
+# ADDITIONAL_DEFAULT_PROPERTIES
+#
+ro.adb.secure=1
+camera2.portability.force_api=1
+ro.secure=1
+security.perf_harden=1
+ro.allow.mock.location=0
+ro.debuggable=1
+ro.zygote=zygote32
+dalvik.vm.image-dex2oat-Xms=64m
+dalvik.vm.image-dex2oat-Xmx=64m
+dalvik.vm.dex2oat-Xms=64m
+dalvik.vm.dex2oat-Xmx=512m
+ro.dalvik.vm.native.bridge=0
+debug.atrace.tags.enableflags=0
+persist.sys.usb.config=mtp
+persist.radio.apm_sim_not_pwdn=1
+persist.cne.feature=0
+persist.service.adb.enable=1
+rild.libpath=/system/lib/libsec-ril.so
+persist.radio.lte_vrte_ltd=1
+persist.radio.add_power_save=1
+#
+# BOOTIMAGE_BUILD_PROPERTIES
+#
+ro.bootimage.build.date=Sat Mar 4 09:00:08 PST 2017
+ro.bootimage.build.date.utc=1488646808
+ro.bootimage.build.fingerprint=samsung/lineage_gprimeltetfnvzw/gprimeltetfnvzw:6.0.1/MOB31K/c8f5b85b85:userdebug/test-keys
