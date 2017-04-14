@@ -147,6 +147,9 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # - LeEco Le 2
 # git clone https://github.com/nethunter-s2/android_kernel_leeco_s2.git -b cm-14.1
 
+# - Asus Zenfone 2 Laser (720p)
+# git clone https://github.com/adrenogamer/android_kernel_asus_msm8916 -b cm-13.0
+
 # - Toolchain
 # Google reference
 # git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.7
