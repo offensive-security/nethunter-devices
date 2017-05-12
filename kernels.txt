@@ -147,6 +147,9 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # - LeEco Le 2
 # git clone https://github.com/nethunter-s2/android_kernel_leeco_s2.git -b cm-14.1
 
+# - Yu Yunique
+# git clone https://github.com/thelazyindian/kernel_8916.git -b cm-14.1-nethunter
+ 
 # - Toolchain
 # Google reference
 # git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.7
