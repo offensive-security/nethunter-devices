@@ -17,6 +17,7 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # git clone https://github.com/binkybear/nexus10-5.git -b android-exynos-manta-3.4-lollipop-release
 
 # - Nexus 9
+# git clone https://github.com/SecurityAddicted/ElementalX-N9-Nethunter.git nexus9-7
 # git clone https://github.com/binkybear/flounder.git -b android-tegra-flounder-3.10-marshmallow-release nexus 9-6
 # git clone https://github.com/binkybear/flounder.git -b android-tegra-flounder-3.10-lollipop-release  nexus9-5
 
@@ -54,7 +55,7 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # CM
 # git clone https://github.com/jcadduono/nethunter_kernel_hammerhead.git nexus5-cm
 # git clone https://github.com/chrisk44/android_kernel_lge_hammerhead.git -b cm-14.1-caf
-# git clone https://github.com/AutinDroid/HammerheadMon-Kernel.git -b Nexmon-Patches
+# git clone https://github.com/AutinDroid/ElementalX_N5mon.git -b ElementalX-7.09mon
 
 # - Nexus 4
 # git clone https://github.com/binkybear/kernel_msm.git -b android-msm-mako-3.4-kitkat-mr2 mako
@@ -148,6 +149,9 @@ git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla
 # - Huawei Honor 5x
 # LineageOS
 # git clone https://github.com/DeadSquirrel01/android_kernel_huawei_kiwi.git -b cm-13.0
+
+# - LeEco Le 2
+# git clone https://github.com/nethunter-s2/android_kernel_leeco_s2.git -b cm-14.1
 
 # - Toolchain
 # Google reference
