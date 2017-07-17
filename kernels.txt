@@ -74,6 +74,12 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # git clone https://github.com/binkybear/android_kernel_oneplus_msm8996.git -b ElementalX oneplus3
 # git clone https://github.com/jcadduono/android_kernel_oneplus_msm8996.git -b nethunter-7.0 oneplus3
 
+# - OnePlus 3 & OnePlus 3T
+# OXYGEN
+# git clone https://github.com/zanezam/boeffla-kernel-oos-oneplus3.git -b t_boeffla_oos4_nethunter-V1_aa64u541
+# CM
+git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla_cm14_nethunter-V1_aa64u541
+
 # - OnePlus Two
 # OXYGEN
 # git clone https://github.com/binkybear/android_kernel_oneplus_msm8994.git -b OXYGEN
