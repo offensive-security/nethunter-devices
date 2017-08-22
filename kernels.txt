@@ -153,6 +153,10 @@ git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla
 # - LeEco Le 2
 # git clone https://github.com/nethunter-s2/android_kernel_leeco_s2.git -b cm-14.1
 
+# - Moto Maxx
+# LineageOS
+# git clone https://github.com/bhb27/BHB27Kernel.git -b N_c
+
 # - Toolchain
 # Google reference
 # git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.7
