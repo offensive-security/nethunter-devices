@@ -92,6 +92,10 @@ git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla
 # git clone https://github.com/binkybear/AK-OnePone.git -b cm-12.1 oneplus12
 # git clone https://github.com/binkybear/AK-OnePone.git -b cm-13.0 oneplus13
 
+# - OnePlus 5
+# OOS 4.x
+# git clone https://github.com/nethunteros/android_kernel_oneplus_msm8998 -b boeffla_oos4 oneplus5
+
 # - LG G5 & LG V20
 # LG Stock
 # git clone https://github.com/jcadduono/android_kernel_lge_msm8996.git -b nethunter-7.0
