@@ -34,7 +34,8 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 
 # - Nexus 6P
 # git clone https://github.com/binkybear/AK-Angler.git -b ak-aosp-6.0.1-staging nexus6P-6
-# git clone https://github.com/jcadduono/android_kernel_huawei_angler -b nethunter-7.1 nexus6P-7
+# git clone https://github.com/jcadduono/android_kernel_huawei_angler -b nethunter-7.1_2 nexus6P-7
+# git clone https://github.com/jcadduono/android_kernel_huawei_angler -b nethunter-8.0 nexus6P-8
 
 # - Nexus 6
 # git clone https://github.com/binkybear/kernel_msm.git -b android-msm-shamu-3.10-marshmallow-release nexus6-6
