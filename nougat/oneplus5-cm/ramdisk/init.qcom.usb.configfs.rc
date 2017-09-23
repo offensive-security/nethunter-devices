@@ -37,39 +37,39 @@ on property:sys.usb.config=hid && property:sys.usb.configfs=1
     rm /config/usb_gadget/g1/configs/b.1/f4
     rm /config/usb_gadget/g1/configs/b.1/f5
     write /config/usb_gadget/g1/idVendor 0x045E	# MSFT
-    write /config/usb_gadget/g1/idProduct 0x001D # Natural Keyboard Pro
+    write /config/usb_gadget/g1/idProduct 0x00DD # Natural Keyboard Pro
     symlink /config/usb_gadget/g1/functions/hid.0 /config/usb_gadget/g1/configs/b.1/f1
     write /config/usb_gadget/g1/UDC ${sys.usb.controller}
     setprop sys.usb.state ${sys.usb.config}
 
-on property:sys.usb.ffs.ready=1 && on property:sys.usb.config=hid,adb && property:sys.usb.configfs=1
+on property:sys.usb.config=hid,adb && property:sys.usb.configfs=1
     write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "hid_adb"
     rm /config/usb_gadget/g1/configs/b.1/f1
     rm /config/usb_gadget/g1/configs/b.1/f2
     rm /config/usb_gadget/g1/configs/b.1/f3
     rm /config/usb_gadget/g1/configs/b.1/f4
     rm /config/usb_gadget/g1/configs/b.1/f5
-    write /config/usb_gadget/g1/idVendor 0x045E # MSFT
-    write /config/usb_gadget/g1/idProduct 0x001D # Natural Keyboard Pro
-    symlink /config/usb_gadget/g1/functions/hid.0 /config/usb_gadget/g1/configs/b.1/f1
-    symlink /config/usb_gadget/g1/functions/ffs.adb /config/usb_gadget/g1/configs/b.1/f2 
+    write /config/usb_gadget/g1/idVendor 0x05C6 # Qualcom
+    write /config/usb_gadget/g1/idProduct 0x900A # Value: 0x9xxx for composite interface
+    symlink /config/usb_gadget/g1/functions/ffs.adb /config/usb_gadget/g1/configs/b.1/f1
+    symlink /config/usb_gadget/g1/functions/hid.0 /config/usb_gadget/g1/configs/b.1/f2
     write /config/usb_gadget/g1/UDC ${sys.usb.controller}
-    setprop sys.usb.state hid,adb
+    setprop sys.usb.state ${sys.usb.config}
 
-on property:sys.usb.ffs.ready=1 && on property:sys.usb.config=hid,adb,mass_storage && property:sys.usb.configfs=1
+on property:sys.usb.config=hid,adb,mass_storage && property:sys.usb.configfs=1
     write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "hid_adb_msc"
     rm /config/usb_gadget/g1/configs/b.1/f1
     rm /config/usb_gadget/g1/configs/b.1/f2
     rm /config/usb_gadget/g1/configs/b.1/f3
     rm /config/usb_gadget/g1/configs/b.1/f4
     rm /config/usb_gadget/g1/configs/b.1/f5
-    write /config/usb_gadget/g1/idVendor 0x045E # MSFT
-    write /config/usb_gadget/g1/idProduct 0x001D # Natural Keyboard Pro
-    symlink /config/usb_gadget/g1/functions/hid.0 /config/usb_gadget/g1/configs/b.1/f1
-    symlink /config/usb_gadget/g1/functions/ffs.adb /config/usb_gadget/g1/configs/b.1/f2
+    write /config/usb_gadget/g1/idVendor 0x05C6 # Qualcom
+    write /config/usb_gadget/g1/idProduct 0x900A # Value: 0x9xxx for composite interface
+    symlink /config/usb_gadget/g1/functions/ffs.adb /config/usb_gadget/g1/configs/b.1/f1
+    symlink /config/usb_gadget/g1/functions/hid.0 /config/usb_gadget/g1/configs/b.1/f2
     symlink /config/usb_gadget/g1/functions/mass_storage.0 /config/usb_gadget/g1/configs/b.1/f3
     write /config/usb_gadget/g1/UDC ${sys.usb.controller}
-    setprop sys.usb.state hid,adb,mass_storage
+    setprop sys.usb.state ${sys.usb.config}
 
 on property:sys.usb.config=mass_storage,hid && property:sys.usb.configfs=1
     write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "msc_hid"
@@ -78,12 +78,12 @@ on property:sys.usb.config=mass_storage,hid && property:sys.usb.configfs=1
     rm /config/usb_gadget/g1/configs/b.1/f3
     rm /config/usb_gadget/g1/configs/b.1/f4
     rm /config/usb_gadget/g1/configs/b.1/f5
-    write /config/usb_gadget/g1/idVendor 0x05C6
-    write /config/usb_gadget/g1/idProduct 0x9015
+    write /config/usb_gadget/g1/idVendor 0x05C6 # Qualcom
+    write /config/usb_gadget/g1/idProduct 0x900B # Value: 0x9xxx for composite interface
     symlink /config/usb_gadget/g1/functions/hid.0 /config/usb_gadget/g1/configs/b.1/f1
     symlink /config/usb_gadget/g1/functions/mass_storage.0 /config/usb_gadget/g1/configs/b.1/f2
     write /config/usb_gadget/g1/UDC ${sys.usb.controller}
-    setprop sys.usb.state mass_storage,hid
+    setprop sys.usb.state ${sys.usb.config}
 
 # -- Nethunter HID END -- #
 
@@ -95,7 +95,7 @@ on property:sys.usb.config=mass_storage && property:sys.usb.configfs=1
     rm /config/usb_gadget/g1/configs/b.1/f4
     rm /config/usb_gadget/g1/configs/b.1/f5
     write /config/usb_gadget/g1/idVendor 0x05C6
-    write /config/usb_gadget/g1/idProduct 0xF000
+    write /config/usb_gadget/g1/idProduct 0xF000 
     symlink /config/usb_gadget/g1/functions/mass_storage.0 /config/usb_gadget/g1/configs/b.1/f1
     write /config/usb_gadget/g1/UDC ${sys.usb.controller}
     setprop sys.usb.state ${sys.usb.config}

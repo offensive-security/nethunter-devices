@@ -65,13 +65,14 @@ on boot
     write /config/usb_gadget/g1/functions/hid.0/protocol "1"
     write /config/usb_gadget/g1/functions/hid.0/subclass "1"
     write /config/usb_gadget/g1/functions/hid.0/report_length "8"
+    copy /kybd-descriptor.bin /config/usb_gadget/g1/functions/hid.0/report_desc
     # -- END NETHUNTER HID -- #
 
     mkdir /config/usb_gadget/g1/configs/b.1 0770 shell shell
     mkdir /config/usb_gadget/g1/configs/b.1/strings/0x409 0770 shell shell
     write /config/usb_gadget/g1/os_desc/b_vendor_code 0x1
     write /config/usb_gadget/g1/os_desc/qw_sign "MSFT100"
-    symlink /config/usb_gadget/g1/configs/b.1 /config/usb_gadget/g1/os_desc/b.1
+    cat /config/usb_gadget/g1/configs/b.1 /config/usb_gadget/g1/os_desc/b.1
 
     mount functionfs adb /dev/usb-ffs/adb uid=2000,gid=2000
 
