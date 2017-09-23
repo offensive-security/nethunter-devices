@@ -96,6 +96,8 @@ git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla
 # - OnePlus 5
 # OOS 4.x
 # git clone https://github.com/nethunteros/android_kernel_oneplus_msm8998 -b boeffla_oos4 oneplus5
+# LineageOS 14.X
+# git clone https://github.com/nethunteros/android_kernel_oneplus_msm8998 -b boeffla_cm14 oneplus5
 
 # - LG G5 & LG V20
 # LG Stock
