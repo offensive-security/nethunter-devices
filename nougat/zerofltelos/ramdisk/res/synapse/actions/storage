@@ -1,0 +1,78 @@
+# By UpInTheAir for SkyHigh kernels
+
+if [ ! -f /su/xbin/busybox ]; then
+	BB=/system/xbin/busybox;
+else
+	BB=/su/xbin/busybox;
+fi;
+
+case $1 in
+usb_mode)
+  P=/res/synapse/hrtkernel/mass_storage
+  if [ ! -z $2 ]; then
+  if [ $2 == DEFAULT ]; then
+    echo 0 > $P
+  elif [ $2 == MTP ]; then
+    echo 1 > $P
+	setprop sys.usb.config mtp,adb;
+	setprop persist.sys.usb.config mtp,adb;
+	echo "0" > /sys/class/android_usb/android0/f_mass_storage/lun/cdrom;
+	echo "" > /sys/class/android_usb/android0/f_mass_storage/lun/file;
+	echo "0" > /sys/class/android_usb/android0/enable;
+	echo "04e8" > /sys/class/android_usb/android0/idVendor;
+	echo "6860" > /sys/class/android_usb/android0/idProduct;
+	echo "mtp,adb" > /sys/class/android_usb/android0/functions;
+	echo "0" > /sys/class/android_usb/android0/bDeviceClass;
+	echo "1" > /sys/class/android_usb/android0/enable;
+	start adbd
+	setprop sys.usb.state mtp,adb;
+  elif [ $2 == PTP ]; then
+    echo 2 > $P
+	setprop sys.usb.config ptp,adb;
+	setprop persist.sys.usb.config ptp,adb;
+	echo "0" > /sys/class/android_usb/android0/f_mass_storage/lun/cdrom;
+	echo "" > /sys/class/android_usb/android0/f_mass_storage/lun/file;
+	echo "0" > /sys/class/android_usb/android0/enable;
+	echo "04e8" > /sys/class/android_usb/android0/idVendor;
+	echo "6866" > /sys/class/android_usb/android0/idProduct;
+	echo "ptp,adb" > /sys/class/android_usb/android0/functions;
+	echo "0" > /sys/class/android_usb/android0/bDeviceClass;
+	echo "1" > /sys/class/android_usb/android0/enable;
+	start adbd
+	setprop sys.usb.state ptp,adb;
+  elif [ $2 == CD_ROM ]; then
+    echo 3 > $P
+	setprop sys.usb.config mass_storage,adb;
+	setprop persist.sys.usb.config mass_storage,adb;
+	echo "1" > /sys/class/android_usb/android0/f_mass_storage/lun/cdrom;
+	echo "0" > /sys/class/android_usb/android0/enable;
+	echo "04e8" > /sys/class/android_usb/android0/idVendor;
+	echo "685e" > /sys/class/android_usb/android0/idProduct;
+	echo "mass_storage,adb" > /sys/class/android_usb/android0/functions;
+	echo "1" > /sys/class/android_usb/android0/enable;
+	start adbd
+	setprop sys.usb.state mass_storage,adb;
+   elif [ $2 == USB_KEYBOARD-MOUSE ]; then
+    echo 4 > $P
+	echo "0" > /sys/class/android_usb/android0/f_mass_storage/lun/cdrom;
+	echo "0" > /sys/class/android_usb/android0/enable;
+	echo "1" > /sys/module/g_android/parameters/usb_keyboard;
+	echo "mtp,adb,hid" > /sys/class/android_usb/android0/functions;
+	echo "1" > /sys/class/android_usb/android0/enable;
+  fi; fi
+
+# Re-direct to DEFAULT so Synapse will allow your ROM to auto mount MTP or PTP on next boot !
+  copy=`cat $P`
+  if [ $copy == 0 ]; then
+    echo DEFAULT
+  elif [ $copy == 1 ]; then
+    echo DEFAULT
+  elif [ $copy == 2 ]; then
+    echo DEFAULT
+  elif [ $copy == 3 ]; then
+    echo DEFAULT
+  elif [ $copy == 4 ]; then
+    echo DEFAULT
+  fi
+  ;;
+esac

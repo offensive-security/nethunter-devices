@@ -1,0 +1,33 @@
+#!/system/bin/sh
+
+if [ ! -f /su/xbin/busybox ]; then
+	BB=/system/xbin/busybox;
+else
+	BB=/su/xbin/busybox;
+fi;
+
+config=/res/synapse/config.json
+action=/res/synapse/actions/
+
+if [ "$(mount | grep rootfs | cut -c 26-27 | grep -c ro)" -eq "1" ]; then
+	mount -o rw,remount rootfs;
+	mount -o rw,remount /system;
+fi;
+
+if [ ! -f $config ]
+then
+    source /res/synapse/config.json.generate > $config
+fi
+
+case "${1}" in
+  config)
+	cat $config;;
+  configpath)
+	echo $config;;
+  actionpath)
+	echo $action:/sbin;;
+  reset)
+	$BB mount -t rootfs -o rw,remount rootfs;
+	$BB rm -f $config;
+	$BB mount -t rootfs -o rw,remount rootfs;;
+esac;
