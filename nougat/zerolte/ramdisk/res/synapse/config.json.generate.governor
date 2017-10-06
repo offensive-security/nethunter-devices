@@ -1,0 +1,134 @@
+#!/system/bin/sh
+
+cat << CTAG
+{
+    name:"CPU Governor",
+    elements:[
+    
+	{ SPane:{
+		title:"CPU GOVERNOR A53 cluster0",
+		description:"If you select INTERACTIVE, only select it for BOTH clusters and NEVER for only one!!! Selecting this governor for only one cluster will SCREW UP scaling and create CHAOS and other untested PROBLEMS! You have been WARNED. Default is Interactive."
+	}},
+	{ SOptionList:{
+		default:`cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor`,
+                action:"governor /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor",
+		values:[`while read values; do busybox printf "%s, \n" $values; done < /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors`]
+		
+	}},
+	
+
+
+		{ SPane:{
+		title:"CPU GOVERNOR A57 cluster1",
+		description:"If you select INTERACTIVE, only select it for BOTH clusters and NEVER for only one!!! Selecting this governor for only one cluster will SCREW UP scaling and create CHAOS and other untested PROBLEMS! You have been WARNED. Default is Interactive."
+	}},
+	{ SOptionList:{
+		default:`cat /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor`,
+                action:"governor /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor",
+		values:[`while read values; do busybox printf "%s, \n" $values; done < /sys/devices/system/cpu/cpu4/cpufreq/scaling_available_governors`]
+		
+	}},
+	{ SPane:{
+		title:"Governor tunables CPU GOVERNOR A53 cluster0",
+		description:" The various configuration items which are governor-dependent."
+        }},
+	{ SDescription:{
+		description:""
+	}},
+	{ STreeDescriptor:{
+		path:"/sys/devices/system/cpu/cpu0/cpufreq",
+		generic: {
+			directory: {
+				STreeDescriptor:{
+					generic: {
+						directory: {},
+						element: {
+							SGeneric: { title:"@BASENAME" }
+						}
+					},
+					exclude: [
+						"boostpulse",
+						"sampling_rate_min",
+						"target_loads",
+						"param_index",
+						"cpu_util",
+						"mode",
+						"above_hispeed_delay"
+					]
+				},
+			}
+		},
+		exclude: [
+			"affected_cpus",
+			"cpuinfo_cur_freq",
+			"cpuinfo_max_freq",
+			"cpuinfo_min_freq",
+			"cpuinfo_transition_latency",
+			"related_cpus",
+			"scaling_available_governors",
+			"scaling_cur_freq",
+			"scaling_driver",
+			"scaling_governor",
+			"scaling_max_freq",
+			"scaling_min_freq",
+			"scaling_setspeed",
+			"stats"
+		]
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SPane:{
+		title:"Governor tunables CPU GOVERNOR A57 cluster1",
+		description:" The various configuration items which are governor-dependent."
+        }},
+	{ SDescription:{
+		description:""
+	}},
+	{ STreeDescriptor:{
+		path:"/sys/devices/system/cpu/cpu4/cpufreq",
+		generic: {
+			directory: {
+				STreeDescriptor:{
+					generic: {
+						directory: {},
+						element: {
+							SGeneric: { title:"@BASENAME" }
+						}
+					},
+					exclude: [
+						"boostpulse",
+						"sampling_rate_min",
+						"target_loads",
+						"param_index",
+						"cpu_util",
+						"mode",
+						"above_hispeed_delay"
+					]
+				},
+			}
+		},
+		exclude: [
+			"affected_cpus",
+			"cpuinfo_cur_freq",
+			"cpuinfo_max_freq",
+			"cpuinfo_min_freq",
+			"cpuinfo_transition_latency",
+			"related_cpus",
+			"scaling_available_governors",
+			"scaling_cur_freq",
+			"scaling_driver",
+			"scaling_governor",
+			"scaling_max_freq",
+			"scaling_min_freq",
+			"scaling_setspeed",
+			"stats"
+		]
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	
+    ]
+}
+CTAG

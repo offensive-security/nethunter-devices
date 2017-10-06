@@ -1,0 +1,23 @@
+case $1 in
+fsync)
+  P=/sys/module/sync/parameters/fsync_enabled
+  if [ ! -z $2 ]
+  then
+  if [ $2 == 1 ]
+  then
+  stop fsync
+  else
+  start fsync
+  fi
+  echo $2 > $P
+  fi
+  fsync=`cat $P`
+  if [ $fsync == Y ]
+  then
+  fsync=1
+  else
+  fsync=0
+  fi
+  echo $fsync
+  ;;
+esac
