@@ -126,7 +126,7 @@ version)
   echo `busybox uname -r`
   ;;
 kernel_version)
-  echo "3.3"
+  echo "3.4"
   ;;
 android_version)
   echo `getprop ro.build.version.release`

@@ -27,7 +27,7 @@ cat << CTAG
 	}},
 	{ SLiveLabel:{
 		refresh:2500,
-		action:"live Live_A53_Time 10 14"
+		action:"live Live_A53_Time 10 19"
 	}},
 	{ SSpacer:{
 		height:1
