@@ -1,0 +1,123 @@
+# By UpInTheAir for SkyHigh kernels
+
+if [ ! -f /su/xbin/busybox ]; then
+	BB=/system/xbin/busybox;
+else
+	BB=/su/xbin/busybox;
+fi;
+
+if [ "$($BB mount | grep rootfs | cut -c 26-27 | grep -c ro)" -eq "1" ]; then
+	$BB mount -o remount,rw /;
+fi;
+
+case $1 in
+knox_security)
+  P=/res/synapse/hrtkernel/knox
+  if [ ! -z $2 ]; then
+  if [ $2 == NO_ACTION ]; then
+    echo 0 > $P
+  elif [ $2 == Disabled ]; then
+    echo 1 > $P
+    am force-stop com.policydm 2> /dev/null;
+    am force-stop com.samsung.android.securitylogagent 2> /dev/null;
+    am force-stop com.samsung.klmsagent 2> /dev/null;
+    am force-stop com.samsung.knox.appsupdateagent 2> /dev/null;
+    am force-stop com.samsung.knox.kss 2> /dev/null;
+    am force-stop com.samsung.knox.rcp.components 2> /dev/null;
+    am force-stop com.samsung.knox.trustagent 2> /dev/null;
+    am force-stop com.sec.enterprise.knox.attestation 2> /dev/null;
+    am force-stop com.sec.enterprise.knox.cloudmdm.smdms 2> /dev/null;
+    am force-stop com.sec.enterprise.knox.myknoxsetupwizard 2> /dev/null;
+    am force-stop com.sec.enterprise.knox.shareddevice.keyguard 2> /dev/null;
+    am force-stop com.sec.knox.bluetooth 2> /dev/null;
+    am force-stop com.sec.knox.bridge 2> /dev/null;
+    am force-stop com.sec.knox.containeragent2 2> /dev/null;
+    am force-stop com.sec.knox.foldercontainer 2> /dev/null;
+    am force-stop com.sec.knox.knoxsetupwizardclient 2> /dev/null;
+    am force-stop com.sec.knox.packageverifier 2> /dev/null;
+    am force-stop com.sec.knox.shortcutsms 2> /dev/null;
+    am force-stop com.sec.knox.switcher 2> /dev/null;
+    am force-stop com.sec.knox.switchknoxI 2> /dev/null;
+    am force-stop com.sec.knox.switchknoxII 2> /dev/null;
+    sleep 1;
+    pm disable com.policydm 2> /dev/null;
+    pm disable com.samsung.android.securitylogagent 2> /dev/null;
+    pm disable com.samsung.klmsagent 2> /dev/null;
+    pm disable com.samsung.knox.appsupdateagent 2> /dev/null;
+    pm disable com.samsung.knox.kss 2> /dev/null;
+    pm disable com.samsung.knox.rcp.components 2> /dev/null;
+    pm disable com.samsung.knox.trustagent 2> /dev/null;
+    pm disable com.sec.enterprise.knox.attestation 2> /dev/null;
+    pm disable com.sec.enterprise.knox.cloudmdm.smdms 2> /dev/null;
+    pm disable com.sec.enterprise.knox.myknoxsetupwizard 2> /dev/null;
+    pm disable com.sec.enterprise.knox.shareddevice.keyguard 2> /dev/null;
+    pm disable com.sec.knox.bluetooth 2> /dev/null;
+    pm disable com.sec.knox.bridge 2> /dev/null;
+    pm disable com.sec.knox.containeragent2 2> /dev/null;
+    pm disable com.sec.knox.foldercontainer 2> /dev/null;
+    pm disable com.sec.knox.knoxsetupwizardclient 2> /dev/null;
+    pm disable com.sec.knox.packageverifier 2> /dev/null;
+    pm disable com.sec.knox.shortcutsms 2> /dev/null;
+    pm disable com.sec.knox.switcher 2> /dev/null;
+    pm disable com.sec.knox.switchknoxI 2> /dev/null;
+    pm disable com.sec.knox.switchknoxII 2> /dev/null;
+  elif [ $2 == Enabled ]; then
+    echo 2 > $P
+    am start -a com.policydm 2> /dev/null;
+    am start -a com.samsung.android.securitylogagent 2> /dev/null;
+    am start -a com.samsung.klmsagent 2> /dev/null;
+    am start -a com.samsung.knox.appsupdateagent 2> /dev/null;
+    am start -a com.samsung.knox.kss 2> /dev/null;
+    am start -a com.samsung.knox.rcp.components 2> /dev/null;
+    am start -a com.samsung.knox.trustagent 2> /dev/null;
+    am start -a com.sec.enterprise.knox.attestation 2> /dev/null;
+    am start -a com.sec.enterprise.knox.cloudmdm.smdms 2> /dev/null;
+    am start -a com.sec.enterprise.knox.myknoxsetupwizard 2> /dev/null;
+    am start -a com.sec.enterprise.knox.shareddevice.keyguard 2> /dev/null;
+    am start -a com.sec.knox.bluetooth 2> /dev/null;
+    am start -a com.sec.knox.bridge 2> /dev/null;
+    am start -a com.sec.knox.containeragent2 2> /dev/null;
+    am start -a com.sec.knox.foldercontainer 2> /dev/null;
+    am start -a com.sec.knox.knoxsetupwizardclient 2> /dev/null;
+    am start -a com.sec.knox.packageverifier 2> /dev/null;
+    am start -a com.sec.knox.shortcutsms 2> /dev/null;
+    am start -a com.sec.knox.switcher 2> /dev/null;
+    am start -a com.sec.knox.switchknoxI 2> /dev/null;
+    am start -a com.sec.knox.switchknoxII 2> /dev/null;
+    sleep 1;
+    pm enable com.policydm 2> /dev/null;
+    pm enable com.samsung.android.securitylogagent 2> /dev/null;
+    pm enable com.samsung.klmsagent 2> /dev/null;
+    pm enable com.samsung.knox.appsupdateagent 2> /dev/null;
+    pm enable com.samsung.knox.kss 2> /dev/null;
+    pm enable com.samsung.knox.rcp.components 2> /dev/null;
+    pm enable com.samsung.knox.trustagent 2> /dev/null;
+    pm enable com.sec.enterprise.knox.attestation 2> /dev/null;
+    pm enable com.sec.enterprise.knox.cloudmdm.smdms 2> /dev/null;
+    pm enable com.sec.enterprise.knox.myknoxsetupwizard 2> /dev/null;
+    pm enable com.sec.enterprise.knox.shareddevice.keyguard 2> /dev/null;
+    pm enable com.sec.knox.bluetooth 2> /dev/null;
+    pm enable com.sec.knox.bridge 2> /dev/null;
+    pm enable com.sec.knox.containeragent2 2> /dev/null;
+    pm enable com.sec.knox.foldercontainer 2> /dev/null;
+    pm enable com.sec.knox.knoxsetupwizardclient 2> /dev/null;
+    pm enable com.sec.knox.packageverifier 2> /dev/null;
+    pm enable com.sec.knox.shortcutsms 2> /dev/null;
+    pm enable com.sec.knox.switcher 2> /dev/null;
+    pm enable com.sec.knox.switchknoxI 2> /dev/null;
+    pm enable com.sec.knox.switchknoxII 2> /dev/null;
+  fi; fi
+
+# Re-direct to NO_ACTION so Synapse will complete loading faster every boot. 
+# KNOX will still be Disabled or Enabled as set by the User.
+
+  copy=`cat $P`
+  if [ $copy == 0 ]; then
+    echo NO_ACTION
+  elif [ $copy == 1 ]; then
+    echo NO_ACTION
+  elif [ $copy == 2 ]; then
+    echo NO_ACTION
+  fi
+  ;;
+esac

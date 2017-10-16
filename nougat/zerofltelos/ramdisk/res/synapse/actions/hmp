@@ -1,0 +1,19 @@
+# By UpInTheAir for SkyHigh kernels
+
+if [ ! -f /su/xbin/busybox ]; then
+	BB=/system/xbin/busybox;
+else
+	BB=/su/xbin/busybox;
+fi;
+
+if [ -f "$1" ]; then
+	if [[ ! -z "$2" ]]; then
+		chmod 0644 /sys/kernel/hmp/up_threshold;
+		chmod 0644 /sys/kernel/hmp/down_threshold;
+		$BB echo "$2" > "$1"
+	fi;
+
+	$BB echo "$($BB cat "$1")";
+	chmod 0440 /sys/kernel/hmp/up_threshold;
+	chmod 0440 /sys/kernel/hmp/down_threshold;
+fi;

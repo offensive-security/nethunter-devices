@@ -1,0 +1,85 @@
+#!/system/bin/sh
+
+cat << CTAG
+{
+    name:"A57 Cluster",
+    elements:[
+	{ SPane:{
+		title:"CPUFreq scaling"
+	}},        
+	{ SLiveLabel:{
+                  title:"CPU frequency",
+                  description:"Current frequencies.",
+                  refresh:500,
+                  action:"live LiveCPUFrequency_big"
+        }},
+	{ SSeekBar:{
+       		title:"CPU max frequency",
+		description:"Set the maximum freqency the CPU scales up to.",
+		default:2100000,
+		action:"generic /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq",
+		values:{
+`
+			for FREQ in $(cat /sys/devices/system/cpu/cpufreq/mp-cpufreq/cluster1_freq_table); do
+				LABEL=$(($FREQ / 1000))
+				echo "$FREQ:\"${LABEL}MHz\", "
+			done
+`
+		}
+	}},
+	{ SSeekBar:{
+       		title:"CPU min frequency",
+		description:"Set the minimum freqency the CPU scales down to.",
+		default:`cat /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq`,
+		action:"generic /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq",
+		values:{
+`
+			for FREQ in $(cat /sys/devices/system/cpu/cpufreq/mp-cpufreq/cluster1_freq_table); do
+				LABEL=$(($FREQ / 1000))
+				echo "$FREQ:\"${LABEL}MHz\", "
+			done
+`
+		}
+	}},
+	{ SPane:{
+		title:"Interactive Governor Tuning"
+	}},
+	{ SOptionList:{
+		title:"Profile",
+		description:" Select your profile for CPU Interactive governor.\n",
+		default:`echo $(/res/synapse/actions/tuning interactive_b)`,
+		action:"tuning interactive_b",
+		values:[Default, Performance, Battery,],
+		notify:[
+			{
+				on:APPLY,
+				do:[ REFRESH, APPLY ],
+				to:"/sys/devices/system/cpu/cpu4/cpufreq"
+			}
+		]
+	}},
+	{ SPane:{
+		title:"HPM Voltage Control",
+        }},
+	{ SSeekBar:{
+		title:"Atlas HPM voltage margin",
+		description:"Set the maximum voltage margin the APM undervolts down to.",
+		default:`cat /sys/kernel/debug/mailbox/atl_cl_margin`,
+		action:"generic /sys/kernel/debug/mailbox/atl_cl_margin",
+		unit:"µV", weight:6250.0, min:0, step:1, max:10
+	}},
+	{ SPane:{
+		title:"CPU voltage control",
+		description:"Decreasing voltage will lower power consumption of the CPU. Increasing it on overclocked frequencies improves stability. Too low voltage may cause instabilities and freezes."
+        }},
+
+`
+while read FREQ VOLT; do
+	echo '{ SSeekBar:{ default:'$VOLT', title:"'$(expr $FREQ / 1000)' MHz"'
+	echo ', action:"c1volt '${FREQ}'", unit:"mV", weight:0.001, min:500000, step:6250, max:1125000 }},'
+done < /sys/devices/system/cpu/cpufreq/mp-cpufreq/cluster1_volt_table
+`
+
+    ]
+}
+CTAG

@@ -1,0 +1,166 @@
+if [ ! -f /su/xbin/busybox ]; then
+	BB=/system/xbin/busybox;
+else
+	BB=/su/xbin/busybox;
+fi;
+case $1 in
+gamma)
+  P=/sys/class/mdnie/mdnie/gamma_curve
+  if [ ! -z $2 ]
+  then
+  if [ $2 == Movie ]
+  then
+  echo 0 > $P
+  elif [ $2 == Dynamic ]
+  then
+  echo 1 > $P
+  fi
+  fi
+  curve=`cat $P`
+  if [ $curve == 0 ]
+  then
+  echo Movie
+  elif [ $curve == 1 ]
+  then
+  echo Dynamic
+  fi
+  ;;
+mode)
+  P=/sys/class/mdnie/mdnie/copy_mode
+  if [ ! -z $2 ]
+  then
+  if [ $2 == Standard ]
+  then
+  echo 0 > $P
+  elif [ $2 == Natural ]
+  then
+  echo 1 > $P
+  elif [ $2 == Movie ]
+  then
+  echo 2 > $P
+  fi
+  fi
+  copy=`cat $P`
+  if [ $copy == 0 ]
+  then
+  echo Standard
+  elif [ $copy == 1 ]
+  then
+  echo Natural
+  elif [ $copy == 2 ]
+  then
+  echo Movie
+  fi
+  ;;
+screendata)
+  P=/sys/class/mdnie/mdnie
+  echo "#!/system/bin/sh\necho 1 > $P/override\necho $(cat $P/copy_mode) > $P/copy_mode\necho $(cat $P/black) > $P/black\necho $(cat $P/white) > $P/white\necho $(cat $P/red) > $P/red\necho $(cat $P/green) > $P/green\necho $(cat $P/blue) > $P/blue\necho $(cat $P/cyan) > $P/cyan\necho $(cat $P/magenta) > $P/magenta\necho $(cat $P/yellow) > $P/yellow\necho $(cat $P/gamma_curve) > $P/gamma_curve\necho $(cat $P/sharpen) > $P/sharpen\n" > /sdcard/screen
+  echo File saved at /sdcard/screen
+  ;;
+vread)
+  bin=`cat /sys/devices/system/soc/soc0/soc_pvs`
+  if [ $bin == 0 ]
+  then
+  pvs=1075
+  elif [ $bin == 1 ]
+  then
+  pvs=1050
+  elif [ $bin == 2 ]
+  then
+  pvs=1025
+  elif [ $bin == 3 ]
+  then
+  pvs=1000
+  elif [ $bin == 4 ]
+  then
+  pvs=975
+  elif [ $bin == 5 ]
+  then
+  pvs=950
+  elif [ $bin == 6 ]
+  then
+  pvs=925
+  fi
+  while read freq volt
+  do
+  if [ ${freq//[mhz:]/} == 2265 ]
+  then
+  val=$((${volt//[ mV]/} - $pvs))
+  fi
+  done < /sys/devices/system/cpu/cpu0/cpufreq/UV_mV_table
+  echo $val
+  ;;
+vwrite)
+  P=/sys/devices/system/cpu/cpu0/cpufreq/UV_mV_table
+  readvolt=$(/res/synapse/hrtkernel/actions/default vread)
+  default=`echo $readvolt | busybox awk '{$NF *= -1; print}'`
+  if [ ! -z $2 ]
+  then
+  val=""
+  while read freq volt; do val="$val $(($default + $2 + ${volt//[ mV]/}))"; done < $P
+  echo $val > $P
+  fi
+  echo $(/res/synapse/hrtkernel/actions/default vread)
+  ;;
+hotplug)
+  P=/sys/module/intelli_plug/parameters/intelli_plug_active
+  if [ ! -z $2 ]
+  then
+  if [ $2 == 1 ]
+  then
+  stop mpdecision
+  else
+  start mpdecision
+  fi
+  echo $2 > $P
+  fi
+  echo `cat $P`
+  ;;
+dev)
+  echo "minealex2244"
+  ;;
+codename)
+  echo "Aldeon"
+  ;;    
+version)
+  echo `busybox uname -r`
+  ;;
+kernel_version)
+  echo "3.4"
+  ;;
+android_version)
+  echo `getprop ro.build.version.release`
+  ;;
+build)
+  echo `getprop ro.build.PDA`
+  ;; 
+baseband)
+  echo `getprop gsm.version.baseband`
+  ;;
+bootloader)
+  echo `getprop ro.bootloader`
+  ;;
+date)
+  echo `getprop ro.build.date`
+  ;;
+rom)
+  echo `getprop ro.build.display.id`
+  ;;
+serial)
+  P=/efs/FactoryApp/serial_no
+  if [ -f $P ]; then
+    echo `cat $P`
+  else
+    echo `getprop ro.boot.serialno`
+  fi
+  ;;
+susp)
+  echo `cat /sys/kernel/power_suspend/power_suspend_version`
+  ;;
+busybox_version)
+  $BB echo "$(busybox | head -1)"
+  ;;
+su_version)
+  $BB echo "$(su -v)"
+  ;;  
+esac

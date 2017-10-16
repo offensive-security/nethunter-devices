@@ -1,0 +1,35 @@
+if [ -f $1 ]
+then
+  L=/sys/kernel/sound_control_3/gpl_sound_control_locked
+  C=`cat /sys/kernel/sound_control_3/gpl_headphone_pa_gain | awk '{print $1}'`
+  CF=/sys/kernel/sound_control_3/gpl_headphone_pa_gain
+  if [ ! -z $2 ]
+    then
+    if (("$C" < "220"))  
+    then
+      val=$((-58 - $2))
+      addval=$(($val + $val))
+      checksum=$((255 - $addval))
+      checksum=$(($checksum - 256))
+      val=$(($val + 256))
+    else
+      val=$((-10 - $2))
+      addval=$(($val + $val))
+      checksum=$((255 - $addval))
+      checksum=$(($checksum - 256))
+      val=$(($val + 256))
+    fi
+    echo $val $val $checksum > $CF
+    echo $val > $1
+  fi  
+  sound=`cat $1`
+  if (("$sound" < "220"))
+    then
+      sound=$((198 - $sound))
+  fi
+  if (("$sound" > "220"))
+    then
+      sound=$((246 - $sound))
+  fi
+  echo $sound
+fi

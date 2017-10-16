@@ -121,6 +121,12 @@ git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla
 # AOSP/LineageOS
 # git clone https://github.com/jcadduono/android_kernel_samsung_msm8974.git -b cm-14.1
 
+# - Samsung Galaxy S6, Galaxy S6 edge
+# TouchWiz
+# git clone https://github.com/madScript01/NethunterNougat-S6_Stock
+# AOSP/LineageOS
+# git clone https://github.com/madScript01/TeamNexusNethunter
+
 # - Samsung Galaxy S7, Galaxy S7 edge, and Galaxy Note 7
 # Grace UI & TouchWiz
 # git clone https://github.com/jcadduono/android_kernel_samsung_universal8890 -b nethunter-6.0

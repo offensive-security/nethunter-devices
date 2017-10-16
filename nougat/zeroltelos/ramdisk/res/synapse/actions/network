@@ -1,0 +1,287 @@
+# By UpInTheAir for SkyHigh kernels
+
+if [ ! -f /su/xbin/busybox ]; then
+	BB=/system/xbin/busybox;
+else
+	BB=/su/xbin/busybox;
+fi;
+
+case $1 in
+tcp_security)
+  P=/res/synapse/hrtkernel/tcp_security
+  if [ ! -z "$2" ]; then
+  if [ "$2" == Disabled ]; then
+    echo 0 > $P
+    	echo 128 > /proc/sys/net/ipv4/tcp_max_syn_backlog
+    	echo 6 > /proc/sys/net/ipv4/tcp_syn_retries
+    	echo 5 > /proc/sys/net/ipv4/tcp_synack_retries
+    	echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_all
+    	echo 0 > /proc/sys/net/ipv4/tcp_no_metrics_save
+    	echo 60 > /proc/sys/net/ipv4/tcp_fin_timeout
+    	echo 75 > /proc/sys/net/ipv4/tcp_keepalive_intvl
+   	echo 9 > /proc/sys/net/ipv4/tcp_keepalive_probes
+    	echo 7200 > /proc/sys/net/ipv4/tcp_keepalive_time
+    	echo 1 > /proc/sys/net/ipv4/conf/all/send_redirects
+    	echo 1 > /proc/sys/net/ipv4/conf/default/send_redirects
+    	echo 0 > /proc/sys/net/ipv4/conf/all/rp_filter
+    	echo 0 > /proc/sys/net/ipv4/conf/default/rp_filter
+    	echo 1 > /proc/sys/net/ipv4/conf/default/accept_source_route
+    	echo 1 > /proc/sys/net/ipv4/conf/all/accept_redirects
+    	echo 1 > /proc/sys/net/ipv4/conf/default/accept_redirects
+    	echo 1 > /proc/sys/net/ipv4/conf/all/secure_redirects
+    	echo 1 > /proc/sys/net/ipv4/conf/default/secure_redirects
+  elif [ "$2" == Enabled ]; then
+    echo 1 > $P
+	echo 1024 > /proc/sys/net/ipv4/tcp_max_syn_backlog
+	echo 2 > /proc/sys/net/ipv4/tcp_syn_retries
+	echo 2 > /proc/sys/net/ipv4/tcp_synack_retries
+	echo 1 > /proc/sys/net/ipv4/icmp_echo_ignore_all
+	echo 1 > /proc/sys/net/ipv4/tcp_no_metrics_save
+	echo 15 > /proc/sys/net/ipv4/tcp_fin_timeout
+	echo 30 > /proc/sys/net/ipv4/tcp_keepalive_intvl
+	echo 5 > /proc/sys/net/ipv4/tcp_keepalive_probes
+	echo 1800 > /proc/sys/net/ipv4/tcp_keepalive_time
+	echo 0 > /proc/sys/net/ipv4/conf/all/send_redirects
+	echo 0 > /proc/sys/net/ipv4/conf/default/send_redirects
+	echo 1 > /proc/sys/net/ipv4/conf/all/rp_filter
+	echo 1 > /proc/sys/net/ipv4/conf/default/rp_filter
+	echo 0 > /proc/sys/net/ipv4/conf/default/accept_source_route
+	echo 0 > /proc/sys/net/ipv4/conf/all/accept_redirects
+	echo 0 > /proc/sys/net/ipv4/conf/default/accept_redirects
+	echo 0 > /proc/sys/net/ipv4/conf/all/secure_redirects
+	echo 0 > /proc/sys/net/ipv4/conf/default/secure_redirects
+  fi; fi
+  copy=$(cat $P)
+  if [ "$copy" == 0 ]; then
+    echo Disabled
+  elif [ "$copy" == 1 ]; then
+    echo Enabled
+  fi
+  ;;
+dns)
+  P=/res/synapse/hrtkernel/dns;
+  IPTABLES=/system/bin/iptables;
+  DNS_STATUS=$(cat /res/synapse/hrtkernel/dns);
+  if [ ! -z "$2" ]; then
+  if [ "$2" == Disabled ]; then
+	if [ "$DNS_STATUS" != 0 ]; then
+		echo 0 > $P
+		# Flush/reset rules
+		$IPTABLES -F;
+		$IPTABLES -t nat -F;
+		$IPTABLES -F OUTPUT;
+	fi;
+  elif [ "$2" == Google ]; then
+    echo 1 > $P
+	$IPTABLES -F;
+	$IPTABLES -t nat -F;
+	$IPTABLES -F OUTPUT;
+	$IPTABLES -t nat -I OUTPUT -p tcp --dport 53 -j DNAT --to-destination 8.8.4.4:53;
+	$IPTABLES -t nat -I OUTPUT -p udp --dport 53 -j DNAT --to-destination 8.8.4.4:53;
+  elif [ "$2" == OpenDNS ]; then
+    echo 2 > $P
+	$IPTABLES -F;
+	$IPTABLES -t nat -F;
+	$IPTABLES -F OUTPUT;
+	$IPTABLES -t nat -I OUTPUT -p tcp --dport 53 -j DNAT --to-destination 208.67.222.222:53;
+	$IPTABLES -t nat -I OUTPUT -p udp --dport 53 -j DNAT --to-destination 208.67.222.222:53;
+  elif [ "$2" == Comodo ]; then
+    echo 3 > $P
+	$IPTABLES -F;
+	$IPTABLES -t nat -F;
+	$IPTABLES -F OUTPUT;
+	$IPTABLES -t nat -I OUTPUT -p tcp --dport 53 -j DNAT --to-destination 8.26.56.26:53;
+	$IPTABLES -t nat -I OUTPUT -p udp --dport 53 -j DNAT --to-destination 8.26.56.26:53;
+  elif [ "$2" == Level3 ]; then
+    echo 4 > $P
+	$IPTABLES -F;
+	$IPTABLES -t nat -F;
+	$IPTABLES -F OUTPUT;
+	$IPTABLES -t nat -I OUTPUT -p tcp --dport 53 -j DNAT --to-destination 209.244.0.4:53;
+	$IPTABLES -t nat -I OUTPUT -p udp --dport 53 -j DNAT --to-destination 209.244.0.4:53;
+  elif [ "$2" == Norton ]; then
+    echo 5 > $P
+	$IPTABLES -F;
+	$IPTABLES -t nat -F;
+	$IPTABLES -F OUTPUT;
+	$IPTABLES -t nat -I OUTPUT -p tcp --dport 53 -j DNAT --to-destination 199.85.127.10:53;
+	$IPTABLES -t nat -I OUTPUT -p udp --dport 53 -j DNAT --to-destination 199.85.127.10:53;
+  elif [ "$2" == Verisign ]; then
+    echo 6 > $P
+	$IPTABLES -F;
+	$IPTABLES -t nat -F;
+	$IPTABLES -F OUTPUT;
+	$IPTABLES -t nat -I OUTPUT -p tcp --dport 53 -j DNAT --to-destination 64.6.64.6:53;
+	$IPTABLES -t nat -I OUTPUT -p udp --dport 53 -j DNAT --to-destination 64.6.64.6:53;
+  fi; fi
+
+# Re-direct 'Disabled' to 'Custom' to ensure any user set iptable entries not are flushed on Synapse start !
+  copy=$(cat $P)
+  if [ "$copy" == 0 ]; then
+    echo Disabled
+  elif [ "$copy" == 1 ]; then
+    echo Google
+  elif [ "$copy" == 2 ]; then
+    echo OpenDNS
+  elif [ "$copy" == 3 ]; then
+    echo Comodo
+  elif [ "$copy" == 4 ]; then
+    echo Level3
+  elif [ "$copy" == 5 ]; then
+    echo Norton
+  elif [ "$copy" == 6 ]; then
+    echo Verisign
+  fi
+  ;;
+gps_zone)
+  P=/res/synapse/hrtkernel/gps_zone
+  var_gps="/system/etc/gps.conf";
+
+# Backup original gps.conf in case of user revert.
+  if [ ! -e $var_gps.bkp ]; then
+	cp -a $var_gps $var_gps.bkp;
+  fi;
+
+  if [ ! -z "$2" ]; then
+  if [ "$2" == No_Action ]; then
+			echo 0 > $P
+  elif [ "$2" == Original ]; then
+			echo 1 > $P
+		cp -a $var_gps.bkp $var_gps;
+  elif [ "$2" == Asia ]; then
+		CHECKGPS=`cat $var_gps | grep "NTP_SERVER=0.asia.pool.ntp.org"`;
+		if [ "$CHECKGPS" != "NTP_SERVER=0.asia.pool.ntp.org" ]; then
+			echo 2 > $P
+			$BB sed -i "s/NTP_SERVER[.a-zA-Z\=-\0-5\]*//g" $var_gps;
+			$BB sed -i "s/-america[.a-zA-Z\=-\0-5\]*//g" $var_gps;
+			echo "NTP_SERVER=asia.pool.ntp.org" >> $var_gps;
+			echo "NTP_SERVER=0.asia.pool.ntp.org" >> $var_gps;
+			echo "NTP_SERVER=1.asia.pool.ntp.org" >> $var_gps;
+			echo "NTP_SERVER=2.asia.pool.ntp.org" >> $var_gps;
+			echo "NTP_SERVER=3.asia.pool.ntp.org" >> $var_gps;
+		fi;
+  elif [ "$2" == Europe ]; then
+		CHECKGPS=`cat $var_gps | grep "NTP_SERVER=0.europe.pool.ntp.org"`;
+		if [ "$CHECKGPS" != "NTP_SERVER=0.europe.pool.ntp.org" ]; then
+			echo 3 > $P
+			$BB sed -i "s/NTP_SERVER[.a-zA-Z\=-\0-5\]*//g" $var_gps;
+			$BB sed -i "s/-america[.a-zA-Z\=-\0-5\]*//g" $var_gps;
+			echo "NTP_SERVER=europe.pool.ntp.org" >> $var_gps;
+			echo "NTP_SERVER=0.europe.pool.ntp.org" >> $var_gps;
+			echo "NTP_SERVER=1.europe.pool.ntp.org" >> $var_gps;
+			echo "NTP_SERVER=2.europe.pool.ntp.org" >> $var_gps;
+			echo "NTP_SERVER=3.europe.pool.ntp.org" >> $var_gps;
+		fi;
+  elif [ "$2" == Oceania ]; then
+		CHECKGPS=`cat $var_gps | grep "NTP_SERVER=0.oceania.pool.ntp.org"`;
+		if [ "$CHECKGPS" != "NTP_SERVER=0.oceania.pool.ntp.org" ]; then
+			echo 4 > $P
+			$BB sed -i "s/NTP_SERVER[.a-zA-Z\=-\0-5\]*//g" $var_gps;
+			$BB sed -i "s/-america[.a-zA-Z\=-\0-5\]*//g" $var_gps;
+			echo "NTP_SERVER=oceania.pool.ntp.org" >> $var_gps;
+			echo "NTP_SERVER=0.oceania.pool.ntp.org" >> $var_gps;
+			echo "NTP_SERVER=1.oceania.pool.ntp.org" >> $var_gps;
+			echo "NTP_SERVER=2.oceania.pool.ntp.org" >> $var_gps;
+			echo "NTP_SERVER=3.oceania.pool.ntp.org" >> $var_gps;
+		fi;
+  elif [ "$2" == North_America ]; then
+		CHECKGPS=`cat $var_gps | grep "NTP_SERVER=0.north-america.pool.ntp.org"`;
+		if [ "$CHECKGPS" != "NTP_SERVER=0.north-america.pool.ntp.org" ]; then
+			echo 5 > $P
+			$BB sed -i "s/NTP_SERVER[.a-zA-Z\=-\0-5\]*//g" $var_gps;
+			$BB sed -i "s/-america[.a-zA-Z\=-\0-5\]*//g" $var_gps;
+			echo "NTP_SERVER=north-america.pool.ntp.org" >> $var_gps;
+			echo "NTP_SERVER=0.north-america.pool.ntp.org" >> $var_gps;
+			echo "NTP_SERVER=1.north-america.pool.ntp.org" >> $var_gps;
+			echo "NTP_SERVER=2.north-america.pool.ntp.org" >> $var_gps;
+			echo "NTP_SERVER=3.north-america.pool.ntp.org" >> $var_gps;
+		fi;
+  elif [ "$2" == South_America ]; then
+		CHECKGPS=`cat $var_gps | grep "NTP_SERVER=0.south-america.pool.ntp.org"`;
+		if [ "$CHECKGPS" != "NTP_SERVER=0.south-america.pool.ntp.org" ]; then
+			echo 6 > $P
+			$BB sed -i "s/NTP_SERVER[.a-zA-Z\=-\0-5\]*//g" $var_gps;
+			$BB sed -i "s/-america[.a-zA-Z\=-\0-5\]*//g" $var_gps;
+			echo "NTP_SERVER=south-america.pool.ntp.org" >> $var_gps;
+			echo "NTP_SERVER=0.south-america.pool.ntp.org" >> $var_gps;
+			echo "NTP_SERVER=1.south-america.pool.ntp.org" >> $var_gps;
+			echo "NTP_SERVER=2.south-america.pool.ntp.org" >> $var_gps;
+			echo "NTP_SERVER=3.south-america.pool.ntp.org" >> $var_gps;
+		fi;
+  elif [ "$2" == Africa ]; then
+		CHECKGPS=`cat $var_gps | grep "NTP_SERVER=0.africa.pool.ntp.org"`;
+		if [ "$CHECKGPS" != "NTP_SERVER=0.africa.pool.ntp.org" ]; then
+			echo 7 > $P
+			$BB sed -i "s/NTP_SERVER[.a-zA-Z\=-\0-5\]*//g" $var_gps;
+			$BB sed -i "s/-america[.a-zA-Z\=-\0-5\]*//g" $var_gps;
+			echo "NTP_SERVER=africa.pool.ntp.org" >> $var_gps;
+			echo "NTP_SERVER=0.africa.pool.ntp.org" >> $var_gps;
+			echo "NTP_SERVER=1.africa.pool.ntp.org" >> $var_gps;
+			echo "NTP_SERVER=2.africa.pool.ntp.org" >> $var_gps;
+			echo "NTP_SERVER=3.africa.pool.ntp.org" >> $var_gps;
+		fi;
+  fi; fi
+
+# Re-direct to No_Action so Synapse will load chosen gps.conf on next boot !
+  copy=$(cat $P)
+  if [ "$copy" == 0 ]; then
+    echo No_Action
+  elif [ "$copy" == 1 ]; then
+    echo No_Action
+  elif [ "$copy" == 2 ]; then
+    echo No_Action
+  elif [ "$copy" == 3 ]; then
+    echo No_Action
+  elif [ "$copy" == 4 ]; then
+    echo No_Action
+  elif [ "$copy" == 5 ]; then
+    echo No_Action
+  elif [ "$copy" == 6 ]; then
+    echo No_Action
+  elif [ "$copy" == 7 ]; then
+    echo No_Action
+  fi
+  ;;
+wifi_passwords_save)
+  WIFI=/sdcard/hackerkernel/wifi;
+  [ ! -d "$WIFI" ] && mkdir -p "$WIFI";
+  chmod 755 $WIFI
+  P=$WIFI/wifi.txt
+  cat /data/misc/wifi/wpa_supplicant.conf > $P
+  sleep 1
+  echo WiFi Passwords saved
+  ;;
+wifi_passwords_restore)
+  if [ -f /sdcard/hackerkernel/wifi/wifi.txt ]; then
+	P=/data/misc/wifi/wpa_supplicant.conf
+	svc wifi disable 2> /dev/null;
+	rm -f /data/misc/dhcp/dhcpcd*;
+	cat /sdcard/hackerkernel/wifi/wifi.txt > $P
+	$BB chmod 660 $P;
+	svc wifi enable 2> /dev/null;
+	sleep 1
+	echo "WiFi Passwords Restored";
+  else
+	echo "No backup file found";
+  fi
+  ;;
+IPv6)
+  P=/res/synapse/hrtkernel/IPv6
+  if [ ! -z $2 ]; then
+  if [ $2 == Disabled ]; then
+	echo 0 > $P
+	echo 0 > /proc/sys/net/ipv6/conf/wlan0/accept_ra
+	echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
+  elif [ $2 == Enabled ]; then
+	echo 1 > $P
+	echo 1 > /proc/sys/net/ipv6/conf/wlan0/accept_ra
+	echo 0 > /proc/sys/net/ipv6/conf/all/disable_ipv6
+  fi; fi
+  copy=$(cat $P)
+  if [ "$copy" == 0 ]; then
+    echo Disabled
+  elif [ "$copy" == 1 ]; then
+    echo Enabled
+  fi
+  ;;
+esac
