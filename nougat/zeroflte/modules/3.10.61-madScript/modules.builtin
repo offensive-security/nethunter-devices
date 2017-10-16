@@ -12,6 +12,7 @@ kernel/fs/exportfs/exportfs.ko
 kernel/fs/ext2/ext2.ko
 kernel/fs/ext3/ext3.ko
 kernel/fs/ext4/ext4.ko
+kernel/fs/f2fs/f2fs.ko
 kernel/fs/fat/fat.ko
 kernel/fs/fat/vfat.ko
 kernel/fs/fuse/fuse.ko
@@ -193,6 +194,7 @@ kernel/drivers/input/keyboard/cypress_20075/cy8cmbr_swd.ko
 kernel/drivers/input/keyboard/cypress_20075/SWD_PacketLayer.ko
 kernel/drivers/input/keyboard/cypress_20075/SWD_UpperPacketLayer.ko
 kernel/drivers/input/misc/uinput.ko
+kernel/drivers/input/touchscreen/doubletap2wake.ko
 kernel/drivers/input/touchscreen/stm/fts_ts.ko
 kernel/drivers/input/touchscreen/stm/fts_fwu.ko
 kernel/drivers/input/serio/serio.ko
