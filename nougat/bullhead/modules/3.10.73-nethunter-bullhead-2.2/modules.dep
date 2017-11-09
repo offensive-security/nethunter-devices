@@ -1,0 +1,16 @@
+kernel/fs/fscache/fscache.ko:
+kernel/fs/isofs/isofs.ko:
+kernel/fs/nfs/nfs.ko: kernel/fs/lockd/lockd.ko kernel/net/sunrpc/sunrpc.ko kernel/fs/fscache/fscache.ko
+kernel/fs/nfs/nfsv2.ko: kernel/fs/nfs/nfs.ko kernel/fs/lockd/lockd.ko kernel/net/sunrpc/sunrpc.ko kernel/fs/fscache/fscache.ko
+kernel/fs/nfs/nfsv3.ko: kernel/fs/nfs/nfs.ko kernel/fs/lockd/lockd.ko kernel/net/sunrpc/sunrpc.ko kernel/fs/fscache/fscache.ko
+kernel/fs/nfs/nfsv4.ko: kernel/fs/nfs/nfs.ko kernel/fs/lockd/lockd.ko kernel/net/sunrpc/sunrpc.ko kernel/fs/fscache/fscache.ko
+kernel/fs/nfs/nfs_layout_nfsv41_files.ko: kernel/fs/nfs/nfsv4.ko kernel/fs/nfs/nfs.ko kernel/fs/lockd/lockd.ko kernel/net/sunrpc/sunrpc.ko kernel/fs/fscache/fscache.ko
+kernel/fs/nfs/blocklayout/blocklayoutdriver.ko: kernel/fs/nfs/nfsv4.ko kernel/fs/nfs/nfs.ko kernel/fs/lockd/lockd.ko kernel/net/sunrpc/sunrpc.ko kernel/fs/fscache/fscache.ko
+kernel/fs/lockd/lockd.ko: kernel/net/sunrpc/sunrpc.ko
+kernel/fs/cifs/cifs.ko: kernel/fs/fscache/fscache.ko
+kernel/fs/ntfs/ntfs.ko:
+kernel/fs/udf/udf.ko:
+kernel/fs/cachefiles/cachefiles.ko: kernel/fs/fscache/fscache.ko
+kernel/net/sunrpc/sunrpc.ko:
+kernel/net/sunrpc/auth_gss/auth_rpcgss.ko: kernel/net/sunrpc/sunrpc.ko
+kernel/net/sunrpc/auth_gss/rpcsec_gss_krb5.ko: kernel/net/sunrpc/auth_gss/auth_rpcgss.ko kernel/net/sunrpc/sunrpc.ko

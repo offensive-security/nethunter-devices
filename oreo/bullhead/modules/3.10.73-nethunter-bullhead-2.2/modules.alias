@@ -1,0 +1,21 @@
+# Aliases extracted from modules themselves.
+alias iso9660 isofs
+alias fs-iso9660 isofs
+alias nfs4 nfs
+alias fs-nfs4 nfs
+alias fs-nfs nfs
+alias nfs-layouttype4-1 nfs_layout_nfsv41_files
+alias nfs-layouttype4-3 blocklayoutdriver
+alias fs-cifs cifs
+alias fs-ntfs ntfs
+alias fs-udf udf
+alias rpc_pipefs sunrpc
+alias fs-rpc_pipefs sunrpc
+alias rpc-auth-6 auth_rpcgss
+alias rpc-auth-gss-1.2.840.113554.1.2.2 rpcsec_gss_krb5
+alias rpc-auth-gss-390005 rpcsec_gss_krb5
+alias rpc-auth-gss-390004 rpcsec_gss_krb5
+alias rpc-auth-gss-390003 rpcsec_gss_krb5
+alias rpc-auth-gss-krb5p rpcsec_gss_krb5
+alias rpc-auth-gss-krb5i rpcsec_gss_krb5
+alias rpc-auth-gss-krb5 rpcsec_gss_krb5
