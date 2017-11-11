@@ -1,0 +1,10 @@
+#!/sbin/sh
+
+. "$env"
+
+io_scheduler=fiops
+
+print "Setting IO scheduler to $io_scheduler"
+sed -i "s|\(/sys/block/.*/scheduler[[:space:]]\+\)[a-zA-Z]\+|\1$io_scheduler|g" ./*.rc
+
+exit 0

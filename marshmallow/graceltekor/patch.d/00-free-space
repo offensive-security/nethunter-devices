@@ -1,0 +1,20 @@
+#!/sbin/sh
+
+. "$env"
+
+print "Freeing up space..."
+
+# Stock ramdisk items
+rm -f \
+	./*ranchu* \
+	./*goldfish* \
+	./*.fwup \
+	sbin/dm_verity_signature_checker \
+	sbin/ffu \
+	sbin/sverifysignature \
+	sbin/firmware_key.cer
+
+# Remove service entries broken by freeing up space
+remove_service fwup
+
+exit 0
