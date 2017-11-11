@@ -46,9 +46,15 @@ found_fstab=false
 for fstab in fstab.*; do
 	print "Found fstab: $fstab"
 	found_fstab=true
-	fstab_add system "$f2fs_system_opts" "$f2fs_system_flags"
+
+	# Uncomment these if you wish to use them, but I do not recommend it!
+	# f2fs has no advantages for a read-only file system, and it may reduce
+	# stability. Cache partitions are not used often, and other things that
+	# rely on it are not prepared for f2fs.
+
+	#fstab_add system "$f2fs_system_opts" "$f2fs_system_flags"
 	fstab_add data "$f2fs_data_opts" "$f2fs_data_flags"
-	fstab_add cache "$f2fs_cache_opts" "$f2fs_cache_flags"
+	#fstab_add cache "$f2fs_cache_opts" "$f2fs_cache_flags"
 done
 
 $found_fstab || {

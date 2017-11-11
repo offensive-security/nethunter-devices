@@ -1,0 +1,44 @@
+#!/sbin/sh
+
+. "$env"
+
+print "Removing Samsung secure kernel info..."
+rm -f /system/*info*
+
+print "Removing Trusted UI service..."
+rm -rf /system/app/TuiService
+
+print "Disabling TIMA"
+setprop ro.config.tima 0
+setprop ro.config.rkp false
+delprop ro.config.timaversion
+delprop timaversion
+
+print "Disabling SELinux enforcement"
+setprop ro.build.selinux 1
+setprop ro.build.selinux.enforce 0
+setprop ro.boot.selinux permissive
+
+print "Disabling HDCP enforcement"
+setprop wlan.wfd.hdcp disable
+
+print "Applying MobiCore/Trustonic patch..."
+
+cat <<EOF > "$tmp/keeptlbin"
+08130000000000000000000000000000
+ffffffff00000000000000000000000e
+ffffffff000000000000000000000016
+ffffffffd0000000000000000000000e
+ffffffffd00000000000000000000014
+ffffffffd00000000000000000000016
+ffffffffd00000000000000000000017
+fffffffff0000000000000000000001b
+EOF
+
+for tlbin in /system/app/mcRegistry/*.tlbin; do
+	tl=${tlbin%.*}
+	tl=${tl##*/}
+	grep -q "^$tl$" "$tmp/keeptlbin" || rm "$tlbin"
+done
+
+exit 0
