@@ -1,0 +1,44 @@
+#!/sbin/sh
+
+. "$env"
+
+print "Removing Samsung secure kernel info"
+rm -f /system/*info*
+
+print "Removing KNOX SecurityLogAgent"
+rm -f /system/app/SecurityLogAgent
+
+print "Disabling Secure Storage support"
+setprop ro.securestorage.support false
+
+print "Disabling HDCP enforcement"
+setprop wlan.wfd.hdcp disable
+
+print "Removing incompatible MobiCore modules"
+rm -f /system/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin
+
+for file in \
+	vendor/firmware/fimc_is_lib.bin \
+	vendor/firmware/fimc_is_rta_2l2_3h1.bin \
+	vendor/firmware/fimc_is_rta_2l2_imx320.bin \
+	vendor/firmware/fimc_is_rta_imx333_3h1.bin \
+	vendor/firmware/fimc_is_rta_imx333_imx320.bin \
+	vendor/lib/libsecure_storage.so \
+	vendor/lib64/libsecure_storage.so
+do
+	replace_file "/system/$file" "$file"
+done
+
+print "Adding boot service to modify secure props"
+cat << EOF >> init.nethunter.rc
+on boot
+    start nethunter-kernel
+
+service nethunter-kernel /init.nethunter-kernel.sh
+    user root
+    seclabel u:r:init:s0
+    oneshot
+    disabled
+EOF
+
+exit 0
