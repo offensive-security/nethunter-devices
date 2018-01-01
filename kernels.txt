@@ -158,6 +158,10 @@ git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla
 # - LeEco Le 2
 # git clone https://github.com/nethunter-s2/android_kernel_leeco_s2.git -b cm-14.1
 
+# - Xiaomi Mi5
+# LOS 14.1 and 15.1
+# git clone https://github.com/JonasCardoso/android_kernel_xiaomi_msm8996.git -b kali-nethunter
+
 # - Toolchain
 # Google reference
 # git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.7
