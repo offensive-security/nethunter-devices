@@ -2,6 +2,10 @@ Locations of all kernels used in Kali NetHunter.
 
 If you wish to add a kernel/new device, leave a link to source here and feel free to add your name if you wish:
 
+#  - MiPad1 [mocha]
+# git clone -b nethunter-cm12.1 https://github.com/RahulTheVirus/mocha-kernels.git
+# git clone -b nethunter-cm11 https://github.com/RahulTheVirus/mocha-kernels.git
+
 # - ZTE Axon 7
 # MiFavor
 # git clone https://github.com/jcadduono/android_kernel_zte_msm8996.git -B nethunter-6.0
