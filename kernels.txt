@@ -109,6 +109,8 @@ git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla
 # AOSP/CM
 # git clone https://github.com/jcadduono/idleKernel-note3.git -b ik-nethunter-L
 # git clone https://github.com/jcadduono/idleKernel-note3.git -b ik-nethunter-M
+# LineageOS 14.1 
+# git clone https://github.com/0x4E0x650x6F/android_kernel_samsung_msm8974.git -b cm-14.1
 
 # - Samsung Galaxy S4
 # AOSP/CM
