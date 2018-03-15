@@ -160,6 +160,7 @@ git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla
 
 # - Xiaomi Redmi 4X
 # LineageOS 14.1
+# git clone https://github.com/nkrapivin/msm-3.18.git -b rel/msm-3.18-nougat
 
 # - Toolchain
 # Google reference
