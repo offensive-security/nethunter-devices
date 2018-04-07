@@ -14,7 +14,6 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 
 # - Nexus 10
 # git clone https://github.com/jmmmbnnn/kernel_samsung_manta.git -b thunderkat
-# git clone https://github.com/jmmmbnnn/android-device-samsung-manta.git
 # git clone https://github.com/binkybear/kernel_samsung_manta.git -b thunderkat
 # git clone https://github.com/binkybear/nexus10-5.git -b android-exynos-manta-3.4-lollipop-release
 
