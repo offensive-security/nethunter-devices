@@ -125,6 +125,10 @@ git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla
 # Grace UI & TouchWiz
 # git clone https://github.com/jcadduono/android_kernel_samsung_universal8890 -b nethunter-6.0
 
+# - Samsung Galaxy S8, Galaxy S8+, and Galaxy Note8
+# Samsung Experience
+# git clone https://github.com/jcadduono/android_kernel_samsung_universal8895 -b nethunter-7.1
+
 # - Samsung Galaxy A5
 # TouchWiz
 # git clone https://github.com/DeadSquirrel01/nethunter-kernel-a5ulte.git -b touchwiz-6.0
@@ -157,6 +161,10 @@ git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla
 
 # - LeEco Le 2
 # git clone https://github.com/nethunter-s2/android_kernel_leeco_s2.git -b cm-14.1
+
+# - Motorola Moto G5
+# Lineage OS 15.1 Based ROM's
+# git clone https://github.com/rajeshdubey293/al-ice_cedric.git -b working
 
 # - Toolchain
 # Google reference
