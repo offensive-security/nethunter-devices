@@ -158,6 +158,10 @@ git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla
 # - LeEco Le 2
 # git clone https://github.com/nethunter-s2/android_kernel_leeco_s2.git -b cm-14.1
 
+# - Motorola Moto G5
+# Lineage OS 15.1 Based ROM's
+# git clone https://github.com/rajeshdubey293/al-ice_cedric.git -b working
+
 # - Toolchain
 # Google reference
 # git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.7
