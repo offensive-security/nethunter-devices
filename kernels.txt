@@ -162,6 +162,10 @@ git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla
 # Lineage OS 15.1 Based ROM's
 # git clone https://github.com/rajeshdubey293/al-ice_cedric.git -b working
 
+# - Motorola Moto G5
+# LineageOS 14.1
+# git clone https://github.com/rajeshdubey293/android_kernel_motorola_msm8937 -b cm-14.1
+
 # - Toolchain
 # Google reference
 # git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.7
