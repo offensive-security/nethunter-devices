@@ -167,6 +167,8 @@ git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla
 # - Motorola Moto G 2015
 # Lineage OS 14.1
 # https://github.com/rajeshdubey293/kernel_osprey-cm-14.1 -b cm-14.1
+# Lineage OS 15.1
+# https://github.com/rajeshdubey293/kernel_osprey-oreo -b oreo-mr1
 
 # - Toolchain
 # Google reference
