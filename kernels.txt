@@ -163,6 +163,11 @@ git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla
 # Lineage OS 15.1 Based ROM's
 # git clone https://github.com/rajeshdubey293/al-ice_cedric.git -b working
 
+# - LG K20 Plus (LV517)
+# Lineage OS 14.1 Based ROM's
+# git clone https://github.com/robnew/NetHunter_K20plus_arm64_Kernel.git
+
+
 # - Toolchain
 # Google reference
 # git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.7
