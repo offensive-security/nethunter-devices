@@ -163,6 +163,10 @@ git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla
 # Lineage OS 15.1 Based ROM's
 # git clone https://github.com/rajeshdubey293/al-ice_cedric.git -b working
 
+# - Xiaomi Redmi 3S
+# Lineage OS 15.1 Based ROM's
+# git clone https://github.com/AyraHikari/Nethunter_land_kernel.git -b lineage-15.1
+
 # - Toolchain
 # Google reference
 # git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.7
