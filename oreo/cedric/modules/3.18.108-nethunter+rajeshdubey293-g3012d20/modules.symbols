@@ -1,0 +1,23 @@
+# Aliases for symbols, used by symbol_request().
+alias symbol:gspca_disconnect gspca_main
+alias symbol:gspca_dev_probe gspca_main
+alias symbol:gspca_expo_autogain gspca_main
+alias symbol:gspca_resume gspca_main
+alias symbol:backlight_device_register backlight
+alias symbol:backlight_unregister_notifier backlight
+alias symbol:backlight_device_registered backlight
+alias symbol:backlight_device_unregister backlight
+alias symbol:backlight_register_notifier backlight
+alias symbol:lcd_device_register lcd
+alias symbol:backlight_force_update backlight
+alias symbol:gspca_coarse_grained_expo_autogain gspca_main
+alias symbol:gspca_suspend gspca_main
+alias symbol:devm_backlight_device_unregister backlight
+alias symbol:gspca_debug gspca_main
+alias symbol:gspca_dev_probe2 gspca_main
+alias symbol:gspca_frame_add gspca_main
+alias symbol:lcd_device_unregister lcd
+alias symbol:devm_lcd_device_register lcd
+alias symbol:devm_lcd_device_unregister lcd
+alias symbol:devm_backlight_device_register backlight
+alias symbol:of_find_backlight_by_node backlight
