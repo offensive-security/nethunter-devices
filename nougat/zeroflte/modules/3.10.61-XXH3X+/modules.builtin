@@ -15,16 +15,19 @@ kernel/fs/ext4/ext4.ko
 kernel/fs/fat/fat.ko
 kernel/fs/fat/vfat.ko
 kernel/fs/fuse/fuse.ko
+kernel/fs/isofs/isofs.ko
 kernel/fs/jbd/jbd.ko
 kernel/fs/jbd2/jbd2.ko
 kernel/fs/nls/nls_base.ko
 kernel/fs/nls/nls_cp437.ko
 kernel/fs/nls/nls_iso8859-1.ko
 kernel/fs/nls/nls_utf8.ko
+kernel/fs/ntfs/ntfs.ko
 kernel/fs/pstore/ramoops.ko
 kernel/fs/scfs/scfs_all.ko
 kernel/fs/sdcardfs/sdcardfs.ko
 kernel/fs/sdfat/sdfat_fs.ko
+kernel/fs/udf/udf.ko
 kernel/crypto/crypto.ko
 kernel/crypto/crypto_wq.ko
 kernel/crypto/crypto_algapi.ko
@@ -179,6 +182,7 @@ kernel/drivers/input/ff-memless.ko
 kernel/drivers/input/evdev.ko
 kernel/drivers/input/hall.ko
 kernel/drivers/input/certify_hall.ko
+kernel/drivers/input/joystick/xpad.ko
 kernel/drivers/input/keyboard/gpio_keys.ko
 kernel/drivers/input/keyboard/cypress_20075/cypress-touchkey.ko
 kernel/drivers/input/keyboard/cypress_20075/cy8cmbr_swd.ko
@@ -510,6 +514,7 @@ kernel/net/netfilter/xt_connmark.ko
 kernel/net/netfilter/xt_nat.ko
 kernel/net/netfilter/xt_CLASSIFY.ko
 kernel/net/netfilter/xt_CONNSECMARK.ko
+kernel/net/netfilter/xt_HL.ko
 kernel/net/netfilter/xt_LOG.ko
 kernel/net/netfilter/xt_NETMAP.ko
 kernel/net/netfilter/xt_NFLOG.ko
