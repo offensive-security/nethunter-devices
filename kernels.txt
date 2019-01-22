@@ -44,6 +44,7 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # git clone https://github.com/discipuloosho/android_kernel_moto_shamu.git -b nethunter_cm-14.1
 
 # - Nexus 5X
+# git clone https://github.com/kamarush/bullhead.git -b nethunter-8.1
 # git clone https://github.com/binkybear/kernel_msm.git -b android-msm-bullhead-3.10-n nexus5x-7
 # git clone https://github.com/binkybear/kernel_msm.git -b android-msm-bullhead-3.10-marshmallow-mr1 nexus5x-6
 
@@ -121,6 +122,10 @@ git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla
 # AOSP/LineageOS
 # git clone https://github.com/jcadduono/android_kernel_samsung_msm8974.git -b cm-14.1
 
+# - Samsung Galaxy S6, Galaxy S6 edge
+# AOSP/LineageOS
+# git clone https://github.com/XXH3X/android_kernel_samsung_exynos7420.git -b cm-14.1
+
 # - Samsung Galaxy S7, Galaxy S7 edge, and Galaxy Note 7
 # Grace UI & TouchWiz
 # git clone https://github.com/jcadduono/android_kernel_samsung_universal8890 -b nethunter-6.0
@@ -169,6 +174,13 @@ git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla
 # https://github.com/rajeshdubey293/kernel_osprey-cm-14.1 -b cm-14.1
 # Lineage OS 15.1
 # https://github.com/rajeshdubey293/kernel_osprey-oreo -b oreo-mr1
+
+
+# - LG K20 Plus (LV517)
+# Lineage OS 14.1 Based ROM's
+# git clone https://github.com/robnew/NetHunter_K20plus_arm64_Kernel.git
+
+
 
 # - Toolchain
 # Google reference
