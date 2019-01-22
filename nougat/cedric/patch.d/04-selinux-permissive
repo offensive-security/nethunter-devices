@@ -1,0 +1,13 @@
+#!/sbin/sh
+
+. "$env"
+
+# append to NetHunter's init rc script
+cat <<EOF >> init.nethunter.rc
+
+# set permissive selinux on boot
+on boot
+    setenforce 0
+EOF
+
+exit 0
