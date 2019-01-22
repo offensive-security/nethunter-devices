@@ -52,9 +52,9 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # git clone https://github.com/binkybear/furnace_kernel_lge_hammerhead.git -b android-4.4
 # git clone https://github.com/binkybear/kernel_msm.git -b android-msm-hammerhead-3.4-lollipop-release nexus5-5
 # git clone https://github.com/chrisk44/hammerhead_nkernel.git
-# git clone https://github.com/chrisk44/android_kernel_lge_hammerhead.git -b cm-14.1
 # CM
 # git clone https://github.com/jcadduono/nethunter_kernel_hammerhead.git nexus5-cm
+# git clone https://github.com/chrisk44/android_kernel_lge_hammerhead-lineageos.git -b cm-14.1
 # git clone https://github.com/chrisk44/android_kernel_lge_hammerhead.git -b cm-14.1-caf
 # git clone https://github.com/AutinDroid/ElementalX_N5mon.git -b ElementalX-7.09mon
 
@@ -65,6 +65,7 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # git clone https://github.com/jcadduono/nethunter_kernel_mako.git -b cm-13.0
 
 # - nVidia Shield Tablet
+# git clone https://github.com/SecurityAddicted/android_kernel_nvidia_shieldtablet nethunter
 # git clone https://github.com/jcadduono/android_kernel_nvidia_shield.git -b nethunter-6.0
 
 # - OnePlus X
@@ -122,6 +123,10 @@ git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla
 # AOSP/LineageOS
 # git clone https://github.com/jcadduono/android_kernel_samsung_msm8974.git -b cm-14.1
 
+# - Samsung Galaxy S6, Galaxy S6 edge
+# AOSP/LineageOS
+# git clone https://github.com/XXH3X/android_kernel_samsung_exynos7420.git -b cm-14.1
+
 # - Samsung Galaxy S7, Galaxy S7 edge, and Galaxy Note 7
 # Grace UI & TouchWiz
 # git clone https://github.com/jcadduono/android_kernel_samsung_universal8890 -b nethunter-6.0
@@ -166,6 +171,21 @@ git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla
 # - Motorola Moto G5
 # Lineage OS 15.1 Based ROM's
 # git clone https://github.com/rajeshdubey293/al-ice_cedric.git -b working
+# LineageOS 14.1
+# git clone https://github.com/rajeshdubey293/android_kernel_motorola_msm8937 -b cm-14.1
+
+# - Motorola Moto G 2015
+# Lineage OS 14.1
+# https://github.com/rajeshdubey293/kernel_osprey-cm-14.1 -b cm-14.1
+# Lineage OS 15.1
+# https://github.com/rajeshdubey293/kernel_osprey-oreo -b oreo-mr1
+
+
+# - LG K20 Plus (LV517)
+# Lineage OS 14.1 Based ROM's
+# git clone https://github.com/robnew/NetHunter_K20plus_arm64_Kernel.git
+
+
 
 # - Toolchain
 # Google reference
@@ -174,3 +194,6 @@ git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla
 # Linaro ARM optimized
 # ARMv7: wget https://releases.linaro.org/components/toolchain/binaries/4.9-2016.02/arm-linux-gnueabihf/gcc-linaro-4.9-2016.02-x86_64_arm-linux-gnueabihf.tar.xz
 # ARMv8: wget https://releases.linaro.org/components/toolchain/binaries/4.9-2016.02/aarch64-linux-gnu/gcc-linaro-4.9-2016.02-x86_64_aarch64-linux-gnu.tar.xz
+
+#- Lenovo K8 Note
+# git clone https://github.com/MotorolaMobilityLLC/kernel-mtk.git -b nougat-7.1.1-release-manning
