@@ -52,9 +52,9 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # git clone https://github.com/binkybear/furnace_kernel_lge_hammerhead.git -b android-4.4
 # git clone https://github.com/binkybear/kernel_msm.git -b android-msm-hammerhead-3.4-lollipop-release nexus5-5
 # git clone https://github.com/chrisk44/hammerhead_nkernel.git
-# git clone https://github.com/chrisk44/android_kernel_lge_hammerhead.git -b cm-14.1
 # CM
 # git clone https://github.com/jcadduono/nethunter_kernel_hammerhead.git nexus5-cm
+# git clone https://github.com/chrisk44/android_kernel_lge_hammerhead-lineageos.git -b cm-14.1
 # git clone https://github.com/chrisk44/android_kernel_lge_hammerhead.git -b cm-14.1-caf
 # git clone https://github.com/AutinDroid/ElementalX_N5mon.git -b ElementalX-7.09mon
 
