@@ -187,6 +187,13 @@ git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla
 # - Asus Zenfone 2 Laser (720p)
 # git clone https://github.com/adrenogamer/android_kernel_asus_msm8916 -b cm-13.0
 
+# - Xiaomi Redmi 3/3 Pro
+# LineageOS
+# git clone https://github.com/ariafan/ido_kernel-kali.git -b kali-new
+
+#- Lenovo K8 Note
+# git clone https://github.com/MotorolaMobilityLLC/kernel-mtk.git -b nougat-7.1.1-release-manning
+
 # - Toolchain
 # Google reference
 # git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.7
@@ -194,6 +201,3 @@ git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla
 # Linaro ARM optimized
 # ARMv7: wget https://releases.linaro.org/components/toolchain/binaries/4.9-2016.02/arm-linux-gnueabihf/gcc-linaro-4.9-2016.02-x86_64_arm-linux-gnueabihf.tar.xz
 # ARMv8: wget https://releases.linaro.org/components/toolchain/binaries/4.9-2016.02/aarch64-linux-gnu/gcc-linaro-4.9-2016.02-x86_64_aarch64-linux-gnu.tar.xz
-
-#- Lenovo K8 Note
-# git clone https://github.com/MotorolaMobilityLLC/kernel-mtk.git -b nougat-7.1.1-release-manning
