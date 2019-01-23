@@ -194,6 +194,9 @@ git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla
 #- Lenovo K8 Note
 # git clone https://github.com/MotorolaMobilityLLC/kernel-mtk.git -b nougat-7.1.1-release-manning
 
+# - Yu Yunique
+# git clone https://github.com/thelazyindian/kernel_8916.git -b cm-14.1-nethunter
+ 
 # - Toolchain
 # Google reference
 # git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.7
