@@ -180,12 +180,12 @@ git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla
 # Lineage OS 15.1
 # https://github.com/rajeshdubey293/kernel_osprey-oreo -b oreo-mr1
 
-
 # - LG K20 Plus (LV517)
 # Lineage OS 14.1 Based ROM's
 # git clone https://github.com/robnew/NetHunter_K20plus_arm64_Kernel.git
 
-
+# - Asus Zenfone 2 Laser (720p)
+# git clone https://github.com/adrenogamer/android_kernel_asus_msm8916 -b cm-13.0
 
 # - Toolchain
 # Google reference
