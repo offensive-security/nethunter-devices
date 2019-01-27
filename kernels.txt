@@ -91,6 +91,7 @@ git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla
 # OXYGEN
 # git clone https://github.com/binkybear/android_kernel_oneplus_msm8994.git -b OXYGEN
 # CM
+# git clone https://github.com/Re4son/android_kernel_oneplus_msm8994.git -b cm-14.1 
 # git clone https://github.com/binkybear/android_kernel_oneplus_msm8994.git -b cm-13.0
 # git clone https://github.com/binkybear/android_kernel_oneplus_msm8994.git -b cm-12.1
 
