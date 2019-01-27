@@ -197,6 +197,10 @@ git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla
 # - Yu Yunique
 # git clone https://github.com/thelazyindian/kernel_8916.git -b cm-14.1-nethunter
  
+# Motorola Moto G5 Plus
+# Lineage OS 14.1 Based ROM's
+# git clone https://github.com/chankruze/potter_kali_kernel -b cm-14.1
+
 # - Toolchain
 # Google reference
 # git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.7
