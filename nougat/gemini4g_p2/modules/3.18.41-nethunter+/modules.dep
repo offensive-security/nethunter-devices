@@ -1,3 +1,4 @@
+kernel/drivers/usb/class/cdc-acm.ko:
 kernel/drivers/i2c/algos/i2c-algo-bit.ko:
 kernel/drivers/media/dvb-frontends/sp8870.ko:
 kernel/drivers/media/dvb-frontends/cx22700.ko:
