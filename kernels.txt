@@ -2,6 +2,10 @@ Locations of all kernels used in Kali NetHunter.
 
 If you wish to add a kernel/new device, leave a link to source here and feel free to add your name if you wish:
 
+#  - MiPad1 [mocha]
+# git clone -b nethunter-cm12.1 https://github.com/RahulTheVirus/mocha-kernels.git
+# git clone -b nethunter-cm11 https://github.com/RahulTheVirus/mocha-kernels.git
+
 # - ZTE Axon 7
 # MiFavor
 # git clone https://github.com/jcadduono/android_kernel_zte_msm8996.git -B nethunter-6.0
@@ -36,6 +40,7 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # git clone https://github.com/binkybear/AK-Angler.git -b ak-aosp-6.0.1-staging nexus6P-6
 # git clone https://github.com/jcadduono/android_kernel_huawei_angler -b nethunter-7.1_2 nexus6P-7
 # git clone https://github.com/jcadduono/android_kernel_huawei_angler -b nethunter-8.0 nexus6P-8
+# git clone https://github.com/kimocoder/android_kernel_huawei_angler -b nethunter-8.0 nexus6P-81
 
 # - Nexus 6
 # git clone https://github.com/binkybear/kernel_msm.git -b android-msm-shamu-3.10-marshmallow-release nexus6-6
@@ -44,6 +49,7 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # git clone https://github.com/discipuloosho/android_kernel_moto_shamu.git -b nethunter_cm-14.1
 
 # - Nexus 5X
+# git clone https://github.com/kamarush/bullhead.git -b nethunter-8.1
 # git clone https://github.com/binkybear/kernel_msm.git -b android-msm-bullhead-3.10-n nexus5x-7
 # git clone https://github.com/binkybear/kernel_msm.git -b android-msm-bullhead-3.10-marshmallow-mr1 nexus5x-6
 
@@ -51,9 +57,9 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # git clone https://github.com/binkybear/furnace_kernel_lge_hammerhead.git -b android-4.4
 # git clone https://github.com/binkybear/kernel_msm.git -b android-msm-hammerhead-3.4-lollipop-release nexus5-5
 # git clone https://github.com/chrisk44/hammerhead_nkernel.git
-# git clone https://github.com/chrisk44/android_kernel_lge_hammerhead.git -b cm-14.1
 # CM
 # git clone https://github.com/jcadduono/nethunter_kernel_hammerhead.git nexus5-cm
+# git clone https://github.com/chrisk44/android_kernel_lge_hammerhead-lineageos.git -b cm-14.1
 # git clone https://github.com/chrisk44/android_kernel_lge_hammerhead.git -b cm-14.1-caf
 # git clone https://github.com/AutinDroid/ElementalX_N5mon.git -b ElementalX-7.09mon
 
@@ -64,6 +70,7 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # git clone https://github.com/jcadduono/nethunter_kernel_mako.git -b cm-13.0
 
 # - nVidia Shield Tablet
+# git clone https://github.com/SecurityAddicted/android_kernel_nvidia_shieldtablet nethunter
 # git clone https://github.com/jcadduono/android_kernel_nvidia_shield.git -b nethunter-6.0
 
 # - OnePlus X
@@ -79,12 +86,14 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # OXYGEN
 # git clone https://github.com/zanezam/boeffla-kernel-oos-oneplus3.git -b t_boeffla_oos4_nethunter-V1_aa64u541
 # CM
-git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla_cm14_nethunter-V1_aa64u541
+# git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla_cm14_nethunter-V1_aa64u541
 
 # - OnePlus Two
 # OXYGEN
 # git clone https://github.com/binkybear/android_kernel_oneplus_msm8994.git -b OXYGEN
 # CM
+# git clone https://github.com/Re4son/android_kernel_oneplus_msm8994.git -b lineage-15.1 
+# git clone https://github.com/Re4son/android_kernel_oneplus_msm8994.git -b cm-14.1 
 # git clone https://github.com/binkybear/android_kernel_oneplus_msm8994.git -b cm-13.0
 # git clone https://github.com/binkybear/android_kernel_oneplus_msm8994.git -b cm-12.1
 
@@ -98,6 +107,9 @@ git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla
 # git clone https://github.com/nethunteros/android_kernel_oneplus_msm8998 -b boeffla_oos4 oneplus5
 # LineageOS 14.X
 # git clone https://github.com/nethunteros/android_kernel_oneplus_msm8998 -b boeffla_cm14 oneplus5
+
+# - Planet Computers Gemini PDA 4G
+# git clone https://github.com/Re4son/gemini-kali-linux-kernel-3.18 -b nethunter
 
 # - LG G5 & LG V20
 # LG Stock
@@ -120,6 +132,10 @@ git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla
 # git clone https://github.com/jcadduono/nethunter_kernel_klte.git -b touchwiz-6.0
 # AOSP/LineageOS
 # git clone https://github.com/jcadduono/android_kernel_samsung_msm8974.git -b cm-14.1
+
+# - Samsung Galaxy S6, Galaxy S6 edge
+# AOSP/LineageOS
+# git clone https://github.com/XXH3X/android_kernel_samsung_exynos7420.git -b cm-14.1
 
 # - Samsung Galaxy S7, Galaxy S7 edge, and Galaxy Note 7
 # Grace UI & TouchWiz
@@ -160,6 +176,39 @@ git clone https://github.com/zanezam/boeffla-kernel-cm-oneplus3.git -b t_boeffla
 
 # - Moto X2 (2014)
 # git clone https://github.com/xchwarze/nethunter-motorola-x2-kernel -b cm-14.1
+
+# - Motorola Moto G5
+# Lineage OS 15.1 Based ROM's
+# git clone https://github.com/rajeshdubey293/al-ice_cedric.git -b working
+# LineageOS 14.1
+# git clone https://github.com/rajeshdubey293/android_kernel_motorola_msm8937 -b cm-14.1
+
+# - Motorola Moto G 2015
+# Lineage OS 14.1
+# https://github.com/rajeshdubey293/kernel_osprey-cm-14.1 -b cm-14.1
+# Lineage OS 15.1
+# https://github.com/rajeshdubey293/kernel_osprey-oreo -b oreo-mr1
+
+# - LG K20 Plus (LV517)
+# Lineage OS 14.1 Based ROM's
+# git clone https://github.com/robnew/NetHunter_K20plus_arm64_Kernel.git
+
+# - Asus Zenfone 2 Laser (720p)
+# git clone https://github.com/adrenogamer/android_kernel_asus_msm8916 -b cm-13.0
+
+# - Xiaomi Redmi 3/3 Pro
+# LineageOS
+# git clone https://github.com/ariafan/ido_kernel-kali.git -b kali-new
+
+#- Lenovo K8 Note
+# git clone https://github.com/MotorolaMobilityLLC/kernel-mtk.git -b nougat-7.1.1-release-manning
+
+# - Yu Yunique
+# git clone https://github.com/thelazyindian/kernel_8916.git -b cm-14.1-nethunter
+ 
+# Motorola Moto G5 Plus
+# Lineage OS 14.1 Based ROM's
+# git clone https://github.com/chankruze/potter_kali_kernel -b cm-14.1
 
 # - Toolchain
 # Google reference
