@@ -58,4 +58,14 @@ So really all you need is a kernel image and sometimes a dtb.img to build for a 
 
 Don't forget to add your newly supported device's kernel sources to the kernels.txt file!
 
-Sat Oct 22 21:31:18 EST 2016
+## Building a kernel for your device
+
+There are scripts in the `example_scripts` folder that you can copy to the root of your device's kernel sources.
+They should be modified to match your device. It will make it easier to build your device's kernel outside of an Android source tree.
+
+The binary output from the build will be self-contained in a `build` folder, with the kernel modules properly stripped and installed with their modprobe data in `build/lib/modules`.
+
+Using these scripts in your source tree will make it easier for others to make modifications and update your device in the future. It will also increase the likelihood your device will be accepted into the nethunter-devices repository as an officially supported device!
+
+
+Thu Feb 28 20:43:37 EST 2019
