@@ -108,6 +108,9 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # LineageOS 14.X
 # git clone https://github.com/nethunteros/android_kernel_oneplus_msm8998 -b boeffla_cm14 oneplus5
 
+# - Planet Computers Gemini PDA 4G
+# git clone https://github.com/Re4son/gemini-kali-linux-kernel-3.18 -b nethunter
+
 # - LG G5 & LG V20
 # LG Stock
 # git clone https://github.com/jcadduono/android_kernel_lge_msm8996.git -b nethunter-7.0
@@ -171,6 +174,9 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # - LeEco Le 2
 # git clone https://github.com/nethunter-s2/android_kernel_leeco_s2.git -b cm-14.1
 
+# - Moto X2 (2014)
+# git clone https://github.com/xchwarze/nethunter-motorola-x2-kernel -b cm-14.1
+
 # - Motorola Moto G5
 # Lineage OS 15.1 Based ROM's
 # git clone https://github.com/rajeshdubey293/al-ice_cedric.git -b working
@@ -211,3 +217,5 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # Linaro ARM optimized
 # ARMv7: wget https://releases.linaro.org/components/toolchain/binaries/4.9-2016.02/arm-linux-gnueabihf/gcc-linaro-4.9-2016.02-x86_64_arm-linux-gnueabihf.tar.xz
 # ARMv8: wget https://releases.linaro.org/components/toolchain/binaries/4.9-2016.02/aarch64-linux-gnu/gcc-linaro-4.9-2016.02-x86_64_aarch64-linux-gnu.tar.xz
+# Uber Linaro
+# git clone https://bitbucket.org/UBERTC/arm-eabi-4.9.git
