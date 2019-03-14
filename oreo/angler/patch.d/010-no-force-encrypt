@@ -1,0 +1,20 @@
+#!/sbin/sh
+
+. "$env"
+
+print "Disabling forced encryption in the fstab..."
+
+found_fstab=false
+
+for fstab in fstab.*; do
+	[ -f "$fstab" ] || continue
+	print "Found fstab: $fstab"
+	sed -i "
+		s/\b\(forceencrypt\|forcefdeorfbe\)=/encryptable=/g
+	" "$fstab"
+	found_fstab=true
+done
+
+$found_fstab || print "Unable to find the fstab!"
+
+exit 0
