@@ -1,0 +1,4 @@
+# Aliases for symbols, used by symbol_request().
+alias symbol:atmel_open atmel
+alias symbol:init_atmel_card atmel
+alias symbol:stop_atmel_card atmel
