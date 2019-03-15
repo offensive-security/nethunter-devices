@@ -1,0 +1,23 @@
+kernel/fs/nfs_common/grace.ko:
+kernel/fs/nfs/nfs.ko: kernel/fs/lockd/lockd.ko kernel/fs/nfs_common/grace.ko kernel/net/sunrpc/sunrpc.ko
+kernel/fs/nfs/nfsv3.ko: kernel/fs/nfs/nfs.ko kernel/fs/lockd/lockd.ko kernel/fs/nfs_common/grace.ko kernel/net/sunrpc/sunrpc.ko
+kernel/fs/nfs/nfsv4.ko: kernel/net/dns_resolver/dns_resolver.ko kernel/fs/nfs/nfs.ko kernel/fs/lockd/lockd.ko kernel/fs/nfs_common/grace.ko kernel/net/sunrpc/sunrpc.ko
+kernel/fs/lockd/lockd.ko: kernel/fs/nfs_common/grace.ko kernel/net/sunrpc/sunrpc.ko
+kernel/fs/cifs/cifs.ko:
+kernel/fs/ntfs/ntfs.ko:
+kernel/drivers/misc/eeprom/eeprom_93cx6.ko:
+kernel/drivers/net/wireless/atmel.ko:
+kernel/drivers/net/wireless/at76c50x-usb.ko:
+kernel/drivers/net/wireless/rtl818x/rtl8187/rtl8187.ko: kernel/drivers/misc/eeprom/eeprom_93cx6.ko
+kernel/drivers/net/wireless/rndis_wlan.ko: kernel/drivers/net/usb/rndis_host.ko
+kernel/drivers/net/wireless/zd1201.ko:
+kernel/drivers/net/usb/asix.ko:
+kernel/drivers/net/usb/rndis_host.ko:
+kernel/drivers/input/joystick/xpad.ko: kernel/drivers/input/ff-memless.ko
+kernel/drivers/input/ff-memless.ko:
+kernel/drivers/media/common/cypress_firmware.ko:
+kernel/net/sunrpc/sunrpc.ko:
+kernel/net/sunrpc/auth_gss/auth_rpcgss.ko: kernel/lib/oid_registry.ko kernel/net/sunrpc/sunrpc.ko
+kernel/net/sunrpc/auth_gss/rpcsec_gss_krb5.ko: kernel/net/sunrpc/auth_gss/auth_rpcgss.ko kernel/lib/oid_registry.ko kernel/net/sunrpc/sunrpc.ko
+kernel/net/dns_resolver/dns_resolver.ko:
+kernel/lib/oid_registry.ko:
