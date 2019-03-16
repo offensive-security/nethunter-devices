@@ -1,0 +1,29 @@
+#!/system/bin/sh
+# Script make by friedrich420
+
+cat << CTAG
+{
+    name:DT2W,
+    elements:[
+	{ SPane:{
+		title:"Screen Wake Functions",
+		description:" Choose to wake up your screen by double tapping on the screen. Default is Disabled.",
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SOptionList:{
+		title:"DoubleTap To Wake",
+		default:`cat /sys/android_touch/doubletap2wake`,
+		action:"generic /sys/android_touch/doubletap2wake",
+		values:{
+			`PROF='0:"Disabled", 1:"Enabled"'
+			echo $PROF`
+		}
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+    ]
+}
+CTAG

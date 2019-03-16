@@ -1,0 +1,91 @@
+#!/system/bin/sh
+
+cat << CTAG
+{
+    name:MODULES,
+    elements:[
+	{ SPane:{
+		title:"Kernel Modules",
+		description:"Here you can load some kernel modules that will allow some extra functions."
+	}},
+	{ SSpacer:{
+		height:1
+	}},
+	{ SPane:{
+		title:"Network FS"
+	}},
+	{ SSpacer:{
+		height:1
+	}},
+	{ SOptionList:{
+		title:"CIFS",
+		description:"This will allow you to use apps that can mount internal storage and publish over network. User can access data and system over network. Default is Disabled.\n",
+		default:$(echo "$(/res/synapse/actions/modules cifs)"),
+		action:"modules cifs",
+		values:[Disabled, Enabled,]
+	}},
+	{ SSpacer:{
+		height:1
+	}},
+	{ SPane:{
+		title:"DOS/FAT/NT FS"
+	}},
+	{ SSpacer:{
+		height:1
+	}},
+	{ SOptionList:{
+		title:"NTFS",
+		description:"Microsoft Windows NTFS support with partial, but safe, write support in the NTFS driver. Default is Disabled.\n",
+		default:$(echo "$(/res/synapse/actions/modules ntfs)"),
+		action:"modules ntfs",
+		values:[Disabled, Enabled,]
+	}},
+	{ SSpacer:{
+		height:1
+	}},
+	{ SPane:{
+		title:"CD-ROM/DVD FS"
+	}},
+	{ SSpacer:{
+		height:1
+	}},
+	{ SOptionList:{
+		title:"ISO9660_FS",
+		description:"ISO 9660 CDROM file system support with Microsoft Joliet CDROM extensions. Default is Disabled.\n",
+		default:$(echo "$(/res/synapse/actions/modules isofs)"),
+		action:"modules isofs",
+		values:[Disabled, Enabled,]
+	}},
+	{ SSpacer:{
+		height:1
+	}},
+	{ SOptionList:{
+		title:"UDF",
+		description:"The new file system used on mount some CD-ROMs and DVDs written in packet mode. Default is Disabled.\n",
+		default:$(echo "$(/res/synapse/actions/modules udf)"),
+		action:"modules udf",
+		values:[Disabled, Enabled,]
+	}},
+	{ SSpacer:{
+		height:1
+	}},
+	{ SPane:{
+		title:"Input Device Drivers",
+		description:"Select input device (mouse, keyboard, tablet, joystick, steering wheel ...) connected to your system and want it to be available to applications."
+	}},
+	{ SSpacer:{
+		height:1
+	}},
+	{ SOptionList:{
+		title:"XPAD",
+		description:"Microsoft X-Box gamepad, rumblepad & Xbox360 controller 'BigX' LED support. Default is Disabled.\n",
+		default:$(echo "$(/res/synapse/actions/modules xpad)"),
+		action:"modules xpad",
+		values:[Disabled, Enabled,]
+	}},
+	{ SSpacer:{
+		height:1
+	}},
+    ]
+}
+CTAG

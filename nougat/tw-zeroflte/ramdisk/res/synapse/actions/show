@@ -1,0 +1,211 @@
+case $1 in
+screen)
+  echo `cat /sys/class/mdnie/mdnie/version`
+  ;;
+	
+kernel)
+  echo `cat /proc/version`
+  ;;
+gpu)
+  echo Current frequency: $(($(cat /sys/class/kgsl/kgsl-3d0/gpuclk) / 1000000))MHz
+  ;;
+cpu)
+  echo `cat /sys/devices/system/cpu/cpufreq/mp-cpufreq/cluster0_volt_table`
+  ;;
+cpu2)
+  echo `cat /sys/devices/system/cpu/cpufreq/mp-cpufreq/cluster1_volt_table`
+  ;;
+pvs)
+  echo `cat /sys/module/clock_krait_8974/parameters/table_name`
+  ;;
+cpufreq)
+    	if [ -e /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq ]; then
+      		core0freq="$((`cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq` / 1000)) MHz";
+    	else
+      		core0freq=Offline;
+    	fi
+
+    	if [ -e /sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq ]; then
+      		core1freq="$((`cat /sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq` / 1000)) MHz";
+    	else
+      		core1freq=Offline;
+    	fi
+    
+    	if [ -e /sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq ]; then
+      		core2freq="$((`cat /sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq` / 1000)) MHz";
+    	else
+      		core2freq=Offline;
+    	fi
+    
+    	if [ -e /sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq ]; then
+      		core3freq="$((`cat /sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq` / 1000)) MHz";
+    	else
+      		core3freq=Offline;
+    	fi
+
+    	echo "CPU Core 1: $core0freq@nCPU Core 2: $core1freq@nCPU Core 3: $core2freq@nCPU Core 4: $core3freq";
+  	;;
+
+cpufreq2)
+    	if [ -e /sys/devices/system/cpu/cpu4/cpufreq/scaling_cur_freq ]; then
+      		core4freq="$((`cat /sys/devices/system/cpu/cpu4/cpufreq/scaling_cur_freq` / 1000)) MHz";
+    	else
+      		core4freq=Offline;
+    	fi
+
+    	if [ -e /sys/devices/system/cpu/cpu5/cpufreq/scaling_cur_freq ]; then
+      		core5freq="$((`cat /sys/devices/system/cpu/cpu5/cpufreq/scaling_cur_freq` / 1000)) MHz";
+    	else
+      		core5freq=Offline;
+    	fi
+    
+    	if [ -e /sys/devices/system/cpu/cpu6/cpufreq/scaling_cur_freq ]; then
+      		core6freq="$((`cat /sys/devices/system/cpu/cpu6/cpufreq/scaling_cur_freq` / 1000)) MHz";
+    	else
+      		core6freq=Offline;
+    	fi
+    
+    	if [ -e /sys/devices/system/cpu/cpu7/cpufreq/scaling_cur_freq ]; then
+      		core7freq="$((`cat /sys/devices/system/cpu/cpu7/cpufreq/scaling_cur_freq` / 1000)) MHz";
+    	else
+      		core7freq=Offline;
+    	fi
+
+    	echo "CPU Core 5: $core4freq@nCPU Core 6: $core5freq@nCPU Core 7: $core6freq@nCPU Core 8: $core7freq@nCPU";
+  	;;
+
+
+
+
+freq)
+
+  echo Current frequency: $(($(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq) / 1000))MHz
+  ;;
+freq2)
+  echo Current frequency: $(($(cat /sys/devices/system/cpu/cpu4/cpufreq/scaling_cur_freq) / 1000))MHz
+  ;;
+dyna)
+  echo `cat /sys/kernel/dyn_fsync/Dyn_fsync_version`
+  ;;
+susp)
+  echo `cat /sys/kernel/power_suspend/power_suspend_version`
+  ;;
+temp)
+  echo Battery: $(($(cat /sys/class/power_supply/battery/temp) / 10))°C "|" CPU: $(($(cat /sys/class/thermal/thermal_zone7/temp) / 1 ))°C
+  ;;
+hard)
+  echo `cat /sys/kernel/cpufreq_hardlimit/version`
+  ;;
+sound)
+  echo `cat /sys/kernel/sound_control_3/gpl_sound_control_version`
+  ;;
+led)
+  echo `cat /sbin/led_version`
+  ;;
+intelli)
+  echo `cat /sbin/intelli_version`
+  ;;
+speedbin)
+  echo `cat /sys/devices/system/soc/soc0/soc_pvs`
+  ;;
+fast)
+  echo `cat /sys/kernel/fast_charge/info`
+  ;;
+asv)
+  echo `cat /sys/devices/system/abb/abb_info`
+  ;;
+entropy)
+  echo "`cat /proc/sys/kernel/random/entropy_avail`";
+  ;;
+LiveTime)
+	STATE="";
+	CNT=0;
+	SUM=`$BB awk '{s+=$2} END {print s}' /sys/devices/system/cpu/cpu0/cpufreq/stats/time_in_state`;
+	
+	while read FREQ TIME; do
+		if [ "$CNT" -ge $2 ] && [ "$CNT" -le $3 ]; then
+			FREQ="$((FREQ / 1000)) MHz:";
+			if [ $TIME -ge "100" ]; then
+				PERC=`$BB awk "BEGIN { print ( ($TIME / $SUM) * 100) }"`;
+				PERC="`$BB printf "%0.1f\n" $PERC`%";
+				TIME=$((TIME / 100));
+				STATE="$STATE $FREQ `$BB echo - | $BB awk -v "S=$TIME" '{printf "%dh:%dm:%ds",S/(60*60),S%(60*60)/60,S%60}'` ($PERC)@n";
+			fi;
+		fi;
+		CNT=$((CNT+1));
+	done < /sys/devices/system/cpu/cpu0/cpufreq/stats/time_in_state;
+	
+	STATE=${STATE%??};
+	echo "$STATE";
+	;;
+
+LiveTime2)
+	STATE="";
+	CNT=0;
+	SUM=`$BB awk '{s+=$2} END {print s}' /sys/devices/system/cpu/cpu4/cpufreq/stats/time_in_state`;
+	
+	while read FREQ TIME; do
+		if [ "$CNT" -ge $2 ] && [ "$CNT" -le $3 ]; then
+			FREQ="$((FREQ / 1000)) MHz:";
+			if [ $TIME -ge "100" ]; then
+				PERC=`$BB awk "BEGIN { print ( ($TIME / $SUM) * 100) }"`;
+				PERC="`$BB printf "%0.1f\n" $PERC`%";
+				TIME=$((TIME / 100));
+				STATE="$STATE $FREQ `$BB echo - | $BB awk -v "S=$TIME" '{printf "%dh:%dm:%ds",S/(60*60),S%(60*60)/60,S%60}'` ($PERC)@n";
+			fi;
+		fi;
+		CNT=$((CNT+1));
+	done < /sys/devices/system/cpu/cpu4/cpufreq/stats/time_in_state;
+	
+	STATE=${STATE%??};
+	echo "$STATE";
+	;;
+
+LiveUpTime)
+  TOTAL=$($BB awk '{ print $1 }' /proc/uptime);
+  AWAKE=$(($($BB awk '{s+=$2} END {print s}' /sys/devices/system/cpu/cpu0/cpufreq/stats/time_in_state) / 100));
+  SLEEP=$($BB awk "BEGIN { print ($TOTAL - $AWAKE) }");
+		
+  PERC_A=$($BB awk "BEGIN { print ( ($AWAKE / $TOTAL) * 100) }");
+  PERC_A="$($BB printf "%0.1f\n" $PERC_A)%";
+  PERC_S=$($BB awk "BEGIN { print ( ($SLEEP / $TOTAL) * 100) }");
+  PERC_S="$($BB printf "%0.1f\n" $PERC_S)%";
+		
+  TOTAL=$($BB echo - | $BB awk -v "S=$TOTAL" '{printf "%dh:%dm:%ds",S/(60*60),S%(60*60)/60,S%60}');
+  AWAKE=$($BB echo - | $BB awk -v "S=$AWAKE" '{printf "%dh:%dm:%ds",S/(60*60),S%(60*60)/60,S%60}');
+  SLEEP=$($BB echo - | $BB awk -v "S=$SLEEP" '{printf "%dh:%dm:%ds",S/(60*60),S%(60*60)/60,S%60}');
+  $BB echo "Total: $TOTAL (100.0%)@nSleep: $SLEEP ($PERC_S)@nAwake: $AWAKE ($PERC_A)";
+;;
+
+LiveUnUsed)
+	UNUSED="";
+	while read FREQ TIME; do
+		FREQ="$((FREQ / 1000)) MHz";
+		if [ $TIME -lt "100" ]; then
+			UNUSED="$UNUSED$FREQ, ";
+		fi;
+	done < /sys/devices/system/cpu/cpu0/cpufreq/stats/time_in_state;
+	
+	UNUSED=${UNUSED%??};
+	echo "$UNUSED";
+	;;
+
+	LiveUnUsed2)
+	UNUSED2="";
+	while read FREQ TIME; do
+		FREQ="$((FREQ / 1000)) MHz";
+		if [ $TIME -lt "100" ]; then
+			UNUSED2="$UNUSED2$FREQ2, ";
+		fi;
+	done < /sys/devices/system/cpu/cpu4/cpufreq/stats/time_in_state;
+	
+	UNUSED2=${UNUSED2%??};
+	echo "$UNUSED2";
+	;;
+
+battinfo)
+	echo Technology: $(cat /sys/class/power_supply/battery/technology)@nHealth: $(cat /sys/class/power_supply/battery/health)@nStatus: $(cat /sys/class/power_supply/battery/status)@nCharge level: $(cat /sys/class/power_supply/battery/capacity)%@nTemperature: $(($(cat /sys/devices/battery.53/power_supply/battery/temp) / 10)) °C@nVoltage: $(($(cat /sys/devices/battery.53/power_supply/battery/voltage_now) /1000)) mV@nCharge type: `cat /sys/devices/battery.53/power_supply/battery/charge_type`
+	;;
+
+
+esac

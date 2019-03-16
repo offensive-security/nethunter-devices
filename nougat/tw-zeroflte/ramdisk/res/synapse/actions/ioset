@@ -1,0 +1,30 @@
+if [ ! -f /su/xbin/busybox ]; then
+	BB=/system/xbin/busybox;
+else
+	BB=/su/xbin/busybox;
+fi;
+
+case "$1" in
+	queue)
+		if [ -f /sys/block/sda/queue/"$2" ]; then
+			if [[ ! -z $3 ]]; then
+				for i in /sys/block/*/queue; do
+					$BB echo "$3" > "$i"/"$2" 2> /dev/null;
+				done;
+			fi;
+
+			$BB echo $($BB cat /sys/block/sda/queue/"$2");
+		fi;
+	;;
+	scheduler)
+		if [ -f /sys/block/sda/queue/scheduler ]; then
+			if [[ ! -z $2 ]]; then
+				for i in /sys/block/sd*/queue/scheduler; do
+					$BB echo "$2" > "$i" 2> /dev/null;
+				done;
+			fi;
+
+			$BB echo $($BB cat /sys/block/sda/queue/scheduler | $BB sed -n -e '/\[[^]]/s/^[^[]*\[\([^]]*\)].*$/\1/p');
+		fi;
+	;;
+esac;

@@ -1,0 +1,21 @@
+case $1 in
+core)
+  P=/sys/devices/system/cpu/sched_mc_power_savings
+  if [ ! -z $2 ]; then
+  if [ $2 == Performance ]; then
+    echo 0 > $P
+  elif [ $2 == Normal_saving ]; then
+    echo 1 > $P
+  elif [ $2 == Aggressive_saving ]; then
+    echo 2 > $P
+  fi; fi
+  copy=`cat $P`
+  if [ $copy == 0 ]; then
+    echo Performance
+  elif [ $copy == 1 ]; then
+    echo Normal_saving
+  elif [ $copy == 2 ]; then
+    echo Aggressive_saving
+  fi
+  ;;
+esac

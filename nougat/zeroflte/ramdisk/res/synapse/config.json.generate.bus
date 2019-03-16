@@ -1,0 +1,53 @@
+#!/system/bin/sh
+
+cat << CTAG
+{
+    name:"Memory Bus",
+    elements:[
+	{ SPane:{
+		title:"HPM Voltage Control",
+        }},
+	{ SSeekBar:{
+		title:"Memory Bus HPM voltage margin",
+		description:"Set the maximum voltage margin the APM undervolts down to.",
+		default:`cat /sys/kernel/debug/mailbox/mif_cl_margin`,
+		action:"generic /sys/kernel/debug/mailbox/mif_cl_margin",
+		unit:"µV", weight:6250.0, min:0, step:1, max:10
+	}},
+	{ SPane:{ title:"Memory Bus Voltage control",
+		description:"Voltage supplied to the CCI and memory controllers." }},
+`
+while read FREQ VOLT; do
+	echo '{ SSeekBar:{'
+		echo 'title:"'$(expr $FREQ / 1000)' MHz", default:'$VOLT', '
+		echo 'action:"mifvolt '${FREQ}'", unit:"mV", weight:0.001, min:500000, max:900000, step:6250 }}, '
+done < /sys/class/devfreq/exynos7-devfreq-mif/volt_table
+`
+
+	{ SPane:{ title:"Internal Bus",
+		description:"Voltage supplied to the internal auxiliary IP blocks, such as the hardware video decoders, the scaling blocks, the display controllers, and the MMC controllers." }},
+`
+while read FREQ VOLT; do
+	echo '{ SSeekBar:{'
+		echo 'title:"'$(expr $FREQ / 1000)' MHz", default:'$VOLT', '
+		echo 'action:"intvolt '${FREQ}'", unit:"mV", weight:0.001, min:500000, max:900000, step:6250 }}, '
+done < /sys/class/devfreq/exynos7-devfreq-int/volt_table
+`
+
+	{ SPane:{ title:"Image Signal Processor",
+		description:"Voltage supplied to the ISP power plane." }},
+`
+while read FREQ VOLT; do
+	echo '{ SSeekBar:{'
+		echo 'title:"'$(expr $FREQ / 1000)' MHz", default:'$VOLT', '
+		echo 'action:"ispvolt '${FREQ}'", unit:"mV", weight:0.001, min:500000, max:900000, step:6250 }}, '
+done < /sys/class/devfreq/exynos7-devfreq-isp/volt_table
+`
+
+
+    ]
+}
+CTAG
+
+
+
