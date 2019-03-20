@@ -1,0 +1,30 @@
+#!/system/bin/sh
+
+if [ ! -f /su/xbin/busybox ]; then
+	BB=/system/xbin/busybox;
+else
+	BB=/su/xbin/busybox;
+fi;
+
+# import user set parameters
+inactive_to=$(($(cat /res/synapse/quintz/doze_inactive_to) * 60000 ));
+sensing_to=$(($(cat /res/synapse/quintz/doze_sensing_to) * 60000 ));
+locating_to=$(($(cat /res/synapse/quintz/doze_locating_to) * 1000 ));
+location_accuracy=$(cat /res/synapse/quintz/doze_location_accuracy);
+motion_inactive_to=$(($(cat /res/synapse/quintz/doze_motion_inactive_to) * 60000 ));
+idle_after_inactive_to=$(($(cat /res/synapse/quintz/doze_idle_after_inactive_to) * 60000 ));
+idle_pending_to=$(($(cat /res/synapse/quintz/doze_idle_pending_to) * 60000 ));
+max_idle_pending_to=$(($(cat /res/synapse/quintz/doze_max_idle_pending_to) * 60000 ));
+idle_pending_factor=$(cat /res/synapse/quintz/doze_idle_pending_factor);
+idle_to=$(($(cat /res/synapse/quintz/doze_idle_to) * 60000 ));
+max_idle_to=$(($(cat /res/synapse/quintz/doze_max_idle_to) * 3600000 ));
+idle_factor=$(cat /res/synapse/quintz/doze_idle_factor);
+min_time_to_alarm=$(($(cat /res/synapse/quintz/doze_min_time_to_alarm) * 60000 ));
+max_temp_app_whitelist_duration=$(($(cat /res/synapse/quintz/doze_max_temp_app_whitelist_duration) * 60000 ));
+mms_temp_app_whitelist_duration=$(($(cat /res/synapse/quintz/doze_mms_temp_app_whitelist_duration) * 1000 ));
+sms_temp_app_whitelist_duration=$(($(cat /res/synapse/quintz/doze_sms_temp_app_whitelist_duration) * 1000 ));
+
+# apply paramaters
+settings put global device_idle_constants inactive_to=$inactive_to,sensing_to=$sensing_to,locating_to=$locating_to,location_accuracy=$location_accuracy.0,motion_inactive_to=$motion_inactive_to,idle_after_inactive_to=$idle_after_inactive_to,idle_pending_to=$idle_pending_to,max_idle_pending_to=$max_idle_pending_to,idle_pending_factor=$idle_pending_factor.0,idle_to=$idle_to,max_idle_to=$max_idle_to,idle_factor=$idle_factor.0,min_time_to_alarm=$min_time_to_alarm,max_temp_app_whitelist_duration=$max_temp_app_whitelist_duration,mms_temp_app_whitelist_duration=$mms_temp_app_whitelist_duration,sms_temp_app_whitelist_duration=$sms_temp_app_whitelist_duration;
+
+$BB echo "Parameters applied !";

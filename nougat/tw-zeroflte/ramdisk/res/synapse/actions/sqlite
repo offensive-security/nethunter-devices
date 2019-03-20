@@ -1,0 +1,45 @@
+ALDEON=/sdcard/aldeon;
+
+if [ ! -f /su/xbin/busybox ]; then
+	BB=/system/xbin/busybox;
+else
+	BB=/su/xbin/busybox;
+fi;
+
+if [ -f "/system/xbin/sqlite3" ]; then
+	SQL3=/system/xbin/sqlite3;
+else
+	SQL3=/sbin/sqlite3;
+fi;
+
+SYNAPSE_SD_DIR=/sdcard/aldeon;
+SYNAPSE_CONFIG_DIR=$SYNAPSE_SD_DIR/saved_configs;
+SYNAPSE_DATA=/data/data/com.moro.synapsemod/databases;
+DISABLED_SETTINGS="'buildprop net.hostname', 'buildprop service.adb.tcp.port', 'devtools selinux'";
+DISABLED_ACTIONS="AND key NOT LIKE 'gamma%' AND key NOT LIKE 'gamma_cont%' AND key NOT LIKE 'gamma_val%' AND key NOT LIKE 'gamma_sat%' AND key NOT LIKE 'restorebackup%' AND key NOT LIKE 'output%' AND key NOT LIKE 'output_head%' AND key NOT LIKE 'output_pwamp%'";
+
+case "$1" in
+	ExportConfigSynapse)
+		BCK_PROF=$2;
+		if [ ! -d /sdcard/aldeon ]; then
+     			mkdir /sdcard/aldeon;
+		fi
+		if [ ! -d /sdcard/aldeon/saved_configs ]; then
+     			mkdir /sdcard/aldeon/saved_configs;
+		fi
+		cd $SYNAPSE_DATA;
+		$SQL3 -separator '=' actionValueStore "SELECT key, value FROM action_value WHERE context = 'global' AND key NOT IN ($DISABLED_SETTINGS) $DISABLED_ACTIONS ORDER BY key ASC;" > "$SYNAPSE_CONFIG_DIR/$BCK_PROF.cfg" 2> /dev/null;
+	;;
+	ImportConfigSynapse)
+		
+		cd $SYNAPSE_DATA;
+		$SQL3 actionValueStore "DROP TABLE IF EXISTS my_action_value";
+		$SQL3 actionValueStore "CREATE TABLE my_action_value (key TEXT, value TEXT)";
+		$SQL3 actionValueStore <<EOF
+.separator =
+.import $SYNAPSE_CONFIG_DIR/$2.cfg my_action_value
+EOF
+		$SQL3 actionValueStore "UPDATE action_value SET value = (SELECT T1.value FROM my_action_value T1 WHERE T1.key = action_value.key) WHERE key NOT IN ($DISABLED_SETTINGS) $DISABLED_ACTIONS AND value <> (SELECT T1.value FROM my_action_value T1 WHERE T1.key = action_value.key)";
+		$SQL3 actionValueStore "DROP TABLE my_action_value";
+	;;
+esac;

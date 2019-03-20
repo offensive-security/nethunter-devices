@@ -1,0 +1,35 @@
+cpuread() {
+  while read FREQ UVOLT UNIT; do
+    if [ $FREQ == $A ]; then
+      echo $UVOLT;
+      return;
+    fi;
+  done < $P;
+}
+
+cpuwrite() {
+  VOLTARR="";
+  while read FREQ UVOLT UNIT; do
+    if [ $FREQ == $A ]; then
+      VOLTARR="$VOLTARR $B";
+    else
+      VOLTARR="$VOLTARR $UVOLT";
+    fi;
+  done < $P;
+
+  echo $VOLTARR > $P;
+}
+
+case $A in
+	cpuvolt)
+		P=/sys/devices/system/cpu/cpufreq/mp-cpufreq/cluster1_volt_table;
+		
+		if [[ ! -z $C ]]; then
+			cpuwrite $B $C;
+		fi;
+		
+		echo `cpuread $B`;
+	;;
+
+esac;
+

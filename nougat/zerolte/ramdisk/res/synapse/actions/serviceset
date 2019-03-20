@@ -1,0 +1,19 @@
+if [ ! -f /su/xbin/busybox ]; then
+	BB=/system/xbin/busybox;
+else
+	BB=/su/xbin/busybox;
+fi;
+
+if [[ ! -z $2 ]]; then
+	if [ $2 -eq 1 ]; then
+		start $1;
+	elif [ $2 -eq 0 ]; then
+		stop $1;
+	fi;
+fi;
+
+if [ "`ps | $BB grep $1`" ]; then
+	$BB echo "1";
+else
+	$BB echo "0";
+fi;

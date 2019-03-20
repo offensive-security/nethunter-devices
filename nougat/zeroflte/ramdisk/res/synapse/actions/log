@@ -1,0 +1,39 @@
+# Script make by UpInTheAir
+TIMESTAMP=`date +%Y-%m-%d.%H.%M.%S`;
+LOGS=/sdcard/aldeon/logs;
+
+if [ "$($BB mount | grep system | grep -c ro)" -eq "1" ]; then
+	$BB mount -o remount,rw /system;
+fi;
+
+[ ! -d "$LOGS" ] && mkdir -p "$LOGS";
+chmod 755 $LOGS
+
+case $1 in
+	logcat)
+		saved="$LOGS/logcat-$TIMESTAMP.txt";
+		logcat -d > $saved;
+	;;
+
+	dmesg)
+		saved="$LOGS/dmesg-$TIMESTAMP.txt";
+		dmesg > $saved;
+	;;
+
+	kmsg)
+		kmsg=/proc/last_kmsg;
+		if [ -f $kmsg ]; then
+			saved="$LOGS/last_kmsg-$TIMESTAMP.txt";
+			cp -f $kmsg $saved;
+		else
+			echo "$kmsg not found.";
+		fi;
+	;;
+esac;
+
+case $1 in
+	logcat|dmesg|kmsg)
+		echo "Logfile saved to $saved";
+	;;
+esac;
+$BB mount -o remount,ro /system;

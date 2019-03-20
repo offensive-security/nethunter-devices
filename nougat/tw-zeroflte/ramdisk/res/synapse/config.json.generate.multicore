@@ -1,0 +1,102 @@
+#!/system/bin/sh
+
+cat << CTAG
+{
+    name:Multicore,
+    elements:[
+	{ SPane:{
+		title:"HMP Thresholds up/down ratios for task migrating",
+		description:"Adjust HMP ratios for up/down scaling for tasks migrating between A53 LITTLE cores and A57 big cores. Higher up-threshold values use less battery because use more of the power efficient Little cores."
+	}},
+	{ SSpacer:{
+		height:1
+	}},
+	{ SOptionList:{
+		title:"Profile",
+		description:"Select your profile for HMP thresholds.\n",
+		default:$(echo "$(/res/synapse/actions/tuning hmp)"),
+		action:"tuning hmp",
+		values:[Default, Performance, Stock,],
+		notify:[
+			{
+				on:APPLY,
+				do:[ REFRESH, APPLY ],
+				to:[
+					"hmp /sys/kernel/hmp/up_threshold",
+					"hmp /sys/kernel/hmp/down_threshold"
+				],
+			}
+		]
+	}},
+	{ SSpacer:{
+		height:1
+	}},
+	{ SSeekBar:{
+		title:"HMP UP Thresholds",
+		description:"Min load required for migrating tasks to the faster A57 big cores.\n",
+		min:1, max:1000, unit:"", step:1,
+		default:$(cat /sys/kernel/hmp/up_threshold),
+		action:"hmp /sys/kernel/hmp/up_threshold"
+	}},
+	{ SSpacer:{
+		height:1
+	}},
+	{ SSeekBar:{
+		title:"HMP DOWN Thresholds",
+		description:"Max load allowed for tasks migrating to the slower A53 little cores.\n",
+		min:1, max:512, unit:"", step:1,
+		default:$(cat /sys/kernel/hmp/down_threshold),
+		action:"hmp /sys/kernel/hmp/down_threshold"
+	}},
+	{ SSpacer:{
+		height:1
+	}},
+	{ SPane:{
+		title:"PEWQ (Power-efficient Workqueues)",
+		description:"Enable or disable PEWQ will help to reduce power consumption at the cost of slight performance overhead. By enabling this, PEWQ are used for unbound scheduled work to save load on sibling CPU cores and queuing work on CPU 0."
+	}},
+	{ SSpacer:{
+		height:1
+	}},
+	{ SOptionList:{
+		description:"",
+		default:N,
+		action:"generic /sys/module/workqueue/parameters/power_efficient",
+		values:{
+			N:"Disabled", Y:"Enabled"
+		}
+	}},
+	{ SSpacer:{
+		height:1
+	}},
+	{ SPane:{
+		title:"Exynos Core Control Interface",
+		description:"Set the maximum number of online CPU Cores when screen is on."
+	}},
+	{ SSpacer:{
+		height:1
+	}},
+	{ SOptionList:{
+		title:"Turbo Mode",
+		description:"Only for interactive! Forces the use of the big cores over LITTLE ones to increase UI responsiveness at the expense of power efficiency.\n\nWARNING: REBOOT is required if you DISABLE at ANY TIME !!\n",
+		default:`echo $(/res/synapse/actions/tuning interactive_turbo)`,
+		action:"tuning interactive_turbo",
+		values:[Disabled, Enabled,],
+		notify:[
+			{
+				on:APPLY,
+				do:[ REFRESH, APPLY ],
+				to:"/sys/devices/system/cpu/cpu4/cpufreq"
+			}
+		]
+	}},
+	{ SSpacer:{
+		height:1
+	}},
+	{ SButton:{
+		label:"Reboot Device",
+		action:"devtools reboot"
+	}},
+    ]
+}
+CTAG

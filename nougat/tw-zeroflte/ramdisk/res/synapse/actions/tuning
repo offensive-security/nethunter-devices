@@ -1,0 +1,183 @@
+# By UpInTheAir for SkyHigh kernels
+# performance, battery & turbo values by g.lewarne @ XDA
+
+if [ ! -f /su/xbin/busybox ]; then
+	BB=/system/xbin/busybox;
+else
+	BB=/su/xbin/busybox;
+fi;
+
+case $1 in
+hmp)
+  P=/res/synapse/hrtkernel/tuning_hmp
+  if [ ! -z "$2" ]; then
+  if [ "$2" == Default ]; then
+	chmod 0644 /sys/kernel/hmp/up_threshold;
+	echo "700" > /sys/kernel/hmp/up_threshold;
+	chmod 0440 /sys/kernel/hmp/up_threshold;
+	chmod 0644 /sys/kernel/hmp/down_threshold;
+	echo "256" > /sys/kernel/hmp/down_threshold;
+	chmod 0440 /sys/kernel/hmp/down_threshold;
+    echo 0 > $P
+  elif [ "$2" == Performance ]; then
+	chmod 0644 /sys/kernel/hmp/up_threshold;
+	echo "400" > /sys/kernel/hmp/up_threshold;
+	chmod 0440 /sys/kernel/hmp/up_threshold;
+	chmod 0644 /sys/kernel/hmp/down_threshold;
+	echo "150" > /sys/kernel/hmp/down_threshold;
+	chmod 0440 /sys/kernel/hmp/down_threshold;
+    echo 1 > $P
+  elif [ "$2" == Stock ]; then
+    echo 2 > $P
+	chmod 0644 /sys/kernel/hmp/up_threshold;
+	echo "479" > /sys/kernel/hmp/up_threshold;
+	chmod 0440 /sys/kernel/hmp/up_threshold;
+	chmod 0644 /sys/kernel/hmp/down_threshold;
+	echo "214" > /sys/kernel/hmp/down_threshold;
+	chmod 0440 /sys/kernel/hmp/down_threshold;
+  fi; fi
+  copy=$(cat $P)
+  if [ "$copy" == 0 ]; then
+    echo Default
+  elif [ "$copy" == 1 ]; then
+    echo Performance
+  elif [ "$copy" == 2 ]; then
+    echo Stock
+  fi
+  ;;
+interactive_turbo)
+  P=/res/synapse/hrtkernel/tuning_interactive_turbo
+  CPU0=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq);
+  CPU4=$(cat /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq);
+  if [ ! -z $2 ]; then
+  if [ $2 == Disabled ]; then
+    echo 0 > $P
+	echo "0" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/enforced_mode;
+	echo "0" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/enforced_mode;
+	echo "$CPU0" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/single_cluster0_min_freq;
+	echo "$CPU4" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/single_cluster0_min_freq;
+  elif [ $2 == Enabled ]; then
+    echo 1 > $P
+	echo "$CPU0" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/single_cluster0_min_freq;
+	echo "$CPU0" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/single_cluster0_min_freq;
+	echo "1" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/enforced_mode;
+	echo "1" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/enforced_mode;
+  fi; fi
+  copy=`cat $P`
+  if [ $copy == 0 ]; then
+    echo Disabled
+  elif [ $copy == 1 ]; then
+    echo Enabled
+  fi
+  ;;
+interactive_b)
+  P=/res/synapse/hrtkernel/tuning_interactive_b
+  if [ ! -z $2 ]; then
+  if [ $2 == Default ]; then
+    echo 0 > $P
+	chmod 0664 /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay;
+	echo "59000 1300000:39000 1700000:19000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay;
+	chmod 0440 /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay;
+	echo "40000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/boostpulse_duration;
+	chmod 0660 /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load;
+	echo "89" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load;
+	echo "0" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy;
+	chmod 0664 /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads;
+	echo "65 1500000:75" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads;
+	chmod 0440 /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads;
+	echo "40000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time;
+	echo "20000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate;
+  elif [ $2 == Performance ]; then
+    echo 1 > $P
+	chmod 0664 /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay;
+	echo "25000 1300000:20000 1700000:20000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay;
+	chmod 0440 /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay;
+	echo "45000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/boostpulse_duration;
+	chmod 0660 /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load;
+	echo "83" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load;
+	echo "1" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy;
+	chmod 0664 /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads;
+	echo "60 1500000:70" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads;
+	chmod 0440 /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads;
+	echo "35000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time;
+	echo "15000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate;
+  elif [ $2 == Battery ]; then
+    echo 2 > $P
+	chmod 0664 /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay;
+	echo "70000 1300000:55000 1700000:55000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay;
+	chmod 0440 /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay;
+	echo "25000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/boostpulse_duration;
+	chmod 0660 /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load;
+	echo "95" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load;
+	echo "0" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy;
+	chmod 0664 /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads;
+	echo "80 1500000:90" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads;
+	chmod 0440 /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads;
+	echo "15000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time;
+	echo "15000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate;
+  fi; fi
+  copy=`cat $P`
+  if [ $copy == 0 ]; then
+    echo Default
+  elif [ $copy == 1 ]; then
+    echo Performance
+  elif [ $copy == 2 ]; then
+    echo Battery
+  fi
+  ;;
+interactive_L)
+  P=/res/synapse/hrtkernel/tuning_interactive_L
+  if [ ! -z $2 ]; then
+  if [ $2 == Default ]; then
+    echo 0 > $P
+	chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay;
+	echo "1900" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay;
+	chmod 0440 /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay;
+	echo "40000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/boostpulse_duration;
+	chmod 0660 /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load;
+	echo "85" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load;
+	echo "0" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy;
+	chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads;
+	echo "75" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads;
+	chmod 0440 /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads;
+	echo "40000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time;
+	echo "20000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate;
+  elif [ $2 == Performance ]; then
+    echo 1 > $P
+	chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay;
+	echo "12000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay;
+	chmod 0440 /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay;
+	echo "45000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/boostpulse_duration;
+	chmod 0660 /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load;
+	echo "80" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load;
+	echo "1" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy;
+	chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads;
+	echo "70" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads;
+	chmod 0440 /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads;
+	echo "35000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time;
+	echo "20000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate;
+  elif [ $2 == Battery ]; then
+    echo 2 > $P
+	chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay;
+	echo "37000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay;
+	chmod 0440 /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay;
+	echo "25000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/boostpulse_duration;
+	chmod 0660 /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load;
+	echo "80" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load;
+	echo "0" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy;
+	chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads;
+	echo "90" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads;
+	chmod 0440 /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads;
+	echo "15000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time;
+	echo "15000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate;
+  fi; fi
+  copy=`cat $P`
+  if [ $copy == 0 ]; then
+    echo Default
+  elif [ $copy == 1 ]; then
+    echo Performance
+  elif [ $copy == 2 ]; then
+    echo Battery
+  fi
+  ;;
+esac

@@ -1,0 +1,41 @@
+# By thehacker911 for hacker kernels
+
+if [ ! -f /su/xbin/busybox ]; then
+	BB=/system/xbin/busybox;
+else
+	BB=/su/xbin/busybox;
+fi;
+
+case $1 in
+io_tweaking)
+  P=/res/synapse/hrtkernel/io_tweaking
+  if [ ! -z $2 ]; then
+  if [ $2 == Default ]; then
+    echo 0 > $P
+	echo "1" > /sys/block/sda/queue/rotational;
+	echo "1" > /sys/block/sda/queue/iostats;
+	echo "0" > /sys/block/sda/queue/nomerges;
+	echo "0" > /sys/block/sda/queue/rq_affinity;
+  elif [ $2 == Boost ]; then
+    echo 1 > $P
+	echo "0" > /sys/block/sda/queue/rotational;
+	echo "0" > /sys/block/sda/queue/iostats;
+	echo "1" > /sys/block/sda/queue/nomerges;
+	echo "1" > /sys/block/sda/queue/rq_affinity;
+  elif [ $2 == Fast_Boost ]; then
+    echo 2 > $P
+	echo "0" > /sys/block/sda/queue/rotational;
+	echo "0" > /sys/block/sda/queue/iostats;
+	echo "1" > /sys/block/sda/queue/nomerges;
+	echo "2" > /sys/block/sda/queue/rq_affinity;
+  fi; fi
+  copy=`cat $P`
+  if [ $copy == 0 ]; then
+    echo Default
+  elif [ $copy == 1 ]; then
+    echo Boost
+  elif [ $copy == 2 ]; then
+    echo Fast_Boost
+  fi
+  ;;
+esac

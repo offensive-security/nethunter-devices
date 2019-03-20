@@ -1,0 +1,92 @@
+if [ ! -f /su/xbin/busybox ]; then
+	BB=/system/xbin/busybox;
+else
+	BB=/su/xbin/busybox;
+fi;
+
+case $1 in
+doze_idle_mode)
+  P=/res/synapse/quintz/doze_idle_mode
+  if [ ! -z "$2" ]; then
+  if [ "$2" == Disabled ]; then
+    echo 0 > $P
+	$BB sync;
+	dumpsys deviceidle disable
+	dumpsys battery reset
+  elif [ "$2" == Enabled ]; then
+    echo 1 > $P
+	$BB sync;
+	dumpsys deviceidle enable
+	dumpsys battery reset
+  fi; fi
+  copy=$(cat $P)
+  if [ "$copy" == 0 ]; then
+    echo Disabled
+  elif [ "$copy" == 1 ]; then
+    echo Enabled
+  fi
+  ;;
+
+doze_profile)
+  P=/res/synapse/quintz/doze_profile
+  if [ ! -z "$2" ]; then
+  if [ "$2" == Stock ]; then
+    echo 0 > $P
+	echo "30" > /res/synapse/quintz/doze_inactive_to;
+	echo "4" > /res/synapse/quintz/doze_sensing_to;
+	echo "30" > /res/synapse/quintz/doze_locating_to;
+	echo "20" > /res/synapse/quintz/doze_location_accuracy;
+	echo "10" > /res/synapse/quintz/doze_motion_inactive_to;
+	echo "30" > /res/synapse/quintz/doze_idle_after_inactive_to;
+	echo "5" > /res/synapse/quintz/doze_idle_pending_to;
+	echo "10" > /res/synapse/quintz/doze_max_idle_pending_to;
+	echo "2" > /res/synapse/quintz/doze_idle_pending_factor;
+	echo "60" > /res/synapse/quintz/doze_idle_to;
+	echo "6" > /res/synapse/quintz/doze_max_idle_to;
+	echo "2" > /res/synapse/quintz/doze_idle_factor;
+	echo "60" > /res/synapse/quintz/doze_min_time_to_alarm;
+	echo "5" > /res/synapse/quintz/doze_max_temp_app_whitelist_duration;
+	echo "60" > /res/synapse/quintz/doze_mms_temp_app_whitelist_duration;
+	echo "20" > /res/synapse/quintz/doze_sms_temp_app_whitelist_duration;
+	$BB sh /res/synapse/actions/doze_apply > /dev/null 2>&1;
+  elif [ "$2" == Battery ]; then
+    echo 1 > $P
+	echo "10" > /res/synapse/quintz/doze_inactive_to;
+	echo "0" > /res/synapse/quintz/doze_sensing_to;
+	echo "0" > /res/synapse/quintz/doze_locating_to;
+	echo "50" > /res/synapse/quintz/doze_location_accuracy;
+	echo "0" > /res/synapse/quintz/doze_motion_inactive_to;
+	echo "0" > /res/synapse/quintz/doze_idle_after_inactive_to;
+	echo "2" > /res/synapse/quintz/doze_idle_pending_to;
+	echo "2" > /res/synapse/quintz/doze_max_idle_pending_to;
+	echo "2" > /res/synapse/quintz/doze_idle_pending_factor;
+	echo "30" > /res/synapse/quintz/doze_idle_to;
+	echo "6" > /res/synapse/quintz/doze_max_idle_to;
+	echo "2" > /res/synapse/quintz/doze_idle_factor;
+	echo "60" > /res/synapse/quintz/doze_min_time_to_alarm;
+	echo "5" > /res/synapse/quintz/doze_max_temp_app_whitelist_duration;
+	echo "60" > /res/synapse/quintz/doze_mms_temp_app_whitelist_duration;
+	echo "20" > /res/synapse/quintz/doze_sms_temp_app_whitelist_duration;
+	$BB sh /res/synapse/actions/doze_apply > /dev/null 2>&1;
+  elif [ "$2" == User ]; then
+    echo 2 > $P
+	# Nothing to do here
+  fi; fi
+  copy=$(cat $P)
+  if [ "$copy" == 0 ]; then
+    echo Stock
+  elif [ "$copy" == 1 ]; then
+    echo Battery
+  elif [ "$copy" == 2 ]; then
+    echo User
+  fi
+  ;;
+esac
+
+if [ -f "$1" ]; then
+	if [[ ! -z "$2" ]]; then
+		$BB echo "$2" > "$1"
+	fi;
+
+	$BB echo "$($BB cat "$1")";
+fi;
