@@ -1,0 +1,39 @@
+BB=/sbin/busybox;
+
+if [[ ! -z "$2" ]]; then
+	if [[ "$1" != *".dns"* ]]; then
+		if [ "$2" != "-1" ]; then
+			if [ $1 == "dalvik.vm.heapsize" ]; then
+				VMHS="$2";
+				VMHS="$((VMHS))m";
+				
+				setprop $1 $VMHS;
+			else
+				setprop $1 "$2";
+			fi;
+		fi;
+	else
+		setprop $1 "$2";
+	fi;
+fi;
+
+if [ $1 == "dalvik.vm.heapsize" ]; then
+	VMHS="`getprop "$1" 2> /dev/null`";
+	VMHS=${VMHS%?};
+
+	$BB echo $VMHS;
+else
+	if [ "`getprop "$1" 2> /dev/null`" == "" ]; then
+		if [ "$1" == "net.hostname" ]; then
+			$BB echo "";
+		elif [ "$1" == "persist.sys.purgeable_assets" ] || [ "$1" == "service.adb.tcp.port" ]; then
+			$BB echo "0";
+		elif [[ "$1" != *".dns"* ]]; then
+			$BB echo "-1";
+		else
+			$BB echo "0.0.0.0";
+		fi
+	else
+		$BB echo "`getprop "$1" 2> /dev/null`";
+	fi;
+fi;

@@ -1,0 +1,61 @@
+if [ -f $1 ]
+then
+  L=/sys/kernel/sound_control_3/gpl_sound_control_locked
+  C=`cat /sys/kernel/sound_control_3/gpl_headphone_pa_gain | awk '{print $1}'`
+  RF=/data/.hackerkernel/gpl_headphone_gain
+  R=`cat /data/.hackerkernel/gpl_headphone_gain`
+  OF=/data/.hackerkernel/check
+  O=`cat /data/.hackerkernel/check`
+  if [ ! -z $2 ]
+    then
+      val=$2
+      addval=$(($val + $val))
+      checksum=$((255 - $addval))
+      if (("$checksum" > "255"))
+        then
+          checksum=$(($checksum - 256))
+          val=$(($val + 256))
+      fi
+    echo 0 > $L
+    echo $val $val $checksum > $1
+    echo 1 > $L
+    echo $val > $RF
+  fi  
+  sound=`cat $1 | awk '{print $1}'`
+  if (("$C" < "220" && "$O" == "1" && "$sound" == "249"))
+   then
+      val=`cat $RF`
+      addval=$(($val + $val))
+      checksum=$((255 - $addval))
+      if (("$checksum" > "255"))
+      then
+        checksum=$(($checksum - 256))
+        val=$(($val + 256))
+      fi
+      echo 0 > $L
+      echo $val $val $checksum > $1
+      echo 1 > $L
+      echo 0 > $OF
+  fi
+  if (("$C" > "220" && "$O" == "0" && "$sound" == "0"))
+   then
+      val=`cat $RF`
+      addval=$(($val + $val))
+      checksum=$((255 - $addval))
+      if (("$checksum" > "255"))
+      then
+        checksum=$(($checksum - 256))
+        val=$(($val + 256))
+      fi
+      echo 0 > $L
+      echo $val $val $checksum > $1
+      echo 1 > $L
+      echo 1 > $OF
+  fi
+  sound=`cat $1 | awk '{print $1}'` 
+  if (("$sound" > "50"))
+    then
+    sound=$(($sound - 256))
+  fi
+  echo $sound
+fi

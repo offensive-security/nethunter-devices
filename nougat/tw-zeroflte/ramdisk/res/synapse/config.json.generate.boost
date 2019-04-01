@@ -1,0 +1,36 @@
+#!/system/bin/sh
+
+cat << CTAG
+{
+    name:BOOST,
+    elements:[
+	{ SPane:{
+		title:"Input-Booster",
+		description:" Apply profiles for Key & TouchKey Input-Booster."
+	}},
+	{ SSpacer:{
+		height:1
+	}},
+	{ SOptionList:{
+		title:"Key Boost",
+		description:" Select how the Input-Booster reacts to key events.\n",
+		default:`echo $(/res/synapse/actions/input key)`,
+		action:"input key",
+		values:[Default, Battery,]
+	}},
+	{ SSpacer:{
+		height:1
+	}},
+	{ SOptionList:{
+		title:"Touch-Key Boost",
+		description:" Select how the Input-Booster reacts to touch-key events.\n",
+		default:`echo $(/res/synapse/actions/input touchkey)`,
+		action:"input touchkey",
+		values:[Default, Battery,]
+	}},
+	{ SSpacer:{
+		height:1
+	}},
+    ]
+}
+CTAG

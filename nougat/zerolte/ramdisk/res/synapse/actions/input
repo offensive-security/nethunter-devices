@@ -1,0 +1,68 @@
+# By UpInTheAir for SkyHigh kernels
+# Battery profile values by AndreiLux @ XDA
+
+if [ ! -f /su/xbin/busybox ]; then
+	BB=/system/xbin/busybox;
+else
+	BB=/su/xbin/busybox;
+fi;
+
+case $1 in
+key)
+  P=/res/synapse/hrtkernel/input_key
+  if [ ! -z $2 ]; then
+  if [ $2 == Default ]; then
+    echo 0 > $P
+	$BB chmod 0644 /sys/class/input_booster/key/freq
+	echo "1 1200000 0 0 0 1" > /sys/class/input_booster/key/freq
+	$BB chmod 0440 /sys/class/input_booster/key/freq
+	$BB chmod 0644 /sys/class/input_booster/key/time
+	echo "1 500 500 0" > /sys/class/input_booster/key/time
+	echo "1 500 500 0" > /sys/class/input_booster/key/time
+	$BB chmod 0440 /sys/class/input_booster/key/time
+  elif [ $2 == Battery ]; then
+    echo 1 > $P
+	$BB chmod 0644 /sys/class/input_booster/key/freq
+	echo "1 1200000 1200000 0 0 1" > /sys/class/input_booster/key/freq
+	$BB chmod 0440 /sys/class/input_booster/key/freq
+	$BB chmod 0644 /sys/class/input_booster/key/time
+	echo "1 0 500 0" > /sys/class/input_booster/key/time
+	$BB chmod 0440 /sys/class/input_booster/key/time
+  fi; fi
+  copy=`cat $P`
+  if [ $copy == 0 ]; then
+    echo Default
+  elif [ $copy == 1 ]; then
+    echo Battery
+  fi
+  ;;
+touchkey)
+  P=/res/synapse/hrtkernel/input_touchkey
+  if [ ! -z $2 ]; then
+  if [ $2 == Default ]; then
+    echo 0 > $P
+	$BB chmod 0644 /sys/class/input_booster/touchkey/freq
+	echo "2 1200000 800000 0 0 1" > /sys/class/input_booster/touchkey/freq
+	echo "3 0 1296000 0 0 0" > /sys/class/input_booster/touchkey/freq
+	$BB chmod 0440 /sys/class/input_booster/touchkey/freq
+	$BB chmod 0644 /sys/class/input_booster/touchkey/time
+	echo "2 130 500 0" > /sys/class/input_booster/touchkey/time
+	echo "3 0 500 0" > /sys/class/input_booster/touchkey/time
+	$BB chmod 0440 /sys/class/input_booster/touchkey/time
+  elif [ $2 == Battery ]; then
+    echo 1 > $P
+	$BB chmod 0644 /sys/class/input_booster/touchkey/freq
+	echo "1 1200000 1200000 0 0 1" > /sys/class/input_booster/touchkey/freq
+	$BB chmod 0440 /sys/class/input_booster/touchkey/freq
+	$BB chmod 0644 /sys/class/input_booster/touchkey/time
+	echo "1 0 500 0" > /sys/class/input_booster/touchkey/time
+	$BB chmod 0440 /sys/class/input_booster/touchkey/time
+  fi; fi
+  copy=`cat $P`
+  if [ $copy == 0 ]; then
+    echo Default
+  elif [ $copy == 1 ]; then
+    echo Battery
+  fi
+  ;;
+esac

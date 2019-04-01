@@ -1,0 +1,77 @@
+#!/system/bin/sh
+
+cat << CTAG
+{
+    name:USB,
+    elements:[
+	{ SPane:{
+		title:"USB Mode",
+		description:" You require a supported PC OS with appropriate USB drivers installed."
+	}},
+	{ SSpacer:{
+		height:2
+	}},
+        { SLiveLabel:{
+		title:"DEFAULT",
+		description:" Does NOTHING, so Synapse will allow your ROM to auto mount MTP or PTP on next boot.",
+		refresh:10000000,
+		action:"echo "
+        }},
+        { SLiveLabel:{
+		title:"MTP",
+		description:" Media Transfer Protocol Mode allows you to mount both device internal & external storage to transfer files to PC.",
+		refresh:10000000,
+		action:"echo "
+        }},
+        { SLiveLabel:{
+		title:"PTP",
+		description:" Photo Transfer Protocol Mode allows you to mount both device internal & external storage to transfer photos and other files to PC that don't support MTP.",
+		refresh:10000000,
+		action:"echo "
+        }},
+        { SLiveLabel:{
+		title:"CD ROM",
+		description:" CD ROM emulation to mount iso images from device storage to PC. Use DriveDroid app from Play Store for best results.",
+		refresh:10000000,
+		action:"echo "
+        }},
+        { SLiveLabel:{
+		title:"USB Keyboard/Mouse",
+		description:" Enable or Disable USB HID Device driver to control PC with keyboard and mouse from phone!",
+		refresh:10000000,
+		action:"echo "
+        }},
+	{ SDescription:{
+		description:"1. Connect device to system via USB cable"
+	}},
+	{ SDescription:{
+		description:"2. Enable USB_KEYBOARD-MOUSE & [apply] in Synapse"
+	}},
+	{ SDescription:{
+		description:"3. Run USB KEYBOARD app <a href='https://play.google.com/store/apps/details?id=remote.hid.keyboard.client&hl=en'>(Download from Google Play)</a> and ensure SU permission."
+	}},
+	{ SSpacer:{
+		height:2
+	}},
+	{ SLiveLabel:{
+                title:"Status",
+		description:"",
+		refresh:3000,
+		action:"live usb_status"
+	}},
+	{ SSpacer:{
+		height:2
+	}},
+	{ SOptionList:{
+		title:"USB Mode Selection",
+		description:"",
+		default:`echo $(/res/synapse/actions/storage usb_mode)`,
+		action:"storage usb_mode",
+		values:[DEFAULT, MTP, PTP, CD_ROM, USB_KEYBOARD-MOUSE,]
+	}},
+	{ SSpacer:{
+		height:1
+	}},
+    ]
+}
+CTAG

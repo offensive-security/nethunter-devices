@@ -1,0 +1,48 @@
+case $(basename $0) in
+c1volt)
+	P=/sys/devices/system/cpu/cpufreq/mp-cpufreq/cluster1_volt_table
+	;;
+c0volt)
+	P=/sys/devices/system/cpu/cpufreq/mp-cpufreq/cluster0_volt_table
+	;;
+gpuvolt)
+	P=/sys/devices/14ac0000.mali/volt_table
+	;;
+intvolt)
+	P=/sys/class/devfreq/exynos7-devfreq-int/volt_table
+	;;
+mifvolt)
+	P=/sys/class/devfreq/exynos7-devfreq-mif/volt_table
+	;;
+ispvolt)
+	P=/sys/class/devfreq/exynos7-devfreq-isp/volt_table
+	;;
+esac
+
+readValue() {
+	while read FREQ UVOLT; do
+		if [ $FREQ == $1 ]; then
+			echo $UVOLT
+			return
+		fi
+	done < $P
+}
+
+writeValue() {
+	case $(basename $0) in
+	intvolt) 	;&
+	mifvolt) 	;&
+	gpuvolt)	;&
+	c1volt)		;&
+	c0volt)		;&
+	ispvolt)
+		echo $1 $2 > $P
+		return
+	esac
+}
+
+if [[ ! -z $2 ]]; then
+	writeValue $1 $2
+fi
+
+echo $(readValue $1)

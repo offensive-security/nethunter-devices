@@ -140,7 +140,9 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 
 # - Samsung Galaxy S6, Galaxy S6 edge
 # AOSP/LineageOS
-# git clone https://github.com/XXH3X/android_kernel_samsung_exynos7420.git -b cm-14.1
+# git clone https://github.com/XXH3X/Exynos7420_Nethunter -b cm-14.1
+# TouchWiz
+# git clone https://github.com/XXH3X/Ultimate-Kali
 
 # - Samsung Galaxy S7, Galaxy S7 edge, and Galaxy Note 7
 # Grace UI & TouchWiz
@@ -214,6 +216,10 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # Motorola Moto G5 Plus
 # Lineage OS 14.1 Based ROM's
 # git clone https://github.com/chankruze/potter_kali_kernel -b cm-14.1
+
+# - Xiaomi Redmi 4X 
+# MIUI/Nougat 
+# git clone https://github.com/DroidKali/santoni_kernel_nethunter.git
 
 # - Toolchain
 # Google reference

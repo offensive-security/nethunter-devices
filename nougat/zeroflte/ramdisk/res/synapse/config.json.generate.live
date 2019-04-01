@@ -1,0 +1,83 @@
+#!/system/bin/sh
+
+cat << CTAG
+{
+    name:"Live Statistics",
+    elements:[
+	{ SPane:{
+		title:"CPU Activity",
+		description:"Live CPU status."
+	}},
+	{ SLiveLabel:{
+	title:"Current A53 CPU Frequency",
+		refresh:1000,
+		action:"live LiveCPUFrequency_LITTLE"
+	}},
+
+	{ SLiveLabel:{
+	title:"Current A57 CPU Frequency",
+		refresh:1000,
+		action:"live LiveCPUFrequency_big"
+	}},
+	{ SLiveLabel:{
+		title:"A53 LITTLE Cores time in state",
+		description:"CPU0",
+		refresh:2500,
+		action:"live Live_A53_Time 0 9"
+	}},
+	{ SLiveLabel:{
+		refresh:2500,
+		action:"live Live_A53_Time 10 19"
+	}},
+	{ SSpacer:{
+		height:1
+	}},
+	{ SLiveLabel:{
+		title:"A57 big Cores time in state",
+		description:"CPU4",
+		refresh:2500,
+		action:"live Live_A57_Time 0 9"
+	}},
+	{ SLiveLabel:{
+		refresh:2500,
+		action:"live Live_A57_Time 10 19"
+	}},
+	{ SSpacer:{
+		height:1
+	}},
+	{ SLiveLabel:{
+		title:"CPU temperature",
+		refresh:2000,
+		action:"live cputemp"	
+	}},
+	{ SSpacer:{
+		height:1
+	}},
+	{ SLiveLabel:{
+		title:"Battery",
+		refresh:2000,
+		action:"show battinfo"	
+	}},
+	{ SSpacer:{
+		height:1
+	}},
+	{ SLiveLabel:{
+		title:"GPU",
+		refresh:2500,
+		action:"live gpu"	
+	}},
+	{ SLiveLabel:{
+		refresh:2500,
+		action:"live gpu_load"	
+	}},
+	{ SSpacer:{
+		height:1
+	}},
+	{ SLiveLabel:{
+		title:"Memory",
+		refresh:2000,
+		action:"live LiveMemory"	
+	}},
+	]
+}
+CTAG
