@@ -1,4 +1,5 @@
 kernel/fs/nfs_common/grace.ko:
+kernel/fs/fscache/fscache.ko:
 kernel/fs/nfs/nfs.ko: kernel/fs/lockd/lockd.ko kernel/fs/nfs_common/grace.ko kernel/net/sunrpc/sunrpc.ko
 kernel/fs/nfs/nfsv3.ko: kernel/fs/nfs/nfs.ko kernel/fs/lockd/lockd.ko kernel/fs/nfs_common/grace.ko kernel/net/sunrpc/sunrpc.ko
 kernel/fs/nfs/nfsv4.ko: kernel/net/dns_resolver/dns_resolver.ko kernel/fs/nfs/nfs.ko kernel/fs/lockd/lockd.ko kernel/fs/nfs_common/grace.ko kernel/net/sunrpc/sunrpc.ko

@@ -18,7 +18,9 @@ alias symbol:s5h1409_attach s5h1409
 alias symbol:smscore_onresponse smsmdtv
 alias symbol:svc_pool_stats_open sunrpc
 alias symbol:smscore_unregister_client smsmdtv
+alias symbol:__fscache_wait_on_page_write fscache
 alias symbol:nfs_rmdir nfs
+alias symbol:__fscache_acquire_cookie fscache
 alias symbol:stv6110_attach stv6110
 alias symbol:ec100_attach ec100
 alias symbol:get_nfs_open_context nfs
@@ -30,9 +32,11 @@ alias symbol:nfs_request_add_commit_list nfs
 alias symbol:stv0297_attach stv0297
 alias symbol:ttusbdecfe_dvbt_attach ttusbdecfe
 alias symbol:rpc_put_task_async sunrpc
+alias symbol:fscache_init_cache fscache
 alias symbol:lib80211_crypt_delayed_deinit lib80211
 alias symbol:em28xx_init_camera em28xx
 alias symbol:nfs_server_copy_userdata nfs
+alias symbol:fscache_put_operation fscache
 alias symbol:isl6421_attach isl6421
 alias symbol:ieee80211_wlan_frequencies_rsl r8192u_usb
 alias symbol:rpc_pipe_generic_upcall sunrpc
@@ -42,9 +46,11 @@ alias symbol:i2c_bit_algo i2c_algo_bit
 alias symbol:xdr_encode_word sunrpc
 alias symbol:cb710_set_irq_handler cb710
 alias symbol:ieee80211_wx_set_essid_rsl r8192u_usb
+alias symbol:__fscache_attr_changed fscache
 alias symbol:ieee80211_wx_set_mode_rsl r8192u_usb
 alias symbol:tua9001_attach tua9001
 alias symbol:btusb_pm_sem ath3k
+alias symbol:__fscache_maybe_release_page fscache
 alias symbol:cb710_sg_dwiter_read_next_block cb710
 alias symbol:svc_process sunrpc
 alias symbol:nfs_statfs nfs
@@ -55,6 +61,7 @@ alias symbol:nfs_idmap_cache_timeout nfs
 alias symbol:nfs_alloc_inode nfs
 alias symbol:ieee80211_disassociate_rsl r8192u_usb
 alias symbol:xprt_load_transport sunrpc
+alias symbol:__fscache_register_netfs fscache
 alias symbol:lib80211_get_crypto_ops lib80211
 alias symbol:ieee80211_softmac_start_protocol_rsl r8192u_usb
 alias symbol:em28xx_register_extension em28xx
@@ -66,6 +73,7 @@ alias symbol:em28xx_boards em28xx
 alias symbol:nfs_init_server_rpcclient nfs
 alias symbol:gspca_disconnect gspca_main
 alias symbol:rpc_call_sync sunrpc
+alias symbol:__fscache_update_cookie fscache
 alias symbol:cx24113_attach cx24113
 alias symbol:nfs_fs_mount nfs
 alias symbol:nfs_pageio_reset_read_mds nfs
@@ -99,6 +107,7 @@ alias symbol:svc_set_num_threads sunrpc
 alias symbol:Dot11d_Init r8192u_usb
 alias symbol:nfs_file_set_open_context nfs
 alias symbol:rpc_setbufsize sunrpc
+alias symbol:fscache_object_destroy fscache
 alias symbol:ieee80211_wx_set_scan_rsl r8192u_usb
 alias symbol:nfs4_fs_type nfs
 alias symbol:xdr_init_decode_pages sunrpc
@@ -107,6 +116,7 @@ alias symbol:dvb_usbv2_generic_write dvb_usb_v2
 alias symbol:isl6423_attach isl6423
 alias symbol:smsendian_handle_rx_message smsmdtv
 alias symbol:au8522_init au8522_common
+alias symbol:__fscache_uncache_page fscache
 alias symbol:ieee80211_ps_tx_ack_rsl r8192u_usb
 alias symbol:nfs_close_context nfs
 alias symbol:nfs_file_mmap nfs
@@ -116,6 +126,7 @@ alias symbol:rpc_task_reset_client sunrpc
 alias symbol:nfs_initiate_pgio nfs
 alias symbol:nlmclnt_init lockd
 alias symbol:gspca_expo_autogain gspca_main
+alias symbol:__fscache_uncache_all_inode_pages fscache
 alias symbol:tifm_unregister_driver tifm_core
 alias symbol:tda10071_attach tda10071
 alias symbol:rpc_sleep_on_priority sunrpc
@@ -144,6 +155,7 @@ alias symbol:xdr_inline_pages sunrpc
 alias symbol:sms_board_load_modules smsmdtv
 alias symbol:nfs_remount nfs
 alias symbol:rpc_force_rebind sunrpc
+alias symbol:fscache_object_lookup_negative fscache
 alias symbol:flexcop_device_kfree b2c2_flexcop
 alias symbol:qword_get sunrpc
 alias symbol:ieee80211_softmac_scan_syncro_rsl r8192u_usb
@@ -155,6 +167,7 @@ alias symbol:nfs_get_client nfs
 alias symbol:svc_reg_xprt_class sunrpc
 alias symbol:cache_check sunrpc
 alias symbol:em28xx_write_reg em28xx
+alias symbol:__fscache_read_or_alloc_page fscache
 alias symbol:lgdt330x_attach lgdt330x
 alias symbol:nfs_force_lookup_revalidate nfs
 alias symbol:rtl2832_sdr_attach rtl2832_sdr
@@ -163,7 +176,9 @@ alias symbol:flexcop_pass_dmx_data b2c2_flexcop
 alias symbol:rpcauth_init_credcache sunrpc
 alias symbol:nfs_callback_set_tcpport nfs
 alias symbol:rpc_peeraddr2str sunrpc
+alias symbol:__fscache_enable_cookie fscache
 alias symbol:svc_create_pooled sunrpc
+alias symbol:fscache_cache_cleared_wq fscache
 alias symbol:nfs_init_commit nfs
 alias symbol:nfs_pgio_data_destroy nfs
 alias symbol:ieee80211_wx_get_name_rsl r8192u_usb
@@ -172,6 +187,7 @@ alias symbol:nfs_file_splice_read nfs
 alias symbol:nfs4_set_ds_client nfsv4
 alias symbol:rpc_exit sunrpc
 alias symbol:svc_seq_show sunrpc
+alias symbol:fscache_io_error fscache
 alias symbol:rpc_ntop sunrpc
 alias symbol:em28xx_write_regs em28xx
 alias symbol:rpc_call_async sunrpc
@@ -179,6 +195,7 @@ alias symbol:lockd_down lockd
 alias symbol:xprt_register_transport sunrpc
 alias symbol:sprint_oid oid_registry
 alias symbol:svc_max_payload sunrpc
+alias symbol:__fscache_disable_cookie fscache
 alias symbol:rtl2832_get_private_i2c_adapter rtl2832
 alias symbol:nfs_link nfs
 alias symbol:rpcb_getport_async sunrpc
@@ -199,11 +216,13 @@ alias symbol:smsendian_handle_message_header smsmdtv
 alias symbol:nfs4_dentry_operations nfs
 alias symbol:nfs_setsecurity nfs
 alias symbol:nfs_fill_super nfs
+alias symbol:__fscache_check_page_write fscache
 alias symbol:nfs_alloc_fhandle nfs
 alias symbol:dvb_usbv2_suspend dvb_usb_v2
 alias symbol:rpc_proc_unregister sunrpc
 alias symbol:gss_mech_unregister auth_rpcgss
 alias symbol:svc_set_client sunrpc
+alias symbol:fscache_enqueue_operation fscache
 alias symbol:nfs_post_op_update_inode_force_wcc nfs
 alias symbol:nfs_retry_commit nfs
 alias symbol:em28xx_stop_urbs em28xx
@@ -227,14 +246,17 @@ alias symbol:btmrvl_send_module_cfg_cmd btmrvl
 alias symbol:rpc_add_pipe_dir_object sunrpc
 alias symbol:nfs_fhget nfs
 alias symbol:nfs_write_inode nfs
+alias symbol:fscache_op_debug_id fscache
 alias symbol:nfs_pageio_init nfs
 alias symbol:svc_wake_up sunrpc
+alias symbol:__fscache_relinquish_cookie fscache
 alias symbol:rpc_uaddr2sockaddr sunrpc
 alias symbol:ieee80211_wx_get_power_rsl r8192u_usb
 alias symbol:nfs_check_flags nfs
 alias symbol:nfs_net_id nfs
 alias symbol:smscore_putbuffer smsmdtv
 alias symbol:Dot11d_Reset r8192u_usb
+alias symbol:__fscache_check_consistency fscache
 alias symbol:xdr_enter_page sunrpc
 alias symbol:dns_query dns_resolver
 alias symbol:fc0013_rc_cal_add fc0013
@@ -350,6 +372,8 @@ alias symbol:gspca_debug gspca_main
 alias symbol:nfs_sb_active nfs
 alias symbol:nfs_get_lock_context nfs
 alias symbol:xdr_encode_netobj sunrpc
+alias symbol:__fscache_readpages_cancel fscache
+alias symbol:fscache_object_sleep_till_congested fscache
 alias symbol:xdr_decode_array2 sunrpc
 alias symbol:ieee80211_wx_get_essid_rsl r8192u_usb
 alias symbol:tveeprom_hauppauge_analog tveeprom
@@ -368,6 +392,7 @@ alias symbol:nfs_dreq_bytes_left nfs
 alias symbol:tda18218_attach tda18218
 alias symbol:mt2060_attach mt2060
 alias symbol:smscore_register_hotplug smsmdtv
+alias symbol:__fscache_write_page fscache
 alias symbol:sms_board_lna_control smsmdtv
 alias symbol:s5h1420_attach s5h1420
 alias symbol:ieee80211_start_send_beacons_rsl r8192u_usb
@@ -386,6 +411,7 @@ alias symbol:nfs_pageio_resend nfs
 alias symbol:IsLegalChannel r8192u_usb
 alias symbol:rpc_shutdown_client sunrpc
 alias symbol:rpc_net_ns sunrpc
+alias symbol:fscache_check_aux fscache
 alias symbol:rpc_destroy_wait_queue sunrpc
 alias symbol:nfs_fs_type nfs
 alias symbol:rpc_d_lookup_sb sunrpc
@@ -396,8 +422,11 @@ alias symbol:rpc_rmdir sunrpc
 alias symbol:cb710_sg_dwiter_write_next_block cb710
 alias symbol:rpc_clone_client sunrpc
 alias symbol:tifm_has_ms_pif tifm_core
+alias symbol:fscache_op_complete fscache
+alias symbol:__fscache_read_or_alloc_pages fscache
 alias symbol:nfs4_disable_idmapping nfs
 alias symbol:ieee80211_is_54g_rsl r8192u_usb
+alias symbol:__fscache_wait_on_invalidate fscache
 alias symbol:videobuf_vmalloc_free videobuf_vmalloc
 alias symbol:nfs_dentry_operations nfs
 alias symbol:svc_unreg_xprt_class sunrpc
@@ -414,6 +443,7 @@ alias symbol:xprt_set_retrans_timeout_rtt sunrpc
 alias symbol:xdr_buf_read_netobj sunrpc
 alias symbol:lib80211_crypt_info_init lib80211
 alias symbol:drx39xxj_attach drx39xyj
+alias symbol:fscache_add_cache fscache
 alias symbol:xprt_unregister_transport sunrpc
 alias symbol:ieee80211_rx_rsl r8192u_usb
 alias symbol:em28xx_write_reg_bits em28xx
@@ -443,6 +473,7 @@ alias symbol:fc0013_rc_cal_reset fc0013
 alias symbol:unix_domain_find sunrpc
 alias symbol:auth_domain_lookup sunrpc
 alias symbol:cache_create_net sunrpc
+alias symbol:fscache_withdraw_cache fscache
 alias symbol:csum_partial_copy_to_xdr sunrpc
 alias symbol:rpc_wake_up_first sunrpc
 alias symbol:xdr_buf_trim sunrpc
@@ -500,6 +531,7 @@ alias symbol:rpc_bind_new_program sunrpc
 alias symbol:flexcop_pass_dmx_packets b2c2_flexcop
 alias symbol:tda18271c2dd_attach tda18271c2dd
 alias symbol:xprt_wait_for_buffer_space sunrpc
+alias symbol:__fscache_alloc_page fscache
 alias symbol:nfs_free_server nfs
 alias symbol:nfs_invalidate_atime nfs
 alias symbol:rpcauth_create sunrpc
@@ -531,6 +563,7 @@ alias symbol:nfs4_schedule_lease_recovery nfsv4
 alias symbol:xdr_skb_read_bits sunrpc
 alias symbol:xprt_lock_and_alloc_slot sunrpc
 alias symbol:sms_board_led_feedback smsmdtv
+alias symbol:__fscache_unregister_netfs fscache
 alias symbol:nfs_file_release nfs
 alias symbol:ieee80211_wx_set_encode_rsl r8192u_usb
 alias symbol:nfs_fs_mount_common nfs
@@ -539,6 +572,7 @@ alias symbol:smscore_registry_getmode smsmdtv
 alias symbol:xdr_process_buf sunrpc
 alias symbol:rpcauth_get_pseudoflavor sunrpc
 alias symbol:ieee80211_wx_get_wap_rsl r8192u_usb
+alias symbol:fscache_mark_page_cached fscache
 alias symbol:svc_alien_sock sunrpc
 alias symbol:nfs_put_super nfs
 alias symbol:xdr_init_encode sunrpc
@@ -549,6 +583,7 @@ alias symbol:lnbh24_attach lnbp21
 alias symbol:nfs_setattr nfs
 alias symbol:xprt_alloc sunrpc
 alias symbol:sunrpc_init_cache_detail sunrpc
+alias symbol:fscache_fsdef_index fscache
 alias symbol:nfs_auth_info_match nfs
 alias symbol:rpc_localaddr sunrpc
 alias symbol:nfs_permission nfs
@@ -556,6 +591,7 @@ alias symbol:xprt_reserve_xprt sunrpc
 alias symbol:rpcauth_destroy_credcache sunrpc
 alias symbol:svcauth_gss_flavor auth_rpcgss
 alias symbol:rpc_create sunrpc
+alias symbol:__fscache_invalidate fscache
 alias symbol:nfs_access_set_mask nfs
 alias symbol:xdr_init_decode sunrpc
 alias symbol:xprt_write_space sunrpc
@@ -565,6 +601,7 @@ alias symbol:smscore_get_board_id smsmdtv
 alias symbol:tifm_add_adapter tifm_core
 alias symbol:xprt_complete_rqst sunrpc
 alias symbol:gss_mech_register auth_rpcgss
+alias symbol:fscache_obtained_object fscache
 alias symbol:rpc_pipefs_notifier_unregister sunrpc
 alias symbol:smscore_unregister_hotplug smsmdtv
 alias symbol:rpcauth_lookup_credcache sunrpc
@@ -626,6 +663,7 @@ alias symbol:nfs_show_path nfs
 alias symbol:au8522_analog_i2c_gate_ctrl au8522_common
 alias symbol:alloc_nfs_open_context nfs
 alias symbol:tifm_map_sg tifm_core
+alias symbol:fscache_mark_pages_cached fscache
 alias symbol:smscore_get_device_mode smsmdtv
 alias symbol:tifm_eject tifm_core
 alias symbol:rpc_init_pipe_dir_object sunrpc
@@ -639,6 +677,7 @@ alias symbol:xdr_shift_buf sunrpc
 alias symbol:ieee80211_wx_set_mlme_rsl r8192u_usb
 alias symbol:rpcauth_generic_bind_cred sunrpc
 alias symbol:rpc_queue_upcall sunrpc
+alias symbol:fscache_object_init fscache
 alias symbol:nfs_refresh_inode nfs
 alias symbol:nfs_commit_free nfs
 alias symbol:nfs_post_op_update_inode nfs

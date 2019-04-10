@@ -87,6 +87,7 @@ kernel/drivers/base/regmap/regmap-spi.ko
 kernel/drivers/base/regmap/regmap-swr.ko
 kernel/drivers/block/brd.ko
 kernel/drivers/block/loop.ko
+kernel/drivers/bluetooth/bluetooth-power.ko
 kernel/drivers/char/adsprpc.ko
 kernel/drivers/char/adsprpc_compat.ko
 kernel/drivers/char/diag/diagchar.ko
@@ -349,6 +350,7 @@ kernel/drivers/spi/spidev.ko
 kernel/drivers/spi/spi-qup.ko
 kernel/drivers/spi/spi_qsd.ko
 kernel/drivers/staging/android/timed_gpio.ko
+kernel/drivers/staging/ozwpan/ozwpan.ko
 kernel/drivers/staging/qcacld-2.0/wlan.ko
 kernel/drivers/switch/switch_class.ko
 kernel/drivers/thermal/thermal_sys.ko
