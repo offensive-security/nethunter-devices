@@ -143,6 +143,9 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # - Samsung Galaxy S7, Galaxy S7 edge, and Galaxy Note 7
 # Grace UI & TouchWiz
 # git clone https://github.com/jcadduono/android_kernel_samsung_universal8890 -b nethunter-6.0
+# git clone https://github.com/Svirusx/NetHunter-s7-kernel-StockOreo.git -b nethunter-8.0
+# LineageOS 14.1
+# git clone https://github.com/Svirusx/NetHunter-s7-kernel-LineageOS14.1.git -b cm-14.1
 
 # - Samsung Galaxy A5
 # TouchWiz
