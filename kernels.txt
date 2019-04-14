@@ -1,4 +1,4 @@
-Locations of all kernels used in Kali NetHunter.  
+Locations of all kernels used in Kali NetHunter.
 
 If you wish to add a kernel/new device, leave a link to source here and feel free to add your name if you wish:
 
@@ -17,6 +17,7 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # git clone https://github.com/jcadduono/android_kernel_google_chromeos.git -b nethunter-7.1 pixelc-7
 
 # - Nexus 10
+# git clone https://github.com/jmmmbnnn/kernel_samsung_manta.git -b thunderkat
 # git clone https://github.com/binkybear/kernel_samsung_manta.git -b thunderkat
 # git clone https://github.com/binkybear/nexus10-5.git -b android-exynos-manta-3.4-lollipop-release
 
@@ -92,6 +93,7 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # OXYGEN
 # git clone https://github.com/binkybear/android_kernel_oneplus_msm8994.git -b OXYGEN
 # CM
+# git clone https://github.com/Re4son/android_kernel_oneplus_msm8994.git -b lineage-16.0 
 # git clone https://github.com/Re4son/android_kernel_oneplus_msm8994.git -b lineage-15.1 
 # git clone https://github.com/Re4son/android_kernel_oneplus_msm8994.git -b cm-14.1 
 # git clone https://github.com/binkybear/android_kernel_oneplus_msm8994.git -b cm-13.0
@@ -135,17 +137,26 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 
 # - Samsung Galaxy S6, Galaxy S6 edge
 # AOSP/LineageOS
-# git clone https://github.com/XXH3X/android_kernel_samsung_exynos7420.git -b cm-14.1
+# git clone https://github.com/XXH3X/Exynos7420_Nethunter -b cm-14.1
+# TouchWiz
+# git clone https://github.com/XXH3X/Ultimate-Kali
 
 # - Samsung Galaxy S7, Galaxy S7 edge, and Galaxy Note 7
 # Grace UI & TouchWiz
 # git clone https://github.com/jcadduono/android_kernel_samsung_universal8890 -b nethunter-6.0
+# git clone https://github.com/Svirusx/NetHunter-s7-kernel-StockOreo.git -b nethunter-8.0
+# LineageOS 14.1
+# git clone https://github.com/Svirusx/NetHunter-s7-kernel-LineageOS14.1.git -b cm-14.1
 
 # - Samsung Galaxy A5
 # TouchWiz
 # git clone https://github.com/DeadSquirrel01/nethunter-kernel-a5ulte.git -b touchwiz-6.0
 # AOSP/CM
 # git clone https://github.com/DeadSquirrel01/nethunter-kernel-a5ulte.git -b cm-13.0
+
+# - Samsung Galaxy Tab S4
+# Samsung Experience 9.5 / Android 8.1 Oreo
+# git clone https://github.com/Re4son/gts4lwifi -b 8.1-nethunter
 
 # - Sony Xperia Z
 # CM 13.0
@@ -209,6 +220,10 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # Motorola Moto G5 Plus
 # Lineage OS 14.1 Based ROM's
 # git clone https://github.com/chankruze/potter_kali_kernel -b cm-14.1
+
+# - Xiaomi Redmi 4X 
+# MIUI/Nougat 
+# git clone https://github.com/DroidKali/santoni_kernel_nethunter.git
 
 # - Toolchain
 # Google reference
