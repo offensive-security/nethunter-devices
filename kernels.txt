@@ -162,6 +162,10 @@ If you wish to add a kernel/new device, leave a link to source here and feel fre
 # Samsung Experience 9.5 / Android 8.1 Oreo
 # git clone https://github.com/Re4son/gts4lwifi -b 8.1-nethunter
 
+# - Sony Xperia Z1
+# CM 13.0
+# git clone https://github.com/Re4son/android_kernel_Hanomi.git -b master
+
 # - Sony Xperia Z
 # CM 13.0
 # git clone https://github.com/daedroza/nethunter_kernel_apq8064.git -b master
