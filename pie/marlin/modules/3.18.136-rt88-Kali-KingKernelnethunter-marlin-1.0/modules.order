@@ -1,0 +1,6 @@
+kernel/drivers/net/wireless/atmel.ko
+kernel/drivers/net/wireless/at76c50x-usb.ko
+kernel/drivers/net/wireless/zd1201.ko
+kernel/drivers/bluetooth/bcm203x.ko
+kernel/drivers/bluetooth/bpa10x.ko
+kernel/drivers/bluetooth/bfusb.ko
