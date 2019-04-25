@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# Turn off
-nexutil -m0
-
-# Unset ioctl intercept
-unset LD_PRELOAD

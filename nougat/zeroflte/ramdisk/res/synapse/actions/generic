@@ -1,5 +1,0 @@
-if [[ ! -z $2 ]]; then
-	echo $2 > $1
-fi
-
-echo `cat $1`

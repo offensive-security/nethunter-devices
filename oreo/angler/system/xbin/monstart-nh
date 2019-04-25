@@ -1,8 +1,0 @@
-#!/bin/bash
-
-# Restart monitor mode
-nexutil -m0
-nexutil -m2
-
-# Set ioctl intercept
-export LD_PRELOAD=/system/lib/libfakeioctlkali.so

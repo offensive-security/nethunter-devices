@@ -1,9 +1,0 @@
-# Aliases extracted from modules themselves.
-alias crypto-ansi_cprng ansi_cprng
-alias ansi_cprng ansi_cprng
-alias crypto-stdrng ansi_cprng
-alias stdrng ansi_cprng
-alias spi:spidev spidev
-alias of:N*T*Cqcom,spi-msm-codec-slave* spidev
-alias of:N*T*Crohm,dh2228fv* spidev
-alias input:b*v*p*e*-e*k*r*a*m*l*s*f*w* evbug
